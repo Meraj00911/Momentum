@@ -1,5 +1,5 @@
 "use client";
-import "../dashboard.css";
+import "./dashboard.css";
 import { AnimatePresence, motion } from "motion/react";
 import { createClient } from "@/lib/supabase/client";
 import {

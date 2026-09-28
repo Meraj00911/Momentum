@@ -2796,12 +2796,14 @@
   position: fixed;
   z-index: 5000;
   top: 24px;
-  left: 50%;
+ left: 0;
+right: 0;
 
   width: min(940px, calc(100vw - 40px));
   height: 68px;
+  margin-left: auto;
+margin-right: auto;
 
-  transform: translateX(-50%);
 
   display: flex;
   align-items: center;

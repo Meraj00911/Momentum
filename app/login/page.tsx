@@ -39,8 +39,10 @@ const { data: profile } = await supabase
 if (profile?.role === "admin") {
   router.push("/admin");
 } else {
-  router.push("/");
+  router.push("/dashboard");
 }
+
+router.refresh();
 
 router.refresh();
   }
