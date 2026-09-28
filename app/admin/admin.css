@@ -1,0 +1,723 @@
+/* =========================================================
+   MOMENTUM ADMIN
+========================================================= */
+
+.admin-page {
+  min-height: 100vh;
+  padding: 46px 38px 35px;
+  background:
+    radial-gradient(
+      circle at 90% 0%,
+      rgba(155, 44, 44, .045),
+      transparent 28%
+    ),
+    radial-gradient(
+      circle at 0% 80%,
+      rgba(0, 0, 0, .025),
+      transparent 30%
+    ),
+    #f7f7f5;
+  color: #151515;
+}
+
+.admin-shell {
+  width: min(1240px, 100%);
+  margin: 0 auto;
+}
+
+/* =========================================================
+   HEADER
+========================================================= */
+
+.admin-header {
+  display: flex;
+  align-items: flex-end;
+  justify-content: space-between;
+  gap: 35px;
+  margin-bottom: 34px;
+  animation:
+    adminFadeUp .7s cubic-bezier(.22,1,.36,1) both;
+}
+
+.brand-label {
+  margin-bottom: 11px;
+  color: #999;
+  font-size: 10px;
+  font-weight: 800;
+  letter-spacing: .2em;
+  text-transform: uppercase;
+}
+
+.admin-title {
+  margin: 0;
+  color: #151515;
+  font-size: clamp(38px, 5vw, 58px);
+  line-height: .95;
+  letter-spacing: -.06em;
+  font-weight: 760;
+}
+
+.admin-title span {
+  color: #9b2c2c;
+}
+
+.admin-subtitle {
+  max-width: 470px;
+  margin: 13px 0 0;
+  color: #858585;
+  font-size: 13px;
+  line-height: 1.6;
+}
+
+.admin-header-meta {
+  display: flex;
+  align-items: center;
+  gap: 10px;
+}
+
+.admin-status,
+.client-count {
+  display: flex;
+  align-items: center;
+  gap: 9px;
+  min-height: 42px;
+  padding: 0 14px;
+  border: 1px solid #e6e6e3;
+  border-radius: 999px;
+  background: rgba(255,255,255,.82);
+  box-shadow: 0 8px 25px rgba(0,0,0,.025);
+}
+
+.admin-status {
+  color: #777;
+  font-size: 10px;
+  font-weight: 650;
+}
+
+.status-pulse {
+  width: 7px;
+  height: 7px;
+  border-radius: 50%;
+  background: #3f8d5b;
+  box-shadow: 0 0 0 4px rgba(63,141,91,.08);
+  animation: statusPulse 2s ease-in-out infinite;
+}
+
+.client-count {
+  gap: 7px;
+}
+
+.client-count strong {
+  color: #222;
+  font-size: 13px;
+}
+
+.client-count span {
+  color: #888;
+  font-size: 10px;
+}
+
+/* =========================================================
+   GRID
+========================================================= */
+
+.admin-grid {
+  display: grid;
+  grid-template-columns: minmax(0, 1fr) 390px;
+  gap: 22px;
+  align-items: start;
+}
+
+/* =========================================================
+   PANELS
+========================================================= */
+
+.panel {
+  position: relative;
+  overflow: hidden;
+  border: 1px solid #e6e6e3;
+  border-radius: 25px;
+  background: rgba(255,255,255,.91);
+  box-shadow:
+    0 20px 60px rgba(0,0,0,.035),
+    0 2px 8px rgba(0,0,0,.025);
+  animation:
+    adminFadeUp .75s .12s cubic-bezier(.22,1,.36,1) both;
+}
+
+.add-client-panel {
+  animation-delay: .2s;
+}
+
+.panel::before {
+  content: "";
+  position: absolute;
+  top: 0;
+  left: 0;
+  width: 100%;
+  height: 1px;
+  background: linear-gradient(
+    90deg,
+    transparent,
+    rgba(155,44,44,.22),
+    transparent
+  );
+  opacity: .7;
+}
+
+.panel-header {
+  display: flex;
+  align-items: flex-start;
+  justify-content: space-between;
+  gap: 20px;
+  padding: 26px 27px 0;
+}
+
+.panel-eyebrow {
+  display: block;
+  margin-bottom: 7px;
+  color: #aaa;
+  font-size: 8px;
+  font-weight: 800;
+  letter-spacing: .16em;
+  text-transform: uppercase;
+}
+
+.panel-title {
+  margin: 0;
+  color: #171717;
+  font-size: 18px;
+  font-weight: 720;
+  letter-spacing: -.03em;
+}
+
+.panel-index {
+  color: #b1b1ae;
+  font-size: 9px;
+  font-weight: 800;
+  letter-spacing: .12em;
+}
+
+.panel-description {
+  margin: 8px 27px 23px;
+  color: #909090;
+  font-size: 11px;
+  line-height: 1.55;
+}
+
+/* =========================================================
+   CLIENT LIST
+========================================================= */
+
+.client-list {
+  display: flex;
+  flex-direction: column;
+  gap: 9px;
+  padding: 0 17px 17px;
+}
+
+.client-row {
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  gap: 18px;
+  padding: 16px;
+  border: 1px solid #ececea;
+  border-radius: 17px;
+  background: #fff;
+  opacity: 0;
+  animation:
+    clientAppear .55s cubic-bezier(.22,1,.36,1) forwards;
+  transition:
+    transform .25s cubic-bezier(.22,1,.36,1),
+    border-color .25s ease,
+    box-shadow .25s ease;
+}
+
+.client-row:hover {
+  transform: translateY(-3px);
+  border-color: #dededb;
+  box-shadow:
+    0 14px 32px rgba(0,0,0,.055),
+    0 2px 6px rgba(0,0,0,.025);
+}
+
+.client-identity {
+  min-width: 0;
+  display: flex;
+  align-items: center;
+  gap: 12px;
+}
+
+.client-avatar {
+  width: 40px;
+  height: 40px;
+  flex-shrink: 0;
+  display: grid;
+  place-items: center;
+  border-radius: 12px;
+  background: #181818;
+  color: #fff;
+  font-size: 13px;
+  font-weight: 750;
+  letter-spacing: -.02em;
+  transition:
+    transform .25s ease,
+    background .25s ease;
+}
+
+.client-row:hover .client-avatar {
+  transform: rotate(-4deg) scale(1.06);
+  background: #9b2c2c;
+}
+
+.client-info {
+  min-width: 0;
+}
+
+.client-name-line {
+  display: flex;
+  align-items: center;
+  gap: 8px;
+}
+
+.client-name {
+  margin: 0;
+  color: #202020;
+  font-size: 13px;
+  font-weight: 720;
+}
+
+.client-active {
+  padding: 3px 6px;
+  border-radius: 999px;
+  background: #f1f7f2;
+  color: #4d8a60;
+  font-size: 7px;
+  font-weight: 750;
+  letter-spacing: .05em;
+  text-transform: uppercase;
+}
+
+.client-email {
+  max-width: 360px;
+  margin: 5px 0 0;
+  overflow: hidden;
+  color: #9a9a9a;
+  font-size: 10px;
+  text-overflow: ellipsis;
+  white-space: nowrap;
+}
+
+.reports-button {
+  flex-shrink: 0;
+  display: inline-flex;
+  align-items: center;
+  gap: 10px;
+  min-height: 36px;
+  padding: 0 11px 0 13px;
+  border: 1px solid #e8e8e5;
+  border-radius: 10px;
+  background: #f7f7f5;
+  color: #333;
+  text-decoration: none;
+  font-size: 10px;
+  font-weight: 700;
+  transition:
+    background .25s ease,
+    color .25s ease,
+    border-color .25s ease,
+    transform .25s ease;
+}
+
+.reports-button strong {
+  width: 21px;
+  height: 21px;
+  display: grid;
+  place-items: center;
+  border-radius: 50%;
+  background: #fff;
+  font-size: 11px;
+  transition: transform .25s ease;
+}
+
+.reports-button:hover {
+  border-color: #111;
+  background: #111;
+  color: #fff;
+  transform: translateY(-1px);
+}
+
+.reports-button:hover strong {
+  transform: translate(2px, -2px);
+}
+
+/* =========================================================
+   EMPTY
+========================================================= */
+
+.empty-state {
+  margin: 0 17px 17px;
+  padding: 48px 25px;
+  border: 1px dashed #dcdcd8;
+  border-radius: 17px;
+  text-align: center;
+}
+
+.empty-icon {
+  width: 34px;
+  height: 34px;
+  display: grid;
+  place-items: center;
+  margin: 0 auto 13px;
+  border: 1px solid #dededb;
+  border-radius: 50%;
+  color: #777;
+  font-size: 17px;
+}
+
+.empty-title {
+  margin: 0;
+  color: #333;
+  font-size: 13px;
+  font-weight: 700;
+}
+
+.empty-text {
+  max-width: 270px;
+  margin: 7px auto 0;
+  color: #999;
+  font-size: 10px;
+  line-height: 1.6;
+}
+
+/* =========================================================
+   ADD CLIENT FORM
+========================================================= */
+
+.client-form {
+  padding: 0 27px 27px;
+}
+
+.form-group {
+  margin-bottom: 18px;
+}
+
+.form-label {
+  display: block;
+  margin-bottom: 8px;
+  color: #555;
+  font-size: 10px;
+  font-weight: 700;
+}
+
+.input-wrap {
+  position: relative;
+}
+
+.input-number {
+  position: absolute;
+  top: 50%;
+  left: 13px;
+  z-index: 1;
+  transform: translateY(-50%);
+  color: #aaa;
+  font-size: 8px;
+  font-weight: 800;
+  pointer-events: none;
+}
+
+.form-input {
+  width: 100%;
+  height: 48px;
+  padding: 0 13px 0 36px;
+  border: 1px solid #e3e3e0;
+  border-radius: 12px;
+  outline: none;
+  background: #fafaf9;
+  color: #151515;
+  font: inherit;
+  font-size: 12px;
+  transition:
+    border-color .22s ease,
+    background .22s ease,
+    box-shadow .22s ease,
+    transform .22s ease;
+}
+
+.form-input::placeholder {
+  color: #b1b1ae;
+}
+
+.form-input:hover {
+  border-color: #d7d7d4;
+  background: #fff;
+}
+
+.form-input:focus {
+  border-color: #222;
+  background: #fff;
+  box-shadow:
+    0 0 0 3px rgba(0,0,0,.045),
+    0 8px 20px rgba(0,0,0,.035);
+  transform: translateY(-1px);
+}
+
+/* =========================================================
+   INVITE NOTE
+========================================================= */
+
+.invite-note {
+  display: flex;
+  align-items: flex-start;
+  gap: 10px;
+  margin: 22px 0 18px;
+  padding: 13px;
+  border: 1px solid #eee8e3;
+  border-radius: 12px;
+  background: #fcfaf8;
+}
+
+.invite-note-icon {
+  width: 24px;
+  height: 24px;
+  flex-shrink: 0;
+  display: grid;
+  place-items: center;
+  border-radius: 7px;
+  background: #f1e8e2;
+  color: #9b2c2c;
+  font-size: 11px;
+}
+
+.invite-note p {
+  margin: 1px 0 0;
+  color: #888;
+  font-size: 9px;
+  line-height: 1.6;
+}
+
+/* =========================================================
+   BUTTON
+========================================================= */
+
+.add-button {
+  width: 100%;
+  height: 50px;
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  padding: 0 10px 0 17px;
+  border: 0;
+  border-radius: 13px;
+  background: #111;
+  color: #fff;
+  cursor: pointer;
+  font: inherit;
+  font-size: 11px;
+  font-weight: 700;
+  transition:
+    transform .25s cubic-bezier(.22,1,.36,1),
+    background .25s ease,
+    box-shadow .25s ease;
+}
+
+.add-button strong {
+  width: 32px;
+  height: 32px;
+  display: grid;
+  place-items: center;
+  border-radius: 50%;
+  background: #f0eee8;
+  color: #111;
+  font-size: 14px;
+  transition:
+    transform .3s cubic-bezier(.22,1,.36,1);
+}
+
+.add-button:hover {
+  background: #292929;
+  transform: translateY(-2px);
+  box-shadow: 0 12px 27px rgba(0,0,0,.13);
+}
+
+.add-button:hover strong {
+  transform: translateX(3px);
+}
+
+.add-button:active {
+  transform: translateY(0);
+}
+
+/* =========================================================
+   FOOTER
+========================================================= */
+
+.admin-footer {
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  gap: 9px;
+  margin-top: 25px;
+  color: #aaa;
+  font-size: 8px;
+  font-weight: 700;
+  letter-spacing: .13em;
+}
+
+.admin-footer i {
+  width: 3px;
+  height: 3px;
+  border-radius: 50%;
+  background: #c8c8c5;
+}
+
+.admin-footer-version {
+  margin-left: 5px;
+  color: #c0c0bd;
+}
+
+/* =========================================================
+   ANIMATIONS
+========================================================= */
+
+@keyframes adminFadeUp {
+  from {
+    opacity: 0;
+    transform: translateY(18px);
+  }
+
+  to {
+    opacity: 1;
+    transform: translateY(0);
+  }
+}
+
+@keyframes clientAppear {
+  from {
+    opacity: 0;
+    transform: translateY(10px);
+  }
+
+  to {
+    opacity: 1;
+    transform: translateY(0);
+  }
+}
+
+@keyframes statusPulse {
+  0%,
+  100% {
+    opacity: 1;
+    transform: scale(1);
+  }
+
+  50% {
+    opacity: .55;
+    transform: scale(.82);
+  }
+}
+
+/* =========================================================
+   TABLET
+========================================================= */
+
+@media (max-width: 900px) {
+  .admin-page {
+    padding: 32px 22px 35px;
+  }
+
+  .admin-grid {
+    grid-template-columns: 1fr;
+  }
+
+  .add-client-panel {
+    animation-delay: .15s;
+  }
+}
+
+/* =========================================================
+   MOBILE
+========================================================= */
+
+@media (max-width: 600px) {
+  .admin-page {
+    padding: 22px 13px 30px;
+  }
+
+  .admin-header {
+    align-items: flex-start;
+    flex-direction: column;
+    margin-bottom: 25px;
+  }
+
+  .admin-header-meta {
+    width: 100%;
+  }
+
+  .admin-status,
+  .client-count {
+    flex: 1;
+    justify-content: center;
+  }
+
+  .admin-title {
+    font-size: 40px;
+  }
+
+  .panel {
+    border-radius: 20px;
+  }
+
+  .panel-header {
+    padding: 21px 20px 0;
+  }
+
+  .panel-description {
+    margin: 8px 20px 20px;
+  }
+
+  .client-list {
+    padding: 0 12px 12px;
+  }
+
+  .client-row {
+    align-items: flex-start;
+    flex-direction: column;
+  }
+
+  .client-identity {
+    width: 100%;
+  }
+
+  .client-email {
+    max-width: 230px;
+  }
+
+  .reports-button {
+    width: 100%;
+    justify-content: space-between;
+  }
+
+  .client-form {
+    padding: 0 20px 20px;
+  }
+
+  .admin-footer {
+    flex-wrap: wrap;
+    text-align: center;
+  }
+}
+
+@media (prefers-reduced-motion: reduce) {
+  .admin-header,
+  .panel,
+  .client-row {
+    animation: none;
+    opacity: 1;
+  }
+
+  .status-pulse {
+    animation: none;
+  }
+}
