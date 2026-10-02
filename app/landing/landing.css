@@ -2484,8 +2484,21 @@
   min-height: 1050px;
   padding: 150px 5vw 70px;
   overflow: hidden;
-  background: #171313;
-  color: #fff7ed;
+
+  background:
+    radial-gradient(
+      circle at 75% 10%,
+      rgba(246,225,206,.75),
+      transparent 28%
+    ),
+    linear-gradient(
+      180deg,
+      #fdf8f3 0%,
+      #f7eee7 55%,
+      #f3e8df 100%
+    );
+
+  color: #171313;
 }
 
 .momentum-system::before {
@@ -2493,13 +2506,20 @@
   position: absolute;
   inset: 0;
   pointer-events: none;
-  background-image:
-    linear-gradient(rgba(255,255,255,.035) 1px,transparent 1px),
-    linear-gradient(90deg,rgba(255,255,255,.035) 1px,transparent 1px);
-  background-size: 70px 70px;
-  mask-image: radial-gradient(circle at center,black,transparent 80%);
-}
 
+  background-image:
+    linear-gradient(rgba(155,44,44,.045) 1px, transparent 1px),
+    linear-gradient(90deg, rgba(155,44,44,.045) 1px, transparent 1px);
+
+  background-size: 70px 70px;
+
+  mask-image:
+    radial-gradient(
+      circle at center,
+      black,
+      transparent 78%
+    );
+}
 .system-heading {
   position: relative;
   z-index: 5;
@@ -2514,7 +2534,7 @@
 .system-heading .section-number {
   display: block;
   margin-bottom: 22px;
-  color: #e2b7a0;
+  color: #9b2c2c;
   font-size: 9px;
   font-weight: 800;
   letter-spacing: .18em;
@@ -2522,7 +2542,7 @@
 
 .system-heading h2 {
   margin: 0;
-  color: #fff7ed;
+  color: #171313;
   font-size: clamp(55px,8vw,125px);
   line-height: .82;
   letter-spacing: -.075em;
@@ -2536,7 +2556,7 @@
 
 .system-heading > p {
   margin: 0 0 5px;
-  color: #a69a92;
+  color: #6f625c;
   font-size: 12px;
   line-height: 1.7;
 }
@@ -7060,4 +7080,943 @@ margin-right: auto;
     height: 39px;
   }
 
+}
+
+/* =========================================================
+   NAVBAR — FINAL POSITION FIX
+========================================================= */
+
+.liquid-navbar {
+  left: 0 !important;
+  right: 0 !important;
+
+  margin-left: auto !important;
+  margin-right: auto !important;
+
+  width: min(900px, calc(100vw - 32px)) !important;
+
+  /* Motion controls transform — don't fight it */
+  transform: none !important;
+}
+
+.liquid-navbar.liquid-navbar-scrolled,
+.liquid-navbar.is-scrolled {
+  left: 0 !important;
+  right: 0 !important;
+
+  margin-left: auto !important;
+  margin-right: auto !important;
+
+  width: min(760px, calc(100vw - 32px)) !important;
+
+  transform: none !important;
+}
+
+@media (max-width: 950px) {
+  .liquid-navbar,
+  .liquid-navbar.liquid-navbar-scrolled,
+  .liquid-navbar.is-scrolled {
+    left: 0 !important;
+    right: 0 !important;
+
+    width: calc(100vw - 28px) !important;
+
+    margin-left: auto !important;
+    margin-right: auto !important;
+
+    transform: none !important;
+  }
+}
+
+@media (max-width: 760px) {
+  .liquid-navbar,
+  .liquid-navbar.liquid-navbar-scrolled,
+  .liquid-navbar.is-scrolled {
+    width: calc(100vw - 20px) !important;
+  }
+}
+
+@media (max-width: 480px) {
+  .liquid-navbar,
+  .liquid-navbar.liquid-navbar-scrolled,
+  .liquid-navbar.is-scrolled {
+    width: calc(100vw - 14px) !important;
+  }
+}
+
+/* =========================================================
+   MOBILE HERO — FINAL FIX
+========================================================= */
+
+@media (max-width: 600px) {
+
+  .hero {
+    min-height: 760px;
+    padding: 0 20px 35px;
+    overflow: hidden;
+  }
+
+  .hero-topline {
+    padding-top: 18px;
+    font-size: 8px;
+    letter-spacing: .08em;
+  }
+
+  .hero-topline > span:last-child {
+    display: none;
+  }
+
+  /* HEADLINE */
+
+  .hero-heading {
+    padding-top: 190px;
+    position: relative;
+    z-index: 20;
+  }
+
+  .hero-line {
+    font-size: clamp(52px, 15vw, 70px);
+    line-height: .86;
+    white-space: nowrap;
+  }
+
+  .hero-line-offset {
+    margin-left: 3vw;
+  }
+
+  .hero-outline {
+    -webkit-text-stroke: 1.5px var(--red);
+  }
+
+  /* IMAGE CORRIDOR */
+
+  .image-corridor {
+    z-index: 5;
+    bottom: 210px;
+    height: 210px;
+  }
+
+  .corridor-perspective {
+    perspective: 55cqw;
+  }
+
+  .corridor-world {
+    transform: scale(.62);
+    transform-origin: 50% 50%;
+  }
+
+  /* BOTTOM COPY */
+
+  .hero-bottom {
+    z-index: 30;
+    right: 20px;
+    bottom: 32px;
+    left: 20px;
+
+    display: flex;
+    flex-direction: column;
+    align-items: flex-start;
+    gap: 24px;
+  }
+
+  .hero-bottom p {
+    max-width: 270px;
+    font-size: 11px;
+    line-height: 1.6;
+  }
+
+  .scroll-link {
+    gap: 10px;
+    font-size: 10px;
+  }
+
+  .scroll-circle {
+    width: 30px;
+    height: 30px;
+  }
+}
+
+@media (max-width: 600px) {
+
+  .image-corridor {
+    bottom: 125px;
+    height: 250px;
+  }
+
+.corridor-world {
+  transform: scale(1.05);
+  transform-origin: 50% 68%;
+}
+
+}
+/* =========================================================
+   MOMENTUM ORBITAL — EDITORIAL SYSTEM
+========================================================= */
+
+.momentum-orbital {
+  position: relative;
+  overflow: hidden;
+  min-height: 950px;
+  padding: 145px 5.5vw 70px;
+
+  background:
+    radial-gradient(
+      circle at 50% 48%,
+      rgba(155, 44, 44, .055),
+      transparent 34%
+    ),
+    linear-gradient(
+      180deg,
+      #faf7f3 0%,
+      #f7eee7 55%,
+      #f3e7dd 100%
+    );
+
+  color: #171313;
+  border-bottom: 1px solid rgba(155, 44, 44, .12);
+}
+
+.momentum-orbital::before {
+  content: "";
+  position: absolute;
+  inset: 0;
+  pointer-events: none;
+
+  background-image:
+    linear-gradient(
+      rgba(155, 44, 44, .035) 1px,
+      transparent 1px
+    ),
+    linear-gradient(
+      90deg,
+      rgba(155, 44, 44, .035) 1px,
+      transparent 1px
+    );
+
+  background-size: 60px 60px;
+
+  mask-image: radial-gradient(
+    circle at center,
+    black 15%,
+    transparent 72%
+  );
+
+  -webkit-mask-image: radial-gradient(
+    circle at center,
+    black 15%,
+    transparent 72%
+  );
+}
+
+.momentum-orbital-inner {
+  position: relative;
+  z-index: 2;
+  width: 100%;
+  max-width: 1500px;
+  margin: 0 auto;
+}
+
+/* =========================================================
+   HEADING
+========================================================= */
+
+.momentum-orbital-heading {
+  position: relative;
+  z-index: 10;
+
+  display: flex;
+  align-items: flex-end;
+  justify-content: space-between;
+
+  gap: 50px;
+}
+
+.momentum-orbital-heading .section-number {
+  color: #9b2c2c;
+}
+
+.momentum-orbital-heading h2 {
+  margin: 28px 0 0;
+
+  color: #171313;
+
+  font-size: clamp(65px, 8vw, 125px);
+  line-height: .82;
+  letter-spacing: -.085em;
+}
+
+.momentum-orbital-heading h2 em {
+  color: #9b2c2c;
+  font-family: Georgia, serif;
+  font-weight: 400;
+}
+
+.momentum-orbital-heading p {
+  max-width: 260px;
+  margin: 0 0 8px;
+
+  color: #756963;
+
+  font-size: 12px;
+  line-height: 1.7;
+  text-align: right;
+}
+
+/* =========================================================
+   ORBIT STAGE
+========================================================= */
+
+.momentum-orbit-stage {
+  position: relative;
+
+  width: min(100%, 900px);
+  height: 650px;
+
+  margin: 40px auto 0;
+
+  display: flex;
+  align-items: center;
+  justify-content: center;
+
+  perspective: 1200px;
+}
+
+/* subtle technical grid */
+
+.momentum-orbit-grid {
+  position: absolute;
+  inset: 0;
+
+  opacity: .7;
+
+  background-image:
+    linear-gradient(
+      rgba(155, 44, 44, .045) 1px,
+      transparent 1px
+    ),
+    linear-gradient(
+      90deg,
+      rgba(155, 44, 44, .045) 1px,
+      transparent 1px
+    );
+
+  background-size: 50px 50px;
+
+  mask-image: radial-gradient(
+    circle,
+    black 20%,
+    transparent 72%
+  );
+
+  -webkit-mask-image: radial-gradient(
+    circle,
+    black 20%,
+    transparent 72%
+  );
+}
+
+/* =========================================================
+   ORBIT RINGS
+========================================================= */
+
+.momentum-orbit-ring {
+  position: absolute;
+
+  left: 50%;
+  top: 50%;
+
+  border: 1px solid rgba(23, 19, 19, .12);
+  border-radius: 50%;
+
+  transform: translate(-50%, -50%);
+}
+
+.momentum-orbit-ring-one {
+  width: 500px;
+  height: 500px;
+
+  border-color: rgba(23, 19, 19, .14);
+}
+
+.momentum-orbit-ring-two {
+  width: 390px;
+  height: 390px;
+
+  border-color: rgba(155, 44, 44, .22);
+}
+
+.momentum-orbit-ring-three {
+  width: 275px;
+  height: 275px;
+
+  border-color: rgba(190, 150, 105, .24);
+}
+
+/* =========================================================
+   CENTER
+========================================================= */
+
+.momentum-orbit-center {
+  position: absolute;
+
+  z-index: 20;
+
+  left: 50%;
+  top: 50%;
+
+  width: 190px;
+  height: 190px;
+
+  transform: translate(-50%, -50%);
+
+  display: grid;
+  place-items: center;
+}
+
+.momentum-orbit-center-ring {
+  position: absolute;
+  inset: -18px;
+
+  border: 1px solid rgba(155, 44, 44, .22);
+  border-radius: 50%;
+
+  animation:
+    momentumOrbitalPulse 4.5s ease-in-out infinite;
+}
+
+.momentum-orbit-center-ring.ring-two {
+  inset: -38px;
+
+  border-color: rgba(190, 150, 105, .16);
+
+  animation-delay: 1s;
+}
+
+.momentum-orbit-center-core {
+  position: relative;
+  z-index: 3;
+
+  width: 155px;
+  height: 155px;
+
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  justify-content: center;
+
+  border: 1px solid rgba(23, 19, 19, .13);
+  border-radius: 50%;
+
+  background:
+    radial-gradient(
+      circle at 50% 28%,
+      rgba(155, 44, 44, .16),
+      transparent 55%
+    ),
+    #eee4d8;
+
+  box-shadow:
+    0 30px 80px rgba(70, 30, 20, .09),
+    inset 0 0 40px rgba(255, 255, 255, .45);
+
+  text-align: center;
+}
+
+.momentum-orbit-center-core span {
+  color: rgba(23, 19, 19, .48);
+
+  font-size: 7px;
+  font-weight: 800;
+  letter-spacing: .2em;
+}
+
+.momentum-orbit-center-core strong {
+  margin-top: 8px;
+
+  color: #9b2c2c;
+
+  font-size: 22px;
+  letter-spacing: -.06em;
+}
+
+.momentum-orbit-center-core small {
+  max-width: 100px;
+  margin-top: 8px;
+
+  color: rgba(23, 19, 19, .45);
+
+  font-size: 6px;
+  line-height: 1.4;
+  letter-spacing: .08em;
+}
+
+/* =========================================================
+   ORBIT NODES
+========================================================= */
+
+.momentum-orbit-nodes {
+  position: absolute;
+
+  left: 50%;
+  top: 50%;
+
+  width: 0;
+  height: 0;
+
+  transform-origin: center;
+
+  z-index: 30;
+
+  will-change: transform;
+}
+
+.momentum-orbit-node {
+  position: absolute;
+
+  left: 0;
+  top: 0;
+
+  width: 110px;
+  height: 110px;
+
+  margin-left: -55px;
+  margin-top: -55px;
+
+  padding: 0;
+
+  border: 0;
+
+  background: transparent;
+
+  color: #171313;
+
+  cursor: pointer;
+
+  transform-origin: center center;
+
+  transition:
+    opacity .4s ease,
+    filter .4s ease;
+}
+
+.momentum-orbit-node::before {
+  content: "";
+
+  position: absolute;
+  inset: 17px;
+
+  border: 1px solid rgba(23, 19, 19, .14);
+
+  border-radius: 50%;
+
+  background: rgba(250, 247, 243, .78);
+
+  backdrop-filter: blur(14px);
+
+  box-shadow:
+    0 10px 30px rgba(70, 30, 20, .06),
+    inset 0 0 20px rgba(255, 255, 255, .5);
+
+  transition:
+    transform .45s cubic-bezier(.22, 1, .36, 1),
+    border-color .35s ease,
+    background .35s ease,
+    box-shadow .35s ease;
+}
+
+.momentum-orbit-node:hover::before,
+.momentum-orbit-node.is-active::before {
+  transform: scale(1.12);
+
+  border-color: #9b2c2c;
+
+  background: #efe1d4;
+
+  box-shadow:
+    0 18px 45px rgba(155, 44, 44, .12),
+    inset 0 0 20px rgba(255, 255, 255, .5);
+}
+
+.momentum-orbit-node.is-related::before {
+  border-color: rgba(155, 44, 44, .35);
+}
+
+/* node glow */
+
+.momentum-orbit-node-glow {
+  position: absolute;
+  inset: 3px;
+
+  border-radius: 50%;
+
+  background:
+    radial-gradient(
+      circle,
+      rgba(155, 44, 44, .14),
+      transparent 68%
+    );
+
+  opacity: 0;
+
+  transition: opacity .4s ease;
+}
+
+.momentum-orbit-node:hover .momentum-orbit-node-glow,
+.momentum-orbit-node.is-active .momentum-orbit-node-glow,
+.momentum-orbit-node.is-related .momentum-orbit-node-glow {
+  opacity: 1;
+}
+
+/* icon */
+
+.momentum-orbit-node-icon {
+  position: absolute;
+
+  z-index: 3;
+
+  top: 31px;
+  left: 50%;
+
+  transform: translateX(-50%);
+
+  display: grid;
+  place-items: center;
+
+  color: #9b2c2c;
+}
+
+/* title */
+
+.momentum-orbit-node-title {
+  position: absolute;
+
+  z-index: 4;
+
+  top: 62px;
+  left: 50%;
+
+  transform: translateX(-50%);
+
+  white-space: nowrap;
+
+  color: #171313;
+
+  font-size: 7px;
+  font-weight: 800;
+
+  letter-spacing: .13em;
+}
+
+/* number */
+
+.momentum-orbit-node-number {
+  position: absolute;
+
+  z-index: 4;
+
+  top: 17px;
+  right: 23px;
+
+  color: rgba(23, 19, 19, .3);
+
+  font-size: 6px;
+  font-weight: 700;
+}
+
+/* =========================================================
+   CONNECTION LINES
+========================================================= */
+
+.momentum-orbit-lines {
+  position: absolute;
+
+  z-index: 4;
+
+  left: 50%;
+  top: 50%;
+
+  width: 0;
+  height: 0;
+
+  pointer-events: none;
+}
+
+.momentum-orbit-lines span {
+  position: absolute;
+
+  left: 0;
+  top: 0;
+
+  width: 250px;
+  height: 1px;
+
+  transform-origin: left center;
+
+  background:
+    linear-gradient(
+      90deg,
+      rgba(155, 44, 44, .2),
+      transparent
+    );
+
+  opacity: .25;
+}
+
+.momentum-orbit-lines span.is-related {
+  opacity: .8;
+
+  background:
+    linear-gradient(
+      90deg,
+      rgba(155, 44, 44, .55),
+      transparent
+    );
+}
+
+/* =========================================================
+   DETAIL CARD
+========================================================= */
+
+.momentum-orbit-detail {
+  position: absolute;
+
+  z-index: 100;
+
+  right: 0;
+  bottom: 15px;
+
+  width: min(360px, 90%);
+
+  padding: 25px;
+
+  border: 1px solid rgba(155, 44, 44, .16);
+
+  background: rgba(250, 247, 243, .88);
+
+  color: #171313;
+
+  backdrop-filter: blur(22px);
+
+  box-shadow:
+    0 25px 70px rgba(70, 30, 20, .12);
+
+  animation:
+    momentumOrbitalReveal
+    .45s cubic-bezier(.22, 1, .36, 1);
+}
+
+.momentum-orbit-detail-top {
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+
+  color: #9b2c2c;
+
+  font-size: 8px;
+  font-weight: 800;
+
+  letter-spacing: .13em;
+}
+
+.momentum-orbit-detail-top button {
+  width: 25px;
+  height: 25px;
+
+  border: 1px solid rgba(23, 19, 19, .15);
+
+  background: transparent;
+
+  color: #171313;
+
+  cursor: pointer;
+
+  font-size: 16px;
+
+  transition:
+    background .25s ease,
+    color .25s ease,
+    border-color .25s ease;
+}
+
+.momentum-orbit-detail-top button:hover {
+  background: #9b2c2c;
+  border-color: #9b2c2c;
+  color: #fff;
+}
+
+.momentum-orbit-detail h3 {
+  margin: 22px 0 10px;
+
+  color: #171313;
+
+  font-size: 34px;
+  letter-spacing: -.06em;
+}
+
+.momentum-orbit-detail p {
+  margin: 0;
+
+  color: #6d625c;
+
+  font-size: 12px;
+  line-height: 1.7;
+}
+
+.momentum-orbit-detail-bottom {
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+
+  margin-top: 25px;
+  padding-top: 15px;
+
+  border-top: 1px solid rgba(23, 19, 19, .1);
+
+  color: rgba(23, 19, 19, .4);
+
+  font-size: 7px;
+  font-weight: 800;
+
+  letter-spacing: .15em;
+}
+
+/* =========================================================
+   FOOTER
+========================================================= */
+
+.momentum-orbital-footer {
+  display: flex;
+  justify-content: space-between;
+
+  padding-top: 25px;
+
+  border-top: 1px solid rgba(23, 19, 19, .1);
+
+  color: rgba(23, 19, 19, .4);
+
+  font-size: 8px;
+  font-weight: 700;
+
+  letter-spacing: .13em;
+}
+
+/* =========================================================
+   ANIMATIONS
+========================================================= */
+
+@keyframes momentumOrbitalPulse {
+  0%,
+  100% {
+    transform: scale(1);
+    opacity: .65;
+  }
+
+  50% {
+    transform: scale(1.08);
+    opacity: .2;
+  }
+}
+
+@keyframes momentumOrbitalReveal {
+  from {
+    opacity: 0;
+    transform: translateY(18px);
+  }
+
+  to {
+    opacity: 1;
+    transform: translateY(0);
+  }
+}
+
+/* =========================================================
+   TABLET
+========================================================= */
+
+@media (max-width: 800px) {
+  .momentum-orbital {
+    min-height: 820px;
+    padding: 110px 5vw 40px;
+  }
+
+  .momentum-orbital-heading {
+    display: block;
+  }
+
+  .momentum-orbital-heading h2 {
+    font-size: clamp(55px, 15vw, 90px);
+  }
+
+  .momentum-orbital-heading p {
+    margin-top: 25px;
+    text-align: left;
+  }
+
+  .momentum-orbit-stage {
+    height: 560px;
+    margin-top: 15px;
+
+    transform: scale(.76);
+    transform-origin: center top;
+  }
+
+  .momentum-orbital-footer {
+    margin-top: -90px;
+
+    gap: 15px;
+
+    flex-wrap: wrap;
+  }
+}
+
+/* =========================================================
+   MOBILE
+========================================================= */
+
+@media (max-width: 520px) {
+  .momentum-orbital {
+    min-height: 780px;
+    padding-top: 90px;
+  }
+
+  .momentum-orbit-stage {
+    height: 520px;
+
+    transform: scale(.59);
+    transform-origin: center top;
+  }
+
+  .momentum-orbital-footer {
+    margin-top: -120px;
+
+    font-size: 7px;
+  }
+
+  .momentum-orbit-detail {
+    right: 50%;
+
+    transform: translateX(50%);
+
+    width: 300px;
+  }
+}
+
+/* =========================================================
+   REDUCED MOTION
+========================================================= */
+
+@media (prefers-reduced-motion: reduce) {
+  .momentum-orbit-center-ring {
+    animation: none;
+  }
+
+  .momentum-orbit-node {
+    transition: none;
+  }
+}
+
+@media (prefers-reduced-motion: reduce) {
+  .momentum-orbit-center-ring {
+    animation: none;
+  }
 }

@@ -43,8 +43,6 @@ if (profile?.role === "admin") {
 }
 
 router.refresh();
-
-router.refresh();
   }
 
   return (

@@ -3,7 +3,7 @@ import { redirect } from "next/navigation";
 import { revalidatePath } from "next/cache";
 import { createClient } from "@/lib/supabase/server";
 import ReportForm from "./ReportForm";
-
+import DeleteReportButton from "./DeleteReportButton";
 type Props = {
   params: Promise<{
     brandId: string;
@@ -99,7 +99,50 @@ async function saveReport(formData: FormData) {
   revalidatePath(`/admin/reports/${brandId}`);
   revalidatePath("/");
 }
+async function deleteReport(formData: FormData) {
+  "use server";
 
+  const supabase = await createClient();
+
+  const {
+    data: { user },
+  } = await supabase.auth.getUser();
+
+  if (!user) {
+    redirect("/login");
+  }
+
+  const { data: profile } = await supabase
+    .from("profiles")
+    .select("role")
+    .eq("id", user.id)
+    .single();
+
+  if (!profile || profile.role !== "admin") {
+    redirect("/");
+  }
+
+  const reportId = String(formData.get("reportId") || "");
+  const brandId = String(formData.get("brandId") || "");
+
+  if (!reportId || !brandId) {
+    throw new Error("Missing report information.");
+  }
+
+  const { error } = await supabase
+    .from("weekly_metrics")
+    .delete()
+    .eq("id", reportId)
+    .eq("brand_id", brandId);
+
+  if (error) {
+    throw new Error(error.message);
+  }
+
+  revalidatePath(`/admin/reports/${brandId}`);
+  revalidatePath("/dashboard");
+  revalidatePath("/");
+}
 export default async function ReportsPage({
   params,
   searchParams,
@@ -270,9 +313,28 @@ export default async function ReportsPage({
                   : "New weekly report"}
               </h2>
 
-              <p className="panel-description">
-                Enter the weekly advertising performance.
-              </p>
+<div className="panel-heading-row">
+  <div>
+    <h2 className="panel-title">
+      {editingReport
+        ? "Edit weekly report"
+        : "New weekly report"}
+    </h2>
+
+    <p className="panel-description">
+      Enter the weekly advertising performance.
+    </p>
+  </div>
+
+  {editingReport && (
+    <a
+      href={`/admin/reports/${brandId}`}
+      className="new-report-link"
+    >
+      + New report
+    </a>
+  )}
+</div>
 
             </div>
 
@@ -394,14 +456,21 @@ export default async function ReportsPage({
 
                     </div>
 
-                    <a
-                      href={`/admin/reports/${brandId}?edit=${report.id}`}
-                      className="edit-link"
-                    >
-                      Edit report
-                      <span>→</span>
-                    </a>
+<div className="report-actions">
+  <a
+    href={`/admin/reports/${brandId}?edit=${report.id}`}
+    className="edit-link"
+  >
+    Edit report
+    <span>→</span>
+  </a>
 
+  <DeleteReportButton
+    reportId={report.id}
+    brandId={brandId}
+    deleteAction={deleteReport}
+  />
+</div>
                   </div>
 
                 ))

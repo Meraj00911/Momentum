@@ -12,7 +12,7 @@ import useEmblaCarousel from "embla-carousel-react";
 import "./landing.css";
 import { BrandsShowcase } from "@/components/ui/brands-showcase";
 import { AgencyManifesto } from "@/components/ui/agency-manifesto";
-
+import MomentumOrbital from "@/components/ui/momentum-orbital";
 
 const projects = [
   {
@@ -1356,9 +1356,11 @@ export default function LandingPage() {
       {/* BRANDS */}
 {/* BRANDS */}
 
-<section id="work">
-  <BrandsShowcase />
-</section>
+{/* MOMENTUM ORBITAL SYSTEM */}
+
+<MomentumOrbital />
+
+{/* MANIFESTO */}
 
 {/* MANIFESTO */}
 
