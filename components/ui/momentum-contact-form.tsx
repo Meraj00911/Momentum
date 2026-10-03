@@ -1,8 +1,17 @@
 "use client";
 
-import { FormEvent, useState } from "react";
 import { motion } from "motion/react";
+import { FormEvent, useState } from "react";
 
+declare global {
+  interface Window {
+    gtag?: (
+      command: string,
+      action: string,
+      params?: Record<string, unknown>
+    ) => void;
+  }
+}
 const budgetOptions = [
   "Under ₹50k",
   "₹50k-2L",
@@ -16,7 +25,7 @@ const serviceOptions = [
   "Website",
 ];
 
-export default function MomentumContactForm() {
+  export default function MomentumContactForm() {
   const [loading, setLoading] = useState(false);
   const [success, setSuccess] = useState(false);
   const [error, setError] = useState("");
@@ -71,7 +80,12 @@ export default function MomentumContactForm() {
         );
       }
 
-      setSuccess(true);
+setSuccess(true);
+
+window.gtag?.("event", "generate_lead", {
+  event_category: "contact",
+  event_label: "Momentum contact form",
+});
 
       setForm({
         name: "",
