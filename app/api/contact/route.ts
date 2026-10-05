@@ -42,7 +42,7 @@ export async function POST(request: Request) {
     }
 
     const { data, error } = await resend.emails.send({
-      from: "Momentum Website <onboarding@resend.dev>",
+from: "Momentum Website <hello@momentumagency.in>",
 
       to: [process.env.MOMENTUM_CONTACT_EMAIL],
 

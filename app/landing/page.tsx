@@ -654,15 +654,26 @@ function MagneticButton({
 
   return (
 
-    <motion.a
+<motion.a
+  ref={ref}
+  href={href}
+  className={`magnetic-button ${
+    dark ? "button-dark" : "button-light"
+  }`}
+  onClick={(event) => {
+    if (href.startsWith("#")) {
+      event.preventDefault();
 
-      ref={ref}
+      const target = document.querySelector(href);
 
-      href={href}
+      target?.scrollIntoView({
+        behavior: "smooth",
+        block: "start",
+      });
 
-className={`magnetic-button ${
-  dark ? "button-dark" : "button-light"
-} ${className}`}
+      window.history.replaceState(null, "", href);
+    }
+  }}
 
       style={{
 
@@ -736,85 +747,75 @@ function PeakPerformance() {
 
   const brands = [
 
-    {
+{
+  name: "ZENIN",
+  category: "D2C / PERFORMANCE",
+  number: "01",
+  accent: "#9b2c2c",
+  soft: "#fff2bd",
+  headline: "MOVE NUMBERS.",
+  metrics: {
+    roas: 5.2,
+    revenue: 14,
+    orders: 900,
+  },
+},
 
-      name: "ZENIN",
+{
+  name: "QUIRKS",
+  category: "BRAND / ECOMMERCE",
+  number: "02",
+  accent: "#171313",
+  soft: "#fff2bd",
+  headline: "MAKE NOISE.",
+  metrics: {
+    roas: 4.1,
+    revenue: 8,
+    orders: 520,
+  },
+},
 
-      category: "D2C / PERFORMANCE",
+{
+  name: "KAVISHAE",
+  category: "LUXURY / JEWELLERY",
+  number: "03",
+  accent: "#8f5f49",
+  soft: "#f6e1ce",
+  headline: "QUIET LUXURY.",
+  metrics: {
+    roas: 3.8,
+    revenue: 6,
+    orders: 310,
+  },
+},
 
-      number: "01",
+{
+  name: "SHOPRIVA",
+  category: "COMMERCE / BRAND",
+  number: "04",
+  accent: "#704b3e",
+  soft: "#ead5c8",
+  headline: "BUILD BETTER.",
+  metrics: {
+    roas: 4.6,
+    revenue: 11,
+    orders: 680,
+  },
+},
 
-      accent: "#9b2c2c",
-
-      soft: "#fff2bd",
-
-      headline: "MOVE NUMBERS.",
-
-    },
-
-    {
-
-      name: "QUIRKS",
-
-      category: "BRAND / ECOMMERCE",
-
-      number: "02",
-
-      accent: "#171313",
-
-      soft: "#fff2bd",
-
-      headline: "MAKE NOISE.",
-
-    },
-
-    {
-
-      name: "KAVISHAE",
-
-      category: "LUXURY / JEWELLERY",
-
-      number: "03",
-
-      accent: "#8f5f49",
-
-      soft: "#f6e1ce",
-
-      headline: "QUIET LUXURY.",
-
-    },
-
-    {
-
-      name: "SHOPRIVA",
-
-      category: "COMMERCE / BRAND",
-
-      number: "04",
-
-      accent: "#704b3e",
-
-      soft: "#ead5c8",
-
-      headline: "BUILD BETTER.",
-
-    },
-
-    {
-
-      name: "ZAMS",
-
-      category: "FASHION / ECOMMERCE",
-
-      number: "05",
-
-      accent: "#272727",
-
-      soft: "#e9e4de",
-
-      headline: "FIND THE ANGLE.",
-
-    },
+{
+  name: "ZAMS",
+  category: "FASHION / ECOMMERCE",
+  number: "05",
+  accent: "#272727",
+  soft: "#e9e4de",
+  headline: "FIND THE ANGLE.",
+  metrics: {
+    roas: 3.4,
+    revenue: 5,
+    orders: 240,
+  },
+},
 
   ];
 
@@ -1075,31 +1076,37 @@ function PeakPerformance() {
             </div>
 
 <div className="peak-metrics">
-
   <div className="peak-metric">
-
-    <strong><CountUp value={5.2} suffix="x" decimals={1} /></strong>
-
+    <strong>
+      <CountUp
+        value={brand.metrics.roas}
+        suffix="x"
+        decimals={1}
+      />
+    </strong>
     <span>Peak ROAS</span>
-
   </div>
 
   <div className="peak-metric">
-
-    <strong><CountUp value={14} prefix="₹" suffix="L+" /></strong>
-
+    <strong>
+      <CountUp
+        value={brand.metrics.revenue}
+        prefix="₹"
+        suffix="L+"
+      />
+    </strong>
     <span>Revenue</span>
-
   </div>
 
   <div className="peak-metric">
-
-    <strong><CountUp value={900} suffix="+" /></strong>
-
+    <strong>
+      <CountUp
+        value={brand.metrics.orders}
+        suffix="+"
+      />
+    </strong>
     <span>Orders</span>
-
   </div>
-
 </div>
 
             <div className="peak-footer">
@@ -2578,9 +2585,25 @@ export default function LandingPage() {
 
 
 
-<MagneticButton href="#contact" className="momentum-founder-cta" dark={false}>
-  START A CONVERSATION
-</MagneticButton>
+<a
+  href="#contact"
+  className="momentum-founder-cta"
+  onClick={(event) => {
+    event.preventDefault();
+
+    const contact = document.getElementById("contact");
+
+    if (contact) {
+      contact.scrollIntoView({
+        behavior: "smooth",
+        block: "start",
+      });
+    }
+  }}
+>
+  <span>START A CONVERSATION</span>
+  <span>↗</span>
+</a>
 
 
 

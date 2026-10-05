@@ -17,10 +17,10 @@ const geistMono = Geist_Mono({
 });
 
 export const metadata: Metadata = {
-  metadataBase: new URL("https://momentum-drab-mu.vercel.app"),
-  title: "Momentum — Digital Growth Studio | Mumbai",
-  description:
-    "Momentum is a digital growth studio in Mumbai building strategy, creative and performance systems for ambitious D2C brands.",
+metadataBase: new URL("https://momentumagency.in"),
+title: "Momentum — Digital Growth Studio | India",
+description:
+  "Momentum is a digital growth studio helping ambitious D2C brands scale through performance marketing, creative strategy and paid ads across Meta, Google and Snapchat.",
   keywords: [
     "Momentum",
     "digital growth studio",
@@ -29,21 +29,22 @@ export const metadata: Metadata = {
     "creative agency",
     "Mumbai",
   ],
-  openGraph: {
-    title: "Momentum — Digital Growth Studio | Mumbai",
-    description:
-      "Strategy, creative and performance systems for ambitious D2C brands.",
-    type: "website",
-    siteName: "Momentum",
-    images: [
-      {
-        url: "/og-image.png",
-        width: 1200,
-        height: 630,
-        alt: "Momentum — Digital Growth Studio",
-      },
-    ],
-  },
+openGraph: {
+  title: "Momentum — Digital Growth Studio",
+  description:
+    "Momentum is a digital growth studio helping ambitious D2C brands scale through performance marketing, creative strategy and paid ads across Meta, Google and Snapchat.",
+  url: "https://momentumagency.in",
+  siteName: "Momentum",
+  type: "website",
+  images: [
+    {
+      url: "/og-image.png",
+      width: 1200,
+      height: 630,
+      alt: "Momentum — Digital Growth Studio",
+    },
+  ],
+},
   twitter: {
     card: "summary_large_image",
     title: "Momentum — Digital Growth Studio | Mumbai",
