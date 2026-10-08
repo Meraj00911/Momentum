@@ -12762,3 +12762,1600 @@ body {
     display: none;
   }
 }
+/* =========================================================
+   FINAL FIX — CLIENT PORTAL NAV BUTTON
+========================================================= */
+
+.navbar-portal {
+  position: relative !important;
+
+  display: grid !important;
+  grid-template-columns: minmax(0, 1fr) 39px !important;
+  align-items: center !important;
+
+  width: 145px !important;
+  min-width: 145px !important;
+  max-width: 145px !important;
+
+  height: 50px !important;
+
+  margin-left: 9px !important;
+
+  padding: 4px 6px 4px 17px !important;
+
+  box-sizing: border-box !important;
+
+  overflow: hidden !important;
+
+  border-radius: 999px !important;
+
+  background: linear-gradient(
+    135deg,
+    #333333,
+    #252525
+  ) !important;
+
+  color: #f5f5f5 !important;
+
+  flex-shrink: 0 !important;
+}
+
+/* TEXT — force it to stay INSIDE the pill */
+.navbar-portal-text {
+  position: relative !important;
+  z-index: 5 !important;
+
+  display: block !important;
+
+  min-width: 0 !important;
+  width: 100% !important;
+
+  overflow: visible !important;
+
+  color: #f5f5f5 !important;
+
+  font-size: 8px !important;
+  line-height: 1 !important;
+  font-weight: 900 !important;
+
+  letter-spacing: .10em !important;
+
+  white-space: nowrap !important;
+
+  text-align: left !important;
+
+  transform: none !important;
+}
+
+/* ARROW CIRCLE */
+.navbar-portal-arrow {
+  position: relative !important;
+  z-index: 6 !important;
+
+  width: 39px !important;
+  height: 39px !important;
+
+  min-width: 39px !important;
+  min-height: 39px !important;
+
+  display: flex !important;
+  align-items: center !important;
+  justify-content: center !important;
+
+  margin: 0 !important;
+
+  border-radius: 50% !important;
+
+  background: linear-gradient(
+    145deg,
+    #b43838,
+    #8d2525
+  ) !important;
+
+  color: #fff !important;
+
+  font-size: 15px !important;
+  line-height: 1 !important;
+
+  flex-shrink: 0 !important;
+}
+
+/* Shine stays BEHIND content */
+.navbar-portal-shine {
+  position: absolute !important;
+  z-index: 1 !important;
+
+  pointer-events: none !important;
+}
+
+/* Content always above shine */
+.navbar-portal-text,
+.navbar-portal-arrow {
+  isolation: isolate;
+}
+
+/* Hover */
+.navbar-portal:hover {
+  transform: translateY(-2px) scale(1.025) !important;
+
+  box-shadow:
+    0 17px 40px rgba(51,51,51,.25),
+    0 0 0 4px rgba(155,44,44,.06) !important;
+}
+
+.navbar-portal:hover .navbar-portal-arrow {
+  transform:
+    translate(2px,-2px)
+    rotate(8deg);
+}
+
+/* =========================================================
+   MOMENTUM — CONTACT / PREMIUM GLASS CONVERSION
+   Keeps the existing JSX + MomentumContactForm.
+   Visual-only refinement of the old contact section.
+========================================================= */
+
+.contact {
+  position: relative;
+  isolation: isolate;
+  overflow: hidden;
+
+  min-height: 980px;
+
+  background:
+    radial-gradient(
+      720px 620px at 84% 18%,
+      rgba(255, 207, 153, .32),
+      transparent 68%
+    ),
+    radial-gradient(
+      650px 600px at 8% 82%,
+      rgba(103, 132, 145, .26),
+      transparent 68%
+    ),
+    radial-gradient(
+      700px 620px at 50% 48%,
+      rgba(255,255,255,.96),
+      transparent 72%
+    ),
+    linear-gradient(
+      135deg,
+      #f7f6f3 0%,
+      #ffffff 45%,
+      #f6f2ed 100%
+    ) !important;
+
+  color: #171514 !important;
+}
+
+/* atmospheric blobs */
+.contact::before {
+  content: "";
+  position: absolute;
+  z-index: -2;
+  width: 760px;
+  height: 760px;
+  top: -250px;
+  right: -220px;
+
+  border-radius: 50%;
+
+  background:
+    radial-gradient(
+      circle at 45% 45%,
+      rgba(255, 190, 128, .30),
+      rgba(255, 218, 174, .12) 38%,
+      transparent 70%
+    );
+
+  filter: blur(18px);
+  pointer-events: none;
+  animation: contactFloatWarm 12s ease-in-out infinite alternate;
+}
+
+.contact::after {
+  content: "";
+  position: absolute;
+  z-index: -2;
+  width: 720px;
+  height: 720px;
+  left: -300px;
+  bottom: -300px;
+
+  border-radius: 50%;
+
+  background:
+    radial-gradient(
+      circle,
+      rgba(85, 113, 126, .25),
+      rgba(155, 180, 187, .08) 42%,
+      transparent 70%
+    );
+
+  filter: blur(22px);
+  pointer-events: none;
+  animation: contactFloatCool 14s ease-in-out infinite alternate;
+}
+
+@keyframes contactFloatWarm {
+  from {
+    transform: translate3d(0, 0, 0) scale(1);
+  }
+  to {
+    transform: translate3d(-35px, 28px, 0) scale(1.08);
+  }
+}
+
+@keyframes contactFloatCool {
+  from {
+    transform: translate3d(0, 0, 0) scale(1);
+  }
+  to {
+    transform: translate3d(35px, -20px, 0) scale(1.06);
+  }
+}
+
+/* subtle glass grain */
+.contact > * {
+  position: relative;
+  z-index: 2;
+}
+
+/* ---------------------------------------------------------
+   TOP LINE
+--------------------------------------------------------- */
+
+.contact-top {
+  position: relative;
+  z-index: 5;
+
+  padding: 18px 20px;
+
+  border:
+    1px solid rgba(255,255,255,.72);
+
+  border-radius: 18px;
+
+  background:
+    linear-gradient(
+      135deg,
+      rgba(255,255,255,.58),
+      rgba(255,255,255,.22)
+    );
+
+  box-shadow:
+    0 15px 45px rgba(35,29,24,.045),
+    inset 0 1px 0 rgba(255,255,255,.92);
+
+  backdrop-filter: blur(22px) saturate(120%);
+  -webkit-backdrop-filter: blur(22px) saturate(120%);
+
+  color: #77706a !important;
+}
+
+.contact-top span:first-child {
+  color: #a62d2d !important;
+}
+
+.contact-top span:last-child {
+  color: #77706a !important;
+}
+
+/* ---------------------------------------------------------
+   TITLE
+--------------------------------------------------------- */
+
+.contact-title {
+  position: relative;
+  z-index: 4;
+
+  margin-top: 105px !important;
+
+  font-size: clamp(72px, 12.5vw, 185px) !important;
+  line-height: .78 !important;
+  letter-spacing: -.095em !important;
+
+  color: #171514 !important;
+
+  text-shadow:
+    0 22px 55px rgba(35,29,24,.045);
+}
+
+.contact-title > span {
+  position: relative;
+  display: block;
+}
+
+.contact-title > span:first-child,
+.contact-title > span:last-child {
+  color: #171514 !important;
+}
+
+.contact-title span:nth-child(2) {
+  margin-left: 12vw !important;
+}
+
+.contact-outline {
+  color: transparent !important;
+
+  -webkit-text-stroke:
+    1.7px rgba(73,69,65,.62) !important;
+
+  text-stroke:
+    1.7px rgba(73,69,65,.62) !important;
+
+  filter:
+    drop-shadow(0 10px 25px rgba(50,45,40,.035));
+}
+
+/* tiny accent behind the headline */
+.contact-title::after {
+  content: "";
+  position: absolute;
+  z-index: -1;
+
+  width: 220px;
+  height: 220px;
+  left: 29%;
+  top: 14%;
+
+  border-radius: 50%;
+
+  background:
+    radial-gradient(
+      circle,
+      rgba(255, 196, 143, .13),
+      transparent 70%
+    );
+
+  filter: blur(8px);
+}
+
+/* ---------------------------------------------------------
+   FORM AREA
+--------------------------------------------------------- */
+
+.contact-bottom {
+  display: grid !important;
+  grid-template-columns: minmax(180px, .35fr) minmax(0, 1.65fr) !important;
+  align-items: start !important;
+  gap: clamp(30px, 6vw, 100px) !important;
+
+  margin-top: 105px !important;
+}
+
+.contact-bottom > div:first-child {
+  position: sticky;
+  top: 120px;
+
+  padding-top: 25px;
+}
+
+.contact-bottom > div:first-child::before {
+  content: "LET'S BUILD SOMETHING";
+  display: block;
+  margin-bottom: 18px;
+
+  color: #a62d2d;
+
+  font-size: 8px;
+  font-weight: 800;
+  letter-spacing: .18em;
+}
+
+.contact-bottom > div:first-child p {
+  max-width: 210px;
+
+  color: #746e68 !important;
+
+  font-size: 12px !important;
+  line-height: 1.75 !important;
+}
+
+/* ---------------------------------------------------------
+   FORM — GLASS PANEL
+--------------------------------------------------------- */
+
+.momentum-contact-form {
+  position: relative;
+
+  margin-top: 0 !important;
+  padding: clamp(26px, 4vw, 48px) !important;
+
+  border:
+    1px solid rgba(255,255,255,.78) !important;
+
+  border-radius: 30px !important;
+
+  background:
+    linear-gradient(
+      145deg,
+      rgba(255,255,255,.66),
+      rgba(255,255,255,.26)
+    ) !important;
+
+  box-shadow:
+    0 30px 90px rgba(35,29,24,.085),
+    0 5px 25px rgba(35,29,24,.035),
+    inset 0 1px 0 rgba(255,255,255,.96),
+    inset 0 -1px 0 rgba(255,255,255,.28) !important;
+
+  backdrop-filter:
+    blur(28px) saturate(125%) !important;
+
+  -webkit-backdrop-filter:
+    blur(28px) saturate(125%) !important;
+
+  overflow: hidden;
+}
+
+/* glass reflection */
+.momentum-contact-form::before {
+  content: "";
+  position: absolute;
+  top: -45%;
+  right: -10%;
+
+  width: 55%;
+  height: 100%;
+
+  transform: rotate(20deg);
+
+  background:
+    linear-gradient(
+      90deg,
+      transparent,
+      rgba(255,255,255,.28),
+      transparent
+    );
+
+  pointer-events: none;
+}
+
+.momentum-contact-form::after {
+  content: "MOMENTUM / INQUIRY";
+  position: absolute;
+  right: 28px;
+  top: 25px;
+
+  color: rgba(23,21,20,.24);
+
+  font-size: 7px;
+  font-weight: 800;
+  letter-spacing: .18em;
+}
+
+/* ---------------------------------------------------------
+   FORM GRID
+--------------------------------------------------------- */
+
+.momentum-form-grid {
+  gap: 30px !important;
+}
+
+.momentum-contact-form label,
+.momentum-contact-form fieldset {
+  gap: 10px !important;
+}
+
+.momentum-contact-form label > span,
+.momentum-contact-form legend {
+  position: relative;
+
+  color: #77706a !important;
+
+  font-size: 8px !important;
+  font-weight: 800;
+  letter-spacing: .16em !important;
+}
+
+.momentum-contact-form label > span::before,
+.momentum-contact-form legend::before {
+  content: "";
+  display: inline-block;
+
+  width: 5px;
+  height: 5px;
+  margin-right: 7px;
+
+  border-radius: 50%;
+
+  background: #a62d2d;
+
+  vertical-align: 1px;
+  opacity: .7;
+}
+
+/* ---------------------------------------------------------
+   INPUTS
+--------------------------------------------------------- */
+
+.momentum-contact-form input,
+.momentum-contact-form select,
+.momentum-contact-form textarea {
+  position: relative;
+
+  min-height: 48px;
+
+  padding: 12px 2px 15px !important;
+
+  border: 0 !important;
+  border-bottom:
+    1px solid rgba(48,42,38,.15) !important;
+
+  border-radius: 0 !important;
+
+  background:
+    linear-gradient(
+      180deg,
+      rgba(255,255,255,.02),
+      rgba(255,255,255,.12)
+    ) !important;
+
+  color: #1b1918 !important;
+
+  font-size: 15px !important;
+
+  transition:
+    border-color .3s ease,
+    box-shadow .3s ease,
+    padding .3s ease,
+    background .3s ease !important;
+}
+
+.momentum-contact-form textarea {
+  min-height: 145px !important;
+  padding-top: 14px !important;
+}
+
+.momentum-contact-form input::placeholder,
+.momentum-contact-form textarea::placeholder {
+  color: rgba(53,48,44,.34) !important;
+}
+
+.momentum-contact-form input:focus,
+.momentum-contact-form select:focus,
+.momentum-contact-form textarea:focus {
+  border-bottom-color:
+    rgba(166,45,45,.72) !important;
+
+  box-shadow:
+    0 8px 22px rgba(166,45,45,.045) !important;
+
+  background:
+    linear-gradient(
+      180deg,
+      rgba(255,255,255,.12),
+      rgba(255,255,255,.24)
+    ) !important;
+}
+
+/* select arrow area */
+.momentum-contact-form select {
+  appearance: auto;
+}
+
+/* ---------------------------------------------------------
+   SERVICE OPTIONS
+--------------------------------------------------------- */
+
+.momentum-service-options {
+  gap: 9px !important;
+}
+
+.momentum-service-option {
+  min-height: 42px !important;
+
+  padding: 10px 15px !important;
+
+  border:
+    1px solid rgba(55,48,43,.14) !important;
+
+  border-radius: 999px !important;
+
+  background:
+    rgba(255,255,255,.25) !important;
+
+  color: #4f4944 !important;
+
+  box-shadow:
+    inset 0 1px 0 rgba(255,255,255,.60);
+
+  backdrop-filter: blur(12px);
+
+  transition:
+    transform .35s cubic-bezier(.22,1,.36,1),
+    border-color .3s ease,
+    background .3s ease,
+    color .3s ease,
+    box-shadow .3s ease !important;
+}
+
+.momentum-service-option span {
+  color: #a62d2d;
+}
+
+.momentum-service-option:hover {
+  transform: translateY(-3px) !important;
+
+  border-color:
+    rgba(166,45,45,.35) !important;
+
+  background:
+    rgba(255,255,255,.56) !important;
+
+  color: #8f2828 !important;
+
+  box-shadow:
+    0 9px 25px rgba(35,29,24,.06),
+    inset 0 1px 0 rgba(255,255,255,.85);
+}
+
+.momentum-service-option.active {
+  border-color:
+    rgba(166,45,45,.90) !important;
+
+  background:
+    linear-gradient(
+      135deg,
+      #a62d2d,
+      #7f2424
+    ) !important;
+
+  color: #fff !important;
+
+  box-shadow:
+    0 10px 28px rgba(132,35,35,.18),
+    inset 0 1px 0 rgba(255,255,255,.16) !important;
+
+  transform: translateY(-2px);
+}
+
+.momentum-service-option.active span {
+  color: #fff;
+}
+
+/* ---------------------------------------------------------
+   SUBMIT BUTTON
+--------------------------------------------------------- */
+
+.momentum-contact-submit {
+  position: relative;
+  overflow: hidden;
+
+  min-height: 68px !important;
+
+  margin-top: 4px;
+
+  padding:
+    20px 23px !important;
+
+  border:
+    1px solid rgba(255,255,255,.15) !important;
+
+  border-radius: 16px !important;
+
+  background:
+    linear-gradient(
+      135deg,
+      #171615 0%,
+      #34302d 52%,
+      #171615 100%
+    ) !important;
+
+  color: #fff !important;
+
+  box-shadow:
+    0 18px 45px rgba(25,22,20,.15),
+    inset 0 1px 0 rgba(255,255,255,.13) !important;
+
+  transition:
+    transform .35s cubic-bezier(.22,1,.36,1),
+    box-shadow .35s ease,
+    background .35s ease !important;
+}
+
+.momentum-contact-submit::before {
+  content: "";
+  position: absolute;
+
+  top: -80%;
+  left: -25%;
+
+  width: 30%;
+  height: 260%;
+
+  transform: rotate(22deg) translateX(-160%);
+
+  background:
+    linear-gradient(
+      90deg,
+      transparent,
+      rgba(255,255,255,.22),
+      transparent
+    );
+
+  transition:
+    transform .75s cubic-bezier(.22,1,.36,1);
+
+  pointer-events: none;
+}
+
+.momentum-contact-submit:hover {
+  transform: translateY(-4px) !important;
+
+  background:
+    linear-gradient(
+      135deg,
+      #8f2828,
+      #b23737,
+      #7f2424
+    ) !important;
+
+  border-color:
+    rgba(255,255,255,.18) !important;
+
+  box-shadow:
+    0 24px 55px rgba(125,32,32,.20),
+    inset 0 1px 0 rgba(255,255,255,.18) !important;
+}
+
+.momentum-contact-submit:hover::before {
+  transform:
+    rotate(22deg)
+    translateX(500%);
+}
+
+/* ---------------------------------------------------------
+   ERROR
+--------------------------------------------------------- */
+
+.momentum-contact-error {
+  padding: 12px 14px;
+
+  border:
+    1px solid rgba(166,45,45,.12);
+
+  border-radius: 12px;
+
+  background:
+    rgba(166,45,45,.055);
+
+  color: #8f2828 !important;
+}
+
+/* ---------------------------------------------------------
+   SUCCESS STATE
+--------------------------------------------------------- */
+
+.momentum-contact-success {
+  min-height: 390px;
+
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
+
+  padding: 20px !important;
+}
+
+.momentum-contact-success-number {
+  color: #a62d2d !important;
+}
+
+.momentum-contact-success h3 {
+  color: #171514 !important;
+
+  text-shadow:
+    0 15px 35px rgba(35,29,24,.05);
+}
+
+.momentum-contact-success h3 em {
+  color: #a62d2d !important;
+}
+
+.momentum-contact-success p {
+  color: #746e68 !important;
+}
+
+.momentum-contact-success button {
+  border:
+    1px solid rgba(48,42,38,.15) !important;
+
+  border-radius: 999px;
+
+  background:
+    rgba(255,255,255,.38);
+
+  transition:
+    background .25s ease,
+    transform .25s ease,
+    border-color .25s ease;
+}
+
+.momentum-contact-success button:hover {
+  transform: translateY(-2px);
+
+  border-color:
+    rgba(166,45,45,.35) !important;
+
+  background:
+    rgba(255,255,255,.72);
+}
+
+/* ---------------------------------------------------------
+   DESKTOP — MORE EDITORIAL COMPOSITION
+--------------------------------------------------------- */
+
+@media (min-width: 1100px) {
+  .contact {
+    padding-top: 105px !important;
+    padding-bottom: 120px !important;
+  }
+
+  .contact-title {
+    max-width: 1050px;
+  }
+
+  .contact-bottom {
+    max-width: 1180px;
+    margin-left: auto;
+    margin-right: auto;
+  }
+
+  .momentum-contact-form {
+    transform:
+      translateY(-12px);
+  }
+}
+
+/* ---------------------------------------------------------
+   TABLET
+--------------------------------------------------------- */
+
+@media (max-width: 900px) {
+  .contact {
+    min-height: auto;
+  }
+
+  .contact-title {
+    margin-top: 75px !important;
+  }
+
+  .contact-bottom {
+    grid-template-columns: 1fr !important;
+    gap: 32px !important;
+    margin-top: 70px !important;
+  }
+
+  .contact-bottom > div:first-child {
+    position: static;
+    padding-top: 0;
+  }
+
+  .contact-bottom > div:first-child p {
+    max-width: 430px;
+  }
+
+  .momentum-contact-form {
+    margin-top: 0 !important;
+  }
+}
+
+/* ---------------------------------------------------------
+   PHONE
+--------------------------------------------------------- */
+
+@media (max-width: 640px) {
+  .contact {
+    min-height: auto;
+
+    padding-top: 80px !important;
+    padding-bottom: 75px !important;
+
+    background:
+      radial-gradient(
+        430px 400px at 92% 10%,
+        rgba(255,205,153,.27),
+        transparent 68%
+      ),
+      radial-gradient(
+        430px 430px at 0% 85%,
+        rgba(103,132,145,.22),
+        transparent 70%
+      ),
+      #f7f6f3 !important;
+  }
+
+  .contact-top {
+    padding: 13px 14px;
+
+    border-radius: 14px;
+
+    font-size: 7px;
+    letter-spacing: .11em;
+  }
+
+  .contact-title {
+    margin-top: 70px !important;
+
+    font-size:
+      clamp(55px, 16vw, 92px) !important;
+
+    line-height: .82 !important;
+  }
+
+  .contact-title span:nth-child(2) {
+    margin-left: 8vw !important;
+  }
+
+  .contact-outline {
+    -webkit-text-stroke-width: 1.2px !important;
+  }
+
+  .contact-bottom {
+    gap: 25px !important;
+    margin-top: 65px !important;
+  }
+
+  .contact-bottom > div:first-child::before {
+    font-size: 7px;
+  }
+
+  .contact-bottom > div:first-child p {
+    max-width: 300px;
+    font-size: 11px !important;
+  }
+
+  .momentum-contact-form {
+    padding: 22px !important;
+    border-radius: 22px !important;
+    gap: 26px !important;
+  }
+
+  .momentum-contact-form::after {
+    right: 20px;
+    top: 20px;
+    font-size: 6px;
+  }
+
+  .momentum-form-grid {
+    grid-template-columns: 1fr !important;
+    gap: 24px !important;
+  }
+
+  .momentum-contact-form input,
+  .momentum-contact-form select,
+  .momentum-contact-form textarea {
+    font-size: 14px !important;
+  }
+
+  .momentum-service-options {
+    gap: 7px !important;
+  }
+
+  .momentum-service-option {
+    min-height: 40px !important;
+    padding: 9px 12px !important;
+    font-size: 9px !important;
+  }
+
+  .momentum-contact-submit {
+    min-height: 60px !important;
+    border-radius: 14px !important;
+  }
+}
+
+/* ---------------------------------------------------------
+   REDUCED MOTION
+--------------------------------------------------------- */
+
+@media (prefers-reduced-motion: reduce) {
+  .contact::before,
+  .contact::after {
+    animation: none !important;
+  }
+
+  .momentum-contact-submit,
+  .momentum-service-option,
+  .momentum-contact-form input,
+  .momentum-contact-form select,
+  .momentum-contact-form textarea {
+    transition: none !important;
+  }
+
+  .momentum-contact-submit::before {
+    display: none !important;
+  }
+}
+/* =========================================================
+   MOBILE NAVBAR — FINAL CLEAN FIX
+   ========================================================= */
+
+@media (max-width: 768px) {
+
+  /* Navbar shell */
+  .liquid-navbar,
+  .liquid-navbar.liquid-navbar-scrolled,
+  .liquid-navbar.is-scrolled {
+    top: 10px !important;
+    left: 50% !important;
+    right: auto !important;
+
+    width: calc(100vw - 24px) !important;
+    max-width: none !important;
+
+    min-height: 0 !important;
+
+    transform: translateX(-50%) !important;
+
+    border-radius: 999px !important;
+
+    z-index: 9999 !important;
+  }
+
+  /* Inner navbar */
+  .navbar-inner {
+    width: 100% !important;
+    min-height: 58px !important;
+
+    padding: 5px !important;
+
+    display: flex !important;
+    align-items: center !important;
+    justify-content: space-between !important;
+
+    gap: 8px !important;
+
+    border-radius: 999px !important;
+
+    box-sizing: border-box !important;
+  }
+
+  /* Momentum logo */
+  .navbar-brand {
+    flex: 0 0 auto !important;
+
+    width: 43px !important;
+    height: 43px !important;
+
+    padding: 0 !important;
+    margin: 0 !important;
+
+    display: flex !important;
+    align-items: center !important;
+
+    background: transparent !important;
+  }
+
+  .navbar-brand-mark {
+    width: 43px !important;
+    height: 43px !important;
+
+    min-width: 43px !important;
+
+    border-radius: 13px !important;
+  }
+
+  .navbar-brand-name {
+    display: none !important;
+  }
+
+  /* IMPORTANT:
+     Completely remove desktop navigation + portal
+     from the mobile layout.
+  */
+
+  .navbar-links,
+  .navbar-portal {
+    display: none !important;
+
+    width: 0 !important;
+    height: 0 !important;
+
+    min-width: 0 !important;
+    min-height: 0 !important;
+
+    margin: 0 !important;
+    padding: 0 !important;
+
+    visibility: hidden !important;
+    pointer-events: none !important;
+  }
+
+  /* Hamburger */
+  .navbar-mobile-toggle {
+    position: relative !important;
+
+    flex: 0 0 auto !important;
+
+    display: flex !important;
+
+    align-items: center !important;
+    justify-content: center !important;
+
+    width: 43px !important;
+    height: 43px !important;
+
+    min-width: 43px !important;
+    min-height: 43px !important;
+
+    margin: 0 !important;
+    padding: 0 !important;
+
+    border: 0 !important;
+    border-radius: 50% !important;
+
+    z-index: 10002 !important;
+
+    background: #262524 !important;
+
+    box-shadow:
+      0 8px 24px rgba(0,0,0,.16),
+      inset 0 1px 0 rgba(255,255,255,.08) !important;
+  }
+
+  /* Hamburger lines */
+  .navbar-mobile-toggle span {
+    position: absolute !important;
+
+    width: 15px !important;
+    height: 1.5px !important;
+
+    left: 50% !important;
+
+    background: #fff !important;
+
+    border-radius: 999px !important;
+
+    transform-origin: center !important;
+
+    transition:
+      transform .3s ease,
+      opacity .2s ease !important;
+  }
+
+  .navbar-mobile-toggle span:first-child {
+    transform:
+      translate(-50%, -3px) !important;
+  }
+
+  .navbar-mobile-toggle span:last-child {
+    transform:
+      translate(-50%, 3px) !important;
+  }
+
+  /* Open state */
+  .navbar-mobile-toggle-open span:first-child {
+    transform:
+      translate(-50%, 0)
+      rotate(45deg) !important;
+  }
+
+  .navbar-mobile-toggle-open span:last-child {
+    transform:
+      translate(-50%, 0)
+      rotate(-45deg) !important;
+  }
+
+  /* Hide the old glow from creating strange overflow */
+  .navbar-liquid-glow {
+    pointer-events: none !important;
+  }
+
+  /* Mobile menu itself */
+  .navbar-mobile-menu {
+    position: fixed !important;
+
+    inset: 0 !important;
+
+    width: 100vw !important;
+    height: 100dvh !important;
+
+    margin: 0 !important;
+
+    border-radius: 0 !important;
+
+    z-index: 10001 !important;
+
+    overflow-y: auto !important;
+  }
+}
+
+
+/* Small phones */
+@media (max-width: 480px) {
+
+  .liquid-navbar,
+  .liquid-navbar.liquid-navbar-scrolled,
+  .liquid-navbar.is-scrolled {
+    top: 8px !important;
+
+    width: calc(100vw - 16px) !important;
+  }
+
+  .navbar-inner {
+    min-height: 54px !important;
+    padding: 5px !important;
+  }
+
+  .navbar-brand-mark,
+  .navbar-brand {
+    width: 40px !important;
+    height: 40px !important;
+    min-width: 40px !important;
+  }
+
+  .navbar-brand-mark {
+    border-radius: 12px !important;
+  }
+
+  .navbar-mobile-toggle {
+    width: 40px !important;
+    height: 40px !important;
+
+    min-width: 40px !important;
+    min-height: 40px !important;
+  }
+}/* =========================================================
+   MOMENTUM MOBILE MENU — FINAL OVERRIDE
+   ========================================================= */
+
+@media (max-width: 768px) {
+
+  /* -------------------------------------------------------
+     FULLSCREEN MENU
+  ------------------------------------------------------- */
+
+  .navbar-mobile-menu {
+    position: fixed !important;
+
+    top: 0 !important;
+    right: 0 !important;
+    bottom: 0 !important;
+    left: 0 !important;
+
+    width: 100vw !important;
+    height: 100dvh !important;
+    min-height: 100dvh !important;
+
+    margin: 0 !important;
+
+    padding:
+      calc(92px + env(safe-area-inset-top, 0px))
+      24px
+      calc(28px + env(safe-area-inset-bottom, 0px)) !important;
+
+    box-sizing: border-box !important;
+
+    display: flex !important;
+    flex-direction: column !important;
+
+    border: 0 !important;
+    border-radius: 0 !important;
+
+    background:
+      radial-gradient(
+        circle at 90% 5%,
+        rgba(155, 44, 44, .12),
+        transparent 30%
+      ),
+      #fffaf4 !important;
+
+    box-shadow: none !important;
+
+    overflow-x: hidden !important;
+    overflow-y: auto !important;
+
+    z-index: 99999 !important;
+
+    transform: none !important;
+  }
+
+
+  /* -------------------------------------------------------
+     CLOSE BUTTON
+  ------------------------------------------------------- */
+
+  .navbar-mobile-back {
+    position: fixed !important;
+
+    top:
+      calc(18px + env(safe-area-inset-top, 0px))
+      !important;
+
+    right: 18px !important;
+
+    width: 46px !important;
+    height: 46px !important;
+
+    min-width: 46px !important;
+    min-height: 46px !important;
+
+    margin: 0 !important;
+    padding: 0 !important;
+
+    display: flex !important;
+
+    align-items: center !important;
+    justify-content: center !important;
+
+    border: 1px solid rgba(23,19,19,.12) !important;
+    border-radius: 50% !important;
+
+    background: rgba(255,255,255,.92) !important;
+
+    box-shadow:
+      0 8px 25px rgba(23,19,19,.10) !important;
+
+    z-index: 100000 !important;
+
+    pointer-events: auto !important;
+    touch-action: manipulation !important;
+
+    transform: none !important;
+  }
+
+
+  /* X */
+
+  .navbar-mobile-back span {
+    position: absolute !important;
+
+    width: 17px !important;
+    height: 1.5px !important;
+
+    margin: 0 !important;
+    padding: 0 !important;
+
+    display: block !important;
+
+    background: #171313 !important;
+
+    border-radius: 999px !important;
+
+    pointer-events: none !important;
+  }
+
+  .navbar-mobile-back span:first-child {
+    transform: rotate(45deg) !important;
+  }
+
+  .navbar-mobile-back span:last-child {
+    transform: rotate(-45deg) !important;
+  }
+
+
+  /* -------------------------------------------------------
+     MENU HEADER
+  ------------------------------------------------------- */
+
+  .navbar-mobile-heading {
+    position: relative !important;
+
+    width: 100% !important;
+
+    margin: 0 0 28px !important;
+    padding: 0 !important;
+
+    display: flex !important;
+
+    align-items: center !important;
+    justify-content: space-between !important;
+
+    flex-shrink: 0 !important;
+  }
+
+  .navbar-mobile-heading > span {
+    display: block !important;
+
+    color: #9b2c2c !important;
+
+    font-size: 10px !important;
+    line-height: 1 !important;
+
+    font-weight: 800 !important;
+
+    letter-spacing: .18em !important;
+  }
+
+  .navbar-mobile-heading > small {
+    display: block !important;
+
+    color: rgba(23,19,19,.32) !important;
+
+    font-size: 9px !important;
+    line-height: 1 !important;
+
+    font-weight: 700 !important;
+
+    letter-spacing: .16em !important;
+  }
+
+
+  /* -------------------------------------------------------
+     LINKS
+  ------------------------------------------------------- */
+
+  .navbar-mobile-links {
+    width: 100% !important;
+
+    margin: 0 !important;
+    padding: 0 !important;
+
+    display: flex !important;
+    flex-direction: column !important;
+
+    gap: 0 !important;
+
+    flex-shrink: 0 !important;
+  }
+
+
+  .navbar-mobile-link {
+    width: 100% !important;
+
+    min-height: 0 !important;
+
+    margin: 0 !important;
+    padding: 18px 0 !important;
+
+    display: flex !important;
+
+    align-items: baseline !important;
+
+    gap: 14px !important;
+
+    border: 0 !important;
+    border-bottom: 1px solid rgba(23,19,19,.09) !important;
+
+    background: transparent !important;
+
+    box-sizing: border-box !important;
+  }
+
+
+  .navbar-mobile-link > span {
+    flex: 0 0 22px !important;
+
+    font-size: 8px !important;
+
+    color: rgba(23,19,19,.30) !important;
+  }
+
+
+  .navbar-mobile-link strong {
+    flex: 1 !important;
+
+    margin: 0 !important;
+    padding: 0 !important;
+
+    font-size: clamp(
+      2.35rem,
+      11vw,
+      4rem
+    ) !important;
+
+    line-height: .9 !important;
+
+    letter-spacing: -.065em !important;
+
+    text-align: left !important;
+
+    color: #171313 !important;
+  }
+
+
+  .navbar-mobile-link.active strong {
+    color: #9b2c2c !important;
+  }
+
+
+  /* Remove arrows from menu links */
+
+  .navbar-mobile-link i,
+  .navbar-mobile-link > i {
+    display: none !important;
+  }
+
+
+  /* -------------------------------------------------------
+     CLIENT PORTAL CARD
+  ------------------------------------------------------- */
+
+  .navbar-mobile-portal {
+    width: 100% !important;
+
+    margin:
+      32px 0
+      0 !important;
+
+    padding: 18px 20px !important;
+
+    min-height: 76px !important;
+
+    display: flex !important;
+
+    align-items: center !important;
+    justify-content: space-between !important;
+
+    box-sizing: border-box !important;
+
+    border: 0 !important;
+    border-radius: 18px !important;
+
+    background: #171313 !important;
+
+    color: #fff8ef !important;
+
+    flex-shrink: 0 !important;
+  }
+
+
+  .navbar-mobile-portal > div {
+    display: flex !important;
+
+    flex-direction: column !important;
+
+    gap: 5px !important;
+  }
+
+
+  .navbar-mobile-portal > span,
+  .navbar-mobile-portal > i {
+    display: none !important;
+  }
+
+
+  /* -------------------------------------------------------
+     STOP OLD NAVBAR STYLES FROM AFFECTING OPEN MENU
+  ------------------------------------------------------- */
+
+  .navbar-mobile-menu::before,
+  .navbar-mobile-menu::after {
+    display: none !important;
+    content: none !important;
+  }
+}
+
+
+/* ---------------------------------------------------------
+   SMALL PHONES
+--------------------------------------------------------- */
+
+@media (max-width: 480px) {
+
+  .navbar-mobile-menu {
+    padding-left: 18px !important;
+    padding-right: 18px !important;
+
+    padding-top:
+      calc(84px + env(safe-area-inset-top, 0px))
+      !important;
+  }
+
+  .navbar-mobile-back {
+    top:
+      calc(14px + env(safe-area-inset-top, 0px))
+      !important;
+
+    right: 14px !important;
+
+    width: 42px !important;
+    height: 42px !important;
+
+    min-width: 42px !important;
+    min-height: 42px !important;
+  }
+
+  .navbar-mobile-link {
+    padding: 16px 0 !important;
+  }
+
+  .navbar-mobile-link strong {
+    font-size: clamp(
+      2.15rem,
+      10.5vw,
+      3.5rem
+    ) !important;
+  }
+}

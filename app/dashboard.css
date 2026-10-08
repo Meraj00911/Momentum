@@ -4666,6 +4666,2937 @@ tbody tr:hover td strong {
     grid-template-columns: 1fr 1fr;
   }
 }
+/* =========================================================
+   CURRENT MONTH SNAPSHOT
+========================================================= */
+
+.month-snapshot {
+  position: relative;
+  margin-top: 22px;
+  padding: 30px;
+  border: 1px solid rgba(17, 17, 17, 0.08);
+  border-radius: 24px;
+  background:
+    radial-gradient(
+      circle at 100% 0%,
+      rgba(178, 45, 45, 0.055),
+      transparent 32%
+    ),
+    #fff;
+  box-shadow:
+    0 18px 50px rgba(17, 17, 17, 0.045);
+  overflow: hidden;
+}
+
+.month-snapshot::before {
+  content: "";
+  position: absolute;
+  top: 0;
+  left: 0;
+  right: 0;
+  height: 2px;
+  background: linear-gradient(
+    90deg,
+    #111,
+    rgba(178, 45, 45, 0.75),
+    transparent
+  );
+}
+
+.month-snapshot-header {
+  display: flex;
+  align-items: flex-end;
+  justify-content: space-between;
+  gap: 30px;
+  margin-bottom: 24px;
+}
+
+.month-snapshot-header h2 {
+  margin: 7px 0 5px;
+  font-size: 25px;
+  line-height: 1.15;
+  letter-spacing: -0.045em;
+  font-weight: 700;
+  color: #111;
+}
+
+.month-snapshot-header p {
+  margin: 0;
+  color: #8a8a8a;
+  font-size: 13px;
+}
+
+.month-snapshot-period {
+  min-width: 190px;
+  padding: 13px 15px;
+  border: 1px solid #ece9e6;
+  border-radius: 14px;
+  background: #faf9f7;
+}
+
+.month-snapshot-period span {
+  display: block;
+  margin-bottom: 5px;
+  font-size: 8px;
+  line-height: 1;
+  font-weight: 800;
+  letter-spacing: 0.16em;
+  color: #a0a0a0;
+}
+
+.month-snapshot-period strong {
+  display: block;
+  font-size: 11px;
+  font-weight: 600;
+  color: #222;
+}
+
+.month-snapshot-grid {
+  display: grid;
+  grid-template-columns: repeat(4, minmax(0, 1fr));
+  gap: 12px;
+}
+
+.month-snapshot-card {
+  position: relative;
+  min-height: 145px;
+  padding: 19px;
+  border: 1px solid #ebe8e5;
+  border-radius: 17px;
+  background: #fff;
+  transition:
+    transform 0.25s ease,
+    border-color 0.25s ease,
+    box-shadow 0.25s ease;
+}
+
+.month-snapshot-card:hover {
+  transform: translateY(-3px);
+  border-color: #dedad6;
+  box-shadow:
+    0 12px 28px rgba(17, 17, 17, 0.06);
+}
+
+.month-snapshot-card-top {
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  gap: 8px;
+  margin-bottom: 18px;
+}
+
+.month-snapshot-card-top > span:first-child {
+  font-size: 9px;
+  font-weight: 800;
+  letter-spacing: 0.14em;
+  color: #969696;
+}
+
+.month-snapshot-card strong {
+  display: block;
+  font-size: 26px;
+  line-height: 1;
+  letter-spacing: -0.045em;
+  font-weight: 700;
+  color: #111;
+}
+
+.month-snapshot-card small {
+  display: block;
+  margin-top: 13px;
+  font-size: 10px;
+  line-height: 1.4;
+  color: #9a9a9a;
+}
+
+.month-snapshot-change {
+  display: inline-flex;
+  align-items: center;
+  gap: 2px;
+  padding: 5px 7px;
+  border-radius: 8px;
+  font-size: 10px;
+  font-weight: 700;
+  letter-spacing: -0.01em;
+}
+
+.month-snapshot-change.good {
+  color: #268451;
+  background: #eef8f1;
+}
+
+.month-snapshot-change.bad {
+  color: #b64242;
+  background: #fff1f0;
+}
+
+.month-snapshot-empty {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  justify-content: center;
+  min-height: 130px;
+  padding: 25px;
+  border: 1px dashed #ddd8d4;
+  border-radius: 16px;
+  background: #fcfbfa;
+  text-align: center;
+}
+
+.month-snapshot-empty strong {
+  font-size: 13px;
+  color: #222;
+}
+
+.month-snapshot-empty span {
+  margin-top: 7px;
+  font-size: 11px;
+  color: #999;
+}
+
+
+/* =========================================================
+   CURRENT MONTH SNAPSHOT — MOBILE
+========================================================= */
+
+@media (max-width: 900px) {
+  .month-snapshot {
+    padding: 22px;
+    border-radius: 20px;
+  }
+
+  .month-snapshot-header {
+    align-items: flex-start;
+    flex-direction: column;
+    gap: 16px;
+  }
+
+  .month-snapshot-period {
+    width: 100%;
+  }
+
+  .month-snapshot-grid {
+    grid-template-columns: repeat(2, minmax(0, 1fr));
+  }
+}
+
+@media (max-width: 560px) {
+  .month-snapshot {
+    margin-top: 16px;
+    padding: 18px;
+    border-radius: 18px;
+  }
+
+  .month-snapshot-header h2 {
+    font-size: 21px;
+  }
+
+  .month-snapshot-grid {
+    grid-template-columns: 1fr;
+  }
+
+  .month-snapshot-card {
+    min-height: 125px;
+  }
+
+  .month-snapshot-card strong {
+    font-size: 24px;
+  }
+}
 
 
 
+/* =========================================================
+   REFINED DASHBOARD — MOMENTUM INTELLIGENCE
+========================================================= */
+
+.week-selector-enhanced {
+  position: relative;
+  overflow: hidden;
+}
+
+.week-selector-enhanced::after {
+  content: "";
+  position: absolute;
+  width: 180px;
+  height: 180px;
+  right: -90px;
+  top: -125px;
+  border-radius: 50%;
+  background: radial-gradient(circle, rgba(178,45,45,.075), transparent 68%);
+  pointer-events: none;
+}
+
+.stat-card {
+  position: relative;
+  overflow: hidden;
+  isolation: isolate;
+}
+
+.stat-card::before {
+  content: "";
+  position: absolute;
+  inset: 0;
+  background: linear-gradient(115deg, transparent 20%, rgba(255,255,255,.72) 46%, transparent 68%);
+  transform: translateX(-125%);
+  transition: transform .75s cubic-bezier(.22,1,.36,1);
+  pointer-events: none;
+  z-index: -1;
+}
+
+.stat-card:hover::before {
+  transform: translateX(125%);
+}
+
+.stat-card .stat-icon {
+  transition: transform .35s cubic-bezier(.22,1,.36,1), box-shadow .35s ease;
+}
+
+.stat-card:hover .stat-icon {
+  transform: rotate(-5deg) scale(1.08);
+  box-shadow: 0 8px 20px rgba(17,17,17,.08);
+}
+
+/* =========================================================
+   MOMENTUM INTELLIGENCE
+========================================================= */
+
+.month-intelligence {
+  position: relative;
+  margin-top: 22px;
+  padding: 28px;
+  border: 1px solid rgba(17,17,17,.08);
+  border-radius: 24px;
+  background:
+    radial-gradient(circle at 5% 0%, rgba(17,17,17,.035), transparent 28%),
+    radial-gradient(circle at 100% 100%, rgba(178,45,45,.055), transparent 30%),
+    #fff;
+  box-shadow: 0 18px 50px rgba(17,17,17,.045);
+  overflow: hidden;
+  isolation: isolate;
+}
+
+.month-intelligence::before {
+  content: "";
+  position: absolute;
+  left: 28px;
+  right: 28px;
+  top: 0;
+  height: 1px;
+  background: linear-gradient(90deg, transparent, rgba(17,17,17,.16), rgba(178,45,45,.35), transparent);
+}
+
+.month-intelligence-glow {
+  position: absolute;
+  width: 300px;
+  height: 300px;
+  right: -150px;
+  top: -160px;
+  border-radius: 50%;
+  background: radial-gradient(circle, rgba(178,45,45,.08), transparent 68%);
+  filter: blur(3px);
+  pointer-events: none;
+  z-index: -1;
+}
+
+.month-intelligence-header {
+  display: flex;
+  align-items: flex-end;
+  justify-content: space-between;
+  gap: 24px;
+  margin-bottom: 22px;
+}
+
+.month-intelligence-kicker {
+  display: inline-flex;
+  align-items: center;
+  gap: 6px;
+  color: #9a9a9a;
+  font-size: 8px;
+  font-weight: 800;
+  letter-spacing: .16em;
+}
+
+.month-intelligence-kicker svg {
+  color: #b22d2d;
+}
+
+.month-intelligence-header h2 {
+  margin: 8px 0 6px;
+  color: #111;
+  font-size: 24px;
+  line-height: 1.12;
+  letter-spacing: -.045em;
+}
+
+.month-intelligence-header p {
+  margin: 0;
+  max-width: 680px;
+  color: #8a8a8a;
+  font-size: 12px;
+  line-height: 1.6;
+}
+
+.month-intelligence-live {
+  flex: 0 0 auto;
+  display: inline-flex;
+  align-items: center;
+  gap: 7px;
+  padding: 9px 11px;
+  border: 1px solid #ece9e6;
+  border-radius: 999px;
+  background: rgba(250,249,247,.9);
+  color: #8e8e8e;
+  font-size: 8px;
+  font-weight: 800;
+  letter-spacing: .12em;
+  white-space: nowrap;
+}
+
+.month-intelligence-live-dot {
+  width: 6px;
+  height: 6px;
+  border-radius: 50%;
+  background: #2d9a61;
+  box-shadow: 0 0 0 4px rgba(45,154,97,.09);
+  animation: momentumPulse 2s ease-in-out infinite;
+}
+
+@keyframes momentumPulse {
+  0%, 100% { transform: scale(1); opacity: .85; }
+  50% { transform: scale(1.25); opacity: 1; }
+}
+
+.month-intelligence-grid {
+  display: grid;
+  grid-template-columns: repeat(3, minmax(0, 1fr));
+  gap: 12px;
+}
+
+.intelligence-card {
+  position: relative;
+  min-height: 164px;
+  padding: 19px;
+  border: 1px solid #ebe8e5;
+  border-radius: 18px;
+  background: rgba(255,255,255,.92);
+  box-shadow: 0 7px 20px rgba(17,17,17,.025);
+  overflow: hidden;
+  transition: border-color .3s ease, box-shadow .3s ease;
+}
+
+.intelligence-card:hover {
+  border-color: #ded9d5;
+  box-shadow: 0 15px 34px rgba(17,17,17,.07);
+}
+
+.intelligence-card::after {
+  content: "";
+  position: absolute;
+  width: 110px;
+  height: 110px;
+  right: -55px;
+  bottom: -65px;
+  border-radius: 50%;
+  background: radial-gradient(circle, rgba(17,17,17,.055), transparent 68%);
+  pointer-events: none;
+}
+
+.intelligence-card-featured {
+  background: linear-gradient(145deg, #fff, #faf9f7);
+}
+
+.intelligence-card-icon {
+  width: 34px;
+  height: 34px;
+  display: grid;
+  place-items: center;
+  margin-bottom: 18px;
+  border-radius: 10px;
+  background: #eef8f1;
+  color: #2b7c4e;
+}
+
+.intelligence-card-icon.warm {
+  background: #fff5e8;
+  color: #a36a1e;
+}
+
+.intelligence-card-icon.cool {
+  background: #f1f5ff;
+  color: #3f5eaa;
+}
+
+.intelligence-card > span:not(.intelligence-positive):not(.intelligence-negative) {
+  display: block;
+  margin-bottom: 8px;
+  color: #999;
+  font-size: 8px;
+  font-weight: 800;
+  letter-spacing: .14em;
+}
+
+.intelligence-card strong {
+  display: block;
+  color: #111;
+  font-size: 25px;
+  line-height: 1;
+  letter-spacing: -.045em;
+}
+
+.intelligence-card small {
+  display: block;
+  max-width: 260px;
+  margin-top: 11px;
+  color: #999;
+  font-size: 10px;
+  line-height: 1.45;
+}
+
+.intelligence-positive {
+  color: #268451 !important;
+}
+
+.intelligence-negative {
+  color: #b64242 !important;
+}
+
+.month-intelligence-bottom {
+  display: grid;
+  grid-template-columns: minmax(0, 1.65fr) minmax(240px, .75fr);
+  gap: 12px;
+  margin-top: 12px;
+}
+
+.intelligence-chart-panel,
+.intelligence-average-panel {
+  border: 1px solid #ebe8e5;
+  border-radius: 18px;
+  background: #fcfbfa;
+}
+
+.intelligence-chart-panel {
+  padding: 20px;
+}
+
+.intelligence-chart-heading {
+  display: flex;
+  align-items: flex-end;
+  justify-content: space-between;
+  gap: 15px;
+  margin-bottom: 20px;
+}
+
+.intelligence-chart-heading div {
+  display: flex;
+  flex-direction: column;
+  gap: 5px;
+}
+
+.intelligence-chart-heading span,
+.intelligence-chart-heading small {
+  color: #9b9b9b;
+  font-size: 8px;
+  font-weight: 800;
+  letter-spacing: .14em;
+}
+
+.intelligence-chart-heading strong {
+  color: #222;
+  font-size: 13px;
+  letter-spacing: -.02em;
+}
+
+.intelligence-bars {
+  display: flex;
+  flex-direction: column;
+  gap: 14px;
+}
+
+.intelligence-bar-row {
+  display: grid;
+  grid-template-columns: 115px minmax(0, 1fr) 35px;
+  align-items: center;
+  gap: 12px;
+}
+
+.intelligence-bar-meta {
+  display: flex;
+  flex-direction: column;
+  min-width: 0;
+  gap: 3px;
+}
+
+.intelligence-bar-meta span {
+  overflow: hidden;
+  color: #8c8c8c;
+  font-size: 9px;
+  text-overflow: ellipsis;
+  white-space: nowrap;
+}
+
+.intelligence-bar-meta strong {
+  color: #222;
+  font-size: 10px;
+}
+
+.intelligence-bar-track {
+  height: 8px;
+  overflow: hidden;
+  border-radius: 999px;
+  background: #eae8e5;
+}
+
+.intelligence-bar-fill {
+  height: 100%;
+  min-width: 5px;
+  border-radius: inherit;
+  background: linear-gradient(90deg, #111, #3a3a3a 70%, #b22d2d);
+  box-shadow: 0 3px 9px rgba(17,17,17,.12);
+}
+
+.intelligence-share {
+  color: #999;
+  font-size: 9px;
+  font-weight: 700;
+  text-align: right;
+}
+
+.intelligence-average-panel {
+  position: relative;
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
+  padding: 23px;
+  overflow: hidden;
+}
+
+.intelligence-average-panel::before {
+  content: "";
+  position: absolute;
+  width: 180px;
+  height: 180px;
+  right: -90px;
+  top: -80px;
+  border-radius: 50%;
+  background: radial-gradient(circle, rgba(178,45,45,.075), transparent 70%);
+}
+
+.intelligence-average-icon {
+  width: 35px;
+  height: 35px;
+  display: grid;
+  place-items: center;
+  margin-bottom: 18px;
+  border: 1px solid #e6e2df;
+  border-radius: 10px;
+  background: #fff;
+  color: #555;
+}
+
+.intelligence-average-panel > span {
+  color: #999;
+  font-size: 8px;
+  font-weight: 800;
+  letter-spacing: .14em;
+}
+
+.intelligence-average-panel > strong {
+  margin-top: 9px;
+  color: #111;
+  font-size: 29px;
+  line-height: 1;
+  letter-spacing: -.055em;
+}
+
+.intelligence-average-panel > small {
+  max-width: 230px;
+  margin-top: 12px;
+  color: #999;
+  font-size: 10px;
+  line-height: 1.5;
+}
+
+@media (max-width: 1000px) {
+  .month-intelligence-grid {
+    grid-template-columns: 1fr;
+  }
+
+  .intelligence-card {
+    min-height: 145px;
+  }
+
+  .month-intelligence-bottom {
+    grid-template-columns: 1fr;
+  }
+}
+
+@media (max-width: 700px) {
+  .month-intelligence {
+    padding: 21px;
+    border-radius: 20px;
+  }
+
+  .month-intelligence-header {
+    align-items: flex-start;
+    flex-direction: column;
+  }
+
+  .month-intelligence-live {
+    align-self: flex-start;
+  }
+
+  .month-intelligence-header h2 {
+    font-size: 21px;
+  }
+
+  .intelligence-bar-row {
+    grid-template-columns: 95px minmax(0, 1fr) 30px;
+    gap: 8px;
+  }
+}
+
+@media (max-width: 520px) {
+  .month-intelligence {
+    padding: 18px;
+  }
+
+  .intelligence-card {
+    min-height: 135px;
+    padding: 17px;
+  }
+
+  .intelligence-chart-panel,
+  .intelligence-average-panel {
+    padding: 17px;
+  }
+
+  .intelligence-bar-row {
+    grid-template-columns: 1fr 32px;
+  }
+
+  .intelligence-bar-meta {
+    grid-column: 1 / -1;
+    flex-direction: row;
+    align-items: center;
+    justify-content: space-between;
+  }
+
+  .intelligence-bar-track {
+    grid-column: 1;
+  }
+
+  .intelligence-share {
+    grid-column: 2;
+    grid-row: 2;
+  }
+}
+
+@media (prefers-reduced-motion: reduce) {
+  .month-intelligence-live-dot {
+    animation: none;
+  }
+
+  .stat-card::before,
+  .stat-card .stat-icon {
+    transition: none;
+  }
+}
+
+
+/* =========================================================
+   MOMENTUM — LIQUID GLASS / AMBIENT DASHBOARD OVERRIDES
+   Visual refinement only — existing JSX/data stays intact.
+========================================================= */
+
+/* ---------- ambient canvas ---------- */
+
+body:has(.sidebar) {
+  background:
+    linear-gradient(135deg, #fbfaf8 0%, #ffffff 48%, #f7f4ef 100%);
+  color: #111;
+}
+
+body:has(.sidebar)::before {
+  content: "";
+  position: fixed;
+  inset: 0;
+  pointer-events: none;
+  z-index: -20;
+  background:
+    radial-gradient(
+      650px 620px at 2% 88%,
+      rgba(82, 105, 116, .46),
+      transparent 68%
+    ),
+    radial-gradient(
+      580px 600px at 98% 78%,
+      rgba(255, 177, 123, .42),
+      transparent 69%
+    ),
+    radial-gradient(
+      500px 460px at 80% 8%,
+      rgba(255, 220, 155, .22),
+      transparent 70%
+    ),
+    radial-gradient(
+      650px 520px at 48% 45%,
+      rgba(255,255,255,.92),
+      transparent 72%
+    );
+  filter: blur(22px);
+  animation: dashboardAmbientDrift 18s ease-in-out infinite alternate;
+}
+
+body:has(.sidebar)::after {
+  content: "";
+  position: fixed;
+  inset: 0;
+  pointer-events: none;
+  z-index: -19;
+  opacity: .16;
+  background-image:
+    url("data:image/svg+xml,%3Csvg viewBox='0 0 180 180' xmlns='http://www.w3.org/2000/svg'%3E%3Cfilter id='n'%3E%3CfeTurbulence type='fractalNoise' baseFrequency='.85' numOctaves='3' stitchTiles='stitch'/%3E%3C/filter%3E%3Crect width='100%25' height='100%25' filter='url(%23n)' opacity='.12'/%3E%3C/svg%3E");
+  mix-blend-mode: multiply;
+}
+
+@keyframes dashboardAmbientDrift {
+  0% {
+    transform: scale(1) translate3d(0,0,0);
+  }
+  50% {
+    transform: scale(1.035) translate3d(18px,-12px,0);
+  }
+  100% {
+    transform: scale(1.015) translate3d(-15px,10px,0);
+  }
+}
+
+
+/* ---------- sidebar becomes translucent glass ---------- */
+
+.sidebar {
+  background:
+    linear-gradient(
+      180deg,
+      rgba(255,255,255,.78),
+      rgba(255,255,255,.57)
+    ) !important;
+
+  border-right:
+    1px solid rgba(255,255,255,.82) !important;
+
+  box-shadow:
+    12px 0 45px rgba(38,31,25,.035),
+    inset -1px 0 0 rgba(255,255,255,.55);
+
+  backdrop-filter:
+    blur(26px)
+    saturate(125%);
+
+  -webkit-backdrop-filter:
+    blur(26px)
+    saturate(125%);
+}
+
+.sidebar::before {
+  content: "";
+  position: absolute;
+  inset: 0;
+  pointer-events: none;
+  background:
+    radial-gradient(
+      240px 300px at 0% 80%,
+      rgba(100,120,128,.08),
+      transparent 75%
+    );
+}
+
+.brand-mark,
+.client-avatar {
+  background:
+    linear-gradient(145deg,#222,#3b3b3b) !important;
+  box-shadow:
+    0 8px 20px rgba(0,0,0,.13),
+    inset 0 1px 0 rgba(255,255,255,.13) !important;
+}
+
+.client-box {
+  background:
+    linear-gradient(
+      135deg,
+      rgba(255,255,255,.66),
+      rgba(255,255,255,.32)
+    ) !important;
+
+  border-color:
+    rgba(255,255,255,.84) !important;
+
+  box-shadow:
+    inset 0 1px 0 rgba(255,255,255,.88),
+    0 8px 24px rgba(35,30,25,.035);
+
+  backdrop-filter: blur(18px);
+  -webkit-backdrop-filter: blur(18px);
+
+  transition:
+    transform .28s cubic-bezier(.22,1,.36,1),
+    box-shadow .28s ease;
+}
+
+.client-box:hover {
+  transform: translateY(-2px);
+  box-shadow:
+    inset 0 1px 0 rgba(255,255,255,.95),
+    0 14px 30px rgba(35,30,25,.07);
+}
+
+.nav-item {
+  transition:
+    color .25s ease,
+    transform .25s cubic-bezier(.22,1,.36,1);
+}
+
+.nav-item:hover {
+  transform: translateX(3px);
+}
+
+.active-pill {
+  background:
+    linear-gradient(
+      135deg,
+      rgba(155,44,44,.96),
+      rgba(128,34,34,.91)
+    ) !important;
+
+  box-shadow:
+    0 9px 22px rgba(155,44,44,.18),
+    inset 0 1px 0 rgba(255,255,255,.13);
+
+  border:
+    1px solid rgba(255,255,255,.14);
+}
+
+.nav-item.active {
+  color: #fff !important;
+}
+
+.nav-item.active .nav-icon {
+  color: #fff;
+}
+
+
+/* ---------- main canvas ---------- */
+
+.main-content {
+  position: relative;
+  isolation: isolate;
+
+  padding-top: 38px !important;
+}
+
+.main-content::before {
+  content: "";
+  position: absolute;
+  width: 460px;
+  height: 460px;
+  top: -190px;
+  right: -160px;
+  border-radius: 50%;
+  background:
+    radial-gradient(
+      circle,
+      rgba(255,191,145,.24),
+      transparent 69%
+    );
+  filter: blur(34px);
+  pointer-events: none;
+  z-index: -2;
+  animation:
+    dashboardOrbFloat
+    13s
+    ease-in-out
+    infinite;
+}
+
+.main-content::after {
+  content: "";
+  position: absolute;
+  width: 520px;
+  height: 500px;
+  left: -260px;
+  bottom: -230px;
+  border-radius: 50%;
+  background:
+    radial-gradient(
+      circle,
+      rgba(82,105,116,.18),
+      transparent 70%
+    );
+  filter: blur(38px);
+  pointer-events: none;
+  z-index: -2;
+  animation:
+    dashboardOrbFloat2
+    16s
+    ease-in-out
+    infinite;
+}
+
+@keyframes dashboardOrbFloat {
+  0%,100% {
+    transform: translate3d(0,0,0) scale(1);
+  }
+  50% {
+    transform: translate3d(-45px,45px,0) scale(1.1);
+  }
+}
+
+@keyframes dashboardOrbFloat2 {
+  0%,100% {
+    transform: translate3d(0,0,0) scale(1);
+  }
+  50% {
+    transform: translate3d(50px,-30px,0) scale(1.08);
+  }
+}
+
+
+/* ---------- top header ---------- */
+
+.topbar {
+  position: relative;
+  z-index: 2;
+}
+
+.topbar h1 {
+  letter-spacing: -.055em !important;
+}
+
+.eyebrow,
+.panel-kicker {
+  color: #9b7770 !important;
+}
+
+.updated {
+  padding: 8px 11px;
+  border:
+    1px solid rgba(255,255,255,.72);
+  border-radius: 999px;
+  background:
+    rgba(255,255,255,.35);
+  box-shadow:
+    inset 0 1px 0 rgba(255,255,255,.8);
+  backdrop-filter: blur(14px);
+  -webkit-backdrop-filter: blur(14px);
+}
+
+.profile-avatar {
+  background:
+    linear-gradient(145deg,#a93636,#8f2727) !important;
+  box-shadow:
+    0 9px 22px rgba(155,44,44,.2),
+    inset 0 1px 0 rgba(255,255,255,.18);
+}
+
+
+/* ---------- reporting period glass ---------- */
+
+.week-selector {
+  background:
+    linear-gradient(
+      135deg,
+      rgba(255,255,255,.68),
+      rgba(255,255,255,.38)
+    ) !important;
+
+  border:
+    1px solid rgba(255,255,255,.82) !important;
+
+  box-shadow:
+    0 14px 38px rgba(48,37,28,.045),
+    inset 0 1px 0 rgba(255,255,255,.92) !important;
+
+  backdrop-filter:
+    blur(24px)
+    saturate(120%) !important;
+
+  -webkit-backdrop-filter:
+    blur(24px)
+    saturate(120%) !important;
+
+  border-radius: 18px !important;
+}
+
+.week-selector:hover {
+  transform: translateY(-2px);
+  border-color:
+    rgba(206,190,171,.72) !important;
+}
+
+.week-dropdown {
+  background:
+    rgba(255,255,255,.5) !important;
+
+  border-color:
+    rgba(255,255,255,.85) !important;
+
+  box-shadow:
+    inset 0 1px 0 rgba(255,255,255,.9),
+    0 5px 18px rgba(35,30,25,.035);
+}
+
+.week-dropdown-menu {
+  background:
+    rgba(255,255,255,.76) !important;
+
+  border-color:
+    rgba(255,255,255,.9) !important;
+
+  box-shadow:
+    0 28px 65px rgba(45,30,20,.13),
+    inset 0 1px 0 rgba(255,255,255,.95) !important;
+
+  backdrop-filter:
+    blur(25px)
+    saturate(130%) !important;
+
+  -webkit-backdrop-filter:
+    blur(25px)
+    saturate(130%) !important;
+}
+
+
+/* ---------- stat cards ---------- */
+
+.stat-card {
+  background:
+    linear-gradient(
+      145deg,
+      rgba(255,255,255,.76),
+      rgba(255,255,255,.43)
+    ) !important;
+
+  border:
+    1px solid rgba(255,255,255,.86) !important;
+
+  box-shadow:
+    0 12px 34px rgba(42,33,27,.045),
+    inset 0 1px 0 rgba(255,255,255,.94) !important;
+
+  backdrop-filter:
+    blur(22px)
+    saturate(125%);
+
+  -webkit-backdrop-filter:
+    blur(22px)
+    saturate(125%);
+
+  overflow: hidden;
+}
+
+.stat-card::before {
+  content: "";
+  position: absolute;
+  width: 160px;
+  height: 160px;
+  top: -110px;
+  right: -90px;
+  border-radius: 50%;
+  background:
+    radial-gradient(
+      circle,
+      rgba(255,198,154,.24),
+      transparent 70%
+    );
+  pointer-events: none;
+}
+
+.stat-card::after {
+  content: "";
+  position: absolute;
+  left: -80%;
+  top: -30%;
+  width: 55%;
+  height: 180%;
+  background:
+    linear-gradient(
+      90deg,
+      transparent,
+      rgba(255,255,255,.48),
+      transparent
+    );
+  transform: rotate(18deg);
+  opacity: 0;
+  pointer-events: none;
+}
+
+.stat-card:hover::after {
+  opacity: 1;
+  animation: glassCardShine .9s ease forwards;
+}
+
+@keyframes glassCardShine {
+  from {
+    transform:
+      translateX(0)
+      rotate(18deg);
+  }
+  to {
+    transform:
+      translateX(330%)
+      rotate(18deg);
+  }
+}
+
+.stat-icon {
+  box-shadow:
+    inset 0 1px 0 rgba(255,255,255,.85);
+}
+
+.stat-value {
+  letter-spacing: -.055em !important;
+}
+
+
+/* ---------- all major panels ---------- */
+
+.panel,
+.month-snapshot,
+.month-intelligence,
+.performance-pulse {
+  background:
+    linear-gradient(
+      145deg,
+      rgba(255,255,255,.72),
+      rgba(255,255,255,.43)
+    ) !important;
+
+  border:
+    1px solid rgba(255,255,255,.86) !important;
+
+  box-shadow:
+    0 18px 55px rgba(40,32,26,.05),
+    inset 0 1px 0 rgba(255,255,255,.94) !important;
+
+  backdrop-filter:
+    blur(24px)
+    saturate(120%);
+
+  -webkit-backdrop-filter:
+    blur(24px)
+    saturate(120%);
+}
+
+.panel {
+  border-radius: 20px !important;
+}
+
+.revenue-panel,
+.efficiency-panel,
+.table-panel,
+.commentary-panel {
+  overflow: hidden;
+}
+
+
+/* ---------- month snapshot ---------- */
+
+.month-snapshot {
+  border-radius: 26px !important;
+  background:
+    radial-gradient(
+      circle at 100% 0%,
+      rgba(255,190,148,.16),
+      transparent 34%
+    ),
+    linear-gradient(
+      145deg,
+      rgba(255,255,255,.78),
+      rgba(255,255,255,.46)
+    ) !important;
+}
+
+.month-snapshot::before {
+  height: 1px !important;
+  background:
+    linear-gradient(
+      90deg,
+      transparent,
+      rgba(155,44,44,.45),
+      rgba(255,177,123,.45),
+      transparent
+    ) !important;
+}
+
+.month-snapshot-card,
+.intelligence-chart-panel,
+.intelligence-average-panel,
+.metric-box,
+.efficiency-stats > div {
+  background:
+    rgba(255,255,255,.38) !important;
+
+  border-color:
+    rgba(255,255,255,.78) !important;
+
+  box-shadow:
+    inset 0 1px 0 rgba(255,255,255,.85);
+}
+
+
+/* ---------- intelligence ---------- */
+
+.month-intelligence {
+  border-radius: 26px !important;
+  background:
+    radial-gradient(
+      circle at 100% 0%,
+      rgba(255,180,130,.16),
+      transparent 30%
+    ),
+    radial-gradient(
+      circle at 0% 100%,
+      rgba(86,109,119,.08),
+      transparent 32%
+    ),
+    linear-gradient(
+      145deg,
+      rgba(255,255,255,.76),
+      rgba(255,255,255,.44)
+    ) !important;
+}
+
+.intelligence-card {
+  background:
+    rgba(255,255,255,.42) !important;
+
+  border-color:
+    rgba(255,255,255,.82) !important;
+
+  box-shadow:
+    inset 0 1px 0 rgba(255,255,255,.88),
+    0 10px 28px rgba(35,30,25,.025);
+}
+
+.intelligence-card:hover {
+  box-shadow:
+    inset 0 1px 0 rgba(255,255,255,.95),
+    0 18px 38px rgba(35,30,25,.07);
+}
+
+
+/* ---------- chart ---------- */
+
+.chart-stage {
+  border-radius: 14px;
+}
+
+.chart-tooltip,
+.bar-tooltip {
+  background:
+    rgba(255,255,255,.72) !important;
+
+  border:
+    1px solid rgba(255,255,255,.88) !important;
+
+  box-shadow:
+    0 22px 55px rgba(35,30,25,.12),
+    inset 0 1px 0 rgba(255,255,255,.95) !important;
+
+  backdrop-filter:
+    blur(22px)
+    saturate(125%);
+
+  -webkit-backdrop-filter:
+    blur(22px)
+    saturate(125%);
+}
+
+
+/* ---------- table / lower cards ---------- */
+
+.current-badge {
+  box-shadow:
+    inset 0 1px 0 rgba(255,255,255,.8);
+}
+
+.selected-performance {
+  background:
+    rgba(255,255,255,.38) !important;
+  border-color:
+    rgba(255,255,255,.72) !important;
+  box-shadow:
+    inset 0 1px 0 rgba(255,255,255,.8);
+}
+
+
+/* ---------- subtle glass shine on panels ---------- */
+
+.panel,
+.month-snapshot,
+.month-intelligence,
+.performance-pulse {
+  position: relative;
+  overflow: hidden;
+}
+
+.panel::after,
+.month-snapshot::after,
+.month-intelligence::after,
+.performance-pulse::after {
+  content: "";
+  position: absolute;
+  width: 42%;
+  height: 180%;
+  left: -75%;
+  top: -40%;
+  background:
+    linear-gradient(
+      90deg,
+      transparent,
+      rgba(255,255,255,.24),
+      transparent
+    );
+  transform: rotate(18deg);
+  pointer-events: none;
+  opacity: 0;
+}
+
+.panel:hover::after,
+.month-snapshot:hover::after,
+.month-intelligence:hover::after,
+.performance-pulse:hover::after {
+  opacity: 1;
+  animation:
+    panelGlassSweep
+    1.15s
+    cubic-bezier(.22,1,.36,1);
+}
+
+@keyframes panelGlassSweep {
+  from {
+    transform:
+      translateX(0)
+      rotate(18deg);
+  }
+  to {
+    transform:
+      translateX(370%)
+      rotate(18deg);
+  }
+}
+
+
+/* ---------- mobile ambient treatment ---------- */
+
+@media (max-width: 900px) {
+  body:has(.sidebar)::before {
+    background:
+      radial-gradient(
+        430px 430px at 0% 90%,
+        rgba(82,105,116,.28),
+        transparent 70%
+      ),
+      radial-gradient(
+        430px 430px at 100% 78%,
+        rgba(255,177,123,.27),
+        transparent 70%
+      ),
+      radial-gradient(
+        420px 400px at 50% 35%,
+        rgba(255,255,255,.94),
+        transparent 72%
+      );
+  }
+
+  .main-content {
+    padding-left: 22px !important;
+    padding-right: 22px !important;
+  }
+}
+
+@media (max-width: 600px) {
+  .stat-card,
+  .panel,
+  .month-snapshot,
+  .month-intelligence,
+  .performance-pulse {
+    border-radius: 18px !important;
+  }
+}
+
+
+/* ---------- reduced motion ---------- */
+
+@media (prefers-reduced-motion: reduce) {
+  body:has(.sidebar)::before,
+  .main-content::before,
+  .main-content::after {
+    animation: none !important;
+  }
+
+  .stat-card:hover::after,
+  .panel:hover::after,
+  .month-snapshot:hover::after,
+  .month-intelligence:hover::after,
+  .performance-pulse:hover::after {
+    animation: none !important;
+  }
+}
+
+
+/* =========================================================
+   MOMENTUM V2 — ACTUAL LIQUID GLASS VISUAL RESET
+   This layer intentionally overrides the flatter dashboard
+   treatment so the ambient/glass effect is unmistakable.
+========================================================= */
+
+/* ---------- canvas ---------- */
+
+html,
+body {
+  background: #f7f6f3 !important;
+}
+
+.momentum-app {
+  position: relative !important;
+  min-height: 100vh !important;
+  overflow-x: hidden !important;
+
+  background:
+    linear-gradient(
+      135deg,
+      #faf9f7 0%,
+      #ffffff 48%,
+      #f7f4ef 100%
+    ) !important;
+}
+
+.momentum-app::before {
+  content: "";
+  position: fixed;
+  inset: -12%;
+  z-index: -10;
+  pointer-events: none;
+
+  background:
+    radial-gradient(
+      620px 560px at 2% 91%,
+      rgba(78,101,113,.56),
+      transparent 68%
+    ),
+    radial-gradient(
+      590px 580px at 99% 78%,
+      rgba(255,173,119,.50),
+      transparent 68%
+    ),
+    radial-gradient(
+      470px 430px at 78% 5%,
+      rgba(255,214,143,.34),
+      transparent 70%
+    ),
+    radial-gradient(
+      720px 620px at 49% 48%,
+      rgba(255,255,255,.96),
+      transparent 72%
+    );
+
+  filter: blur(28px);
+
+  animation:
+    momentumAmbient
+    20s
+    ease-in-out
+    infinite alternate;
+}
+
+.momentum-app::after {
+  content: "";
+  position: fixed;
+  inset: 0;
+  z-index: -9;
+  pointer-events: none;
+
+  background:
+    radial-gradient(
+      360px 360px at 20% 20%,
+      rgba(255,255,255,.62),
+      transparent 70%
+    ),
+    radial-gradient(
+      400px 400px at 82% 70%,
+      rgba(255,255,255,.28),
+      transparent 70%
+    );
+
+  opacity: .9;
+}
+
+@keyframes momentumAmbient {
+  0% {
+    transform:
+      translate3d(0,0,0)
+      scale(1);
+  }
+
+  50% {
+    transform:
+      translate3d(-20px,18px,0)
+      scale(1.035);
+  }
+
+  100% {
+    transform:
+      translate3d(22px,-14px,0)
+      scale(1.02);
+  }
+}
+
+
+/* ---------- sidebar ---------- */
+
+.sidebar {
+  background:
+    linear-gradient(
+      180deg,
+      rgba(255,255,255,.70),
+      rgba(255,255,255,.42)
+    ) !important;
+
+  border-right:
+    1px solid rgba(255,255,255,.82) !important;
+
+  box-shadow:
+    12px 0 55px rgba(31,27,23,.045),
+    inset -1px 0 0 rgba(255,255,255,.7) !important;
+
+  backdrop-filter:
+    blur(30px)
+    saturate(135%) !important;
+
+  -webkit-backdrop-filter:
+    blur(30px)
+    saturate(135%) !important;
+}
+
+.sidebar::after {
+  content: "";
+  position: absolute;
+  inset: 0;
+  pointer-events: none;
+
+  background:
+    linear-gradient(
+      180deg,
+      rgba(255,255,255,.18),
+      transparent 30%,
+      rgba(255,255,255,.08)
+    );
+}
+
+.brand {
+  position: relative;
+  z-index: 2;
+}
+
+.client-box {
+  position: relative;
+  z-index: 2;
+
+  background:
+    rgba(255,255,255,.34) !important;
+
+  border:
+    1px solid rgba(255,255,255,.75) !important;
+
+  box-shadow:
+    inset 0 1px 0 rgba(255,255,255,.88),
+    0 10px 30px rgba(30,25,20,.045) !important;
+
+  backdrop-filter: blur(20px) saturate(125%);
+  -webkit-backdrop-filter: blur(20px) saturate(125%);
+}
+
+
+/* ---------- main content ---------- */
+
+.main-content {
+  position: relative !important;
+  z-index: 1;
+
+  background: transparent !important;
+}
+
+
+/* ---------- header ---------- */
+
+.topbar {
+  position: relative;
+  z-index: 4;
+
+  padding-top: 8px;
+}
+
+.topbar h1 {
+  font-size: clamp(32px, 3.1vw, 45px) !important;
+  font-weight: 700 !important;
+  letter-spacing: -.07em !important;
+}
+
+.topbar p {
+  color: #85817b !important;
+}
+
+.topbar .eyebrow {
+  display: inline-flex;
+  align-items: center;
+  gap: 7px;
+
+  padding:
+    6px 9px;
+
+  border-radius: 999px;
+
+  background:
+    rgba(155,44,44,.055);
+
+  border:
+    1px solid rgba(155,44,44,.08);
+
+  color: #9b2c2c !important;
+}
+
+
+/* ---------- reporting period ---------- */
+
+.week-selector {
+  position: relative;
+  z-index: 5;
+
+  min-height: 68px !important;
+
+  background:
+    linear-gradient(
+      110deg,
+      rgba(255,255,255,.67),
+      rgba(255,255,255,.31)
+    ) !important;
+
+  border:
+    1px solid rgba(255,255,255,.86) !important;
+
+  border-radius: 21px !important;
+
+  box-shadow:
+    0 18px 50px rgba(38,30,23,.055),
+    inset 0 1px 0 rgba(255,255,255,.96),
+    inset 0 -1px 0 rgba(255,255,255,.25) !important;
+
+  backdrop-filter:
+    blur(27px)
+    saturate(130%) !important;
+
+  -webkit-backdrop-filter:
+    blur(27px)
+    saturate(130%) !important;
+}
+
+.week-selector::after {
+  content: "";
+  position: absolute;
+  inset: 1px;
+
+  border-radius: 20px;
+
+  pointer-events: none;
+
+  background:
+    linear-gradient(
+      105deg,
+      rgba(255,255,255,.2),
+      transparent 30%,
+      transparent 70%,
+      rgba(255,255,255,.12)
+    );
+}
+
+
+/* ---------- KPI cards ---------- */
+
+.stats-grid {
+  gap: 14px !important;
+}
+
+.stat-card {
+  position: relative !important;
+
+  min-height: 168px !important;
+
+  border-radius: 23px !important;
+
+  background:
+    linear-gradient(
+      145deg,
+      rgba(255,255,255,.76),
+      rgba(255,255,255,.34)
+    ) !important;
+
+  border:
+    1px solid rgba(255,255,255,.88) !important;
+
+  box-shadow:
+    0 18px 48px rgba(37,29,23,.055),
+    inset 0 1px 0 rgba(255,255,255,.96) !important;
+
+  backdrop-filter:
+    blur(25px)
+    saturate(125%) !important;
+
+  -webkit-backdrop-filter:
+    blur(25px)
+    saturate(125%) !important;
+
+  transition:
+    transform .45s cubic-bezier(.22,1,.36,1),
+    box-shadow .45s ease !important;
+}
+
+.stat-card:hover {
+  transform:
+    translateY(-5px)
+    scale(1.008) !important;
+
+  box-shadow:
+    0 28px 65px rgba(37,29,23,.09),
+    inset 0 1px 0 rgba(255,255,255,.98) !important;
+}
+
+.stat-card::before {
+  content: "";
+
+  position: absolute;
+
+  width: 210px;
+  height: 210px;
+
+  right: -140px;
+  top: -140px;
+
+  border-radius: 50%;
+
+  background:
+    radial-gradient(
+      circle,
+      rgba(255,184,132,.28),
+      transparent 70%
+    );
+
+  pointer-events: none;
+}
+
+.stat-card:nth-child(3)::before {
+  background:
+    radial-gradient(
+      circle,
+      rgba(120,145,155,.20),
+      transparent 70%
+    );
+}
+
+.stat-card:nth-child(4)::before {
+  background:
+    radial-gradient(
+      circle,
+      rgba(190,155,220,.17),
+      transparent 70%
+    );
+}
+
+
+/* ---------- monthly / major panels ---------- */
+
+.month-snapshot,
+.month-intelligence,
+.performance-pulse,
+.panel {
+  position: relative !important;
+
+  background:
+    linear-gradient(
+      145deg,
+      rgba(255,255,255,.72),
+      rgba(255,255,255,.34)
+    ) !important;
+
+  border:
+    1px solid rgba(255,255,255,.87) !important;
+
+  box-shadow:
+    0 22px 65px rgba(37,29,23,.055),
+    inset 0 1px 0 rgba(255,255,255,.96) !important;
+
+  backdrop-filter:
+    blur(27px)
+    saturate(125%) !important;
+
+  -webkit-backdrop-filter:
+    blur(27px)
+    saturate(125%) !important;
+}
+
+.month-snapshot {
+  border-radius: 28px !important;
+
+  background:
+    radial-gradient(
+      480px 280px at 100% 0%,
+      rgba(255,183,132,.17),
+      transparent 70%
+    ),
+    linear-gradient(
+      145deg,
+      rgba(255,255,255,.76),
+      rgba(255,255,255,.37)
+    ) !important;
+}
+
+.month-snapshot::before {
+  background:
+    linear-gradient(
+      90deg,
+      transparent,
+      rgba(155,44,44,.62),
+      rgba(255,177,123,.52),
+      transparent
+    ) !important;
+}
+
+.month-intelligence {
+  border-radius: 28px !important;
+}
+
+
+/* ---------- inner glass surfaces ---------- */
+
+.month-snapshot-card,
+.intelligence-card,
+.intelligence-chart-panel,
+.intelligence-average-panel,
+.metric-box,
+.efficiency-stats > div,
+.performance-metric,
+.pulse-metric-card {
+  background:
+    rgba(255,255,255,.34) !important;
+
+  border:
+    1px solid rgba(255,255,255,.70) !important;
+
+  box-shadow:
+    inset 0 1px 0 rgba(255,255,255,.85),
+    0 8px 25px rgba(35,29,24,.025) !important;
+
+  backdrop-filter:
+    blur(16px);
+
+  -webkit-backdrop-filter:
+    blur(16px);
+}
+
+
+/* ---------- revenue + efficiency ---------- */
+
+.dashboard-grid {
+  gap: 14px !important;
+}
+
+.revenue-panel,
+.efficiency-panel {
+  min-height: 330px;
+}
+
+.revenue-panel {
+  border-radius: 24px !important;
+}
+
+.efficiency-panel {
+  border-radius: 24px !important;
+}
+
+
+/* ---------- chart glass ---------- */
+
+.chart-stage {
+  border-radius: 18px !important;
+
+  background:
+    linear-gradient(
+      180deg,
+      rgba(255,255,255,.16),
+      rgba(255,255,255,.03)
+    );
+
+  box-shadow:
+    inset 0 1px 0 rgba(255,255,255,.48);
+}
+
+.chart-tooltip {
+  background:
+    rgba(255,255,255,.68) !important;
+
+  border:
+    1px solid rgba(255,255,255,.9) !important;
+
+  box-shadow:
+    0 25px 60px rgba(35,29,24,.13),
+    inset 0 1px 0 rgba(255,255,255,.95) !important;
+
+  backdrop-filter:
+    blur(24px) saturate(130%) !important;
+
+  -webkit-backdrop-filter:
+    blur(24px) saturate(130%) !important;
+}
+
+
+/* ---------- history/commentary ---------- */
+
+.bottom-grid {
+  gap: 14px !important;
+}
+
+.table-panel,
+.commentary-panel {
+  border-radius: 24px !important;
+}
+
+
+/* ---------- glass hover ---------- */
+
+.panel:hover,
+.month-snapshot:hover,
+.month-intelligence:hover,
+.performance-pulse:hover {
+  transform: translateY(-2px);
+
+  box-shadow:
+    0 30px 75px rgba(37,29,23,.075),
+    inset 0 1px 0 rgba(255,255,255,.98) !important;
+}
+
+
+/* ---------- entrance rhythm ---------- */
+
+.topbar {
+  animation:
+    dashboardEnter
+    .7s
+    cubic-bezier(.22,1,.36,1)
+    both;
+}
+
+.week-selector {
+  animation:
+    dashboardEnter
+    .7s
+    cubic-bezier(.22,1,.36,1)
+    .05s
+    both;
+}
+
+.stats-grid {
+  animation:
+    dashboardEnter
+    .75s
+    cubic-bezier(.22,1,.36,1)
+    .1s
+    both;
+}
+
+.month-snapshot {
+  animation:
+    dashboardEnter
+    .8s
+    cubic-bezier(.22,1,.36,1)
+    .15s
+    both;
+}
+
+.dashboard-grid {
+  animation:
+    dashboardEnter
+    .8s
+    cubic-bezier(.22,1,.36,1)
+    .2s
+    both;
+}
+
+@keyframes dashboardEnter {
+  from {
+    opacity: 0;
+    transform:
+      translateY(16px);
+  }
+
+  to {
+    opacity: 1;
+    transform:
+      translateY(0);
+  }
+}
+
+
+/* ---------- mobile ---------- */
+
+@media (max-width: 1050px) {
+  .main-content {
+    padding-left: 25px !important;
+    padding-right: 25px !important;
+  }
+}
+
+@media (max-width: 720px) {
+  .main-content {
+    padding-left: 15px !important;
+    padding-right: 15px !important;
+  }
+
+  .stat-card {
+    min-height: 145px !important;
+  }
+
+  .month-snapshot,
+  .month-intelligence,
+  .panel {
+    border-radius: 20px !important;
+  }
+}
+
+
+/* ---------- reduced motion ---------- */
+
+@media (prefers-reduced-motion: reduce) {
+  .momentum-app::before,
+  .topbar,
+  .week-selector,
+  .stats-grid,
+  .month-snapshot,
+  .dashboard-grid {
+    animation: none !important;
+  }
+
+  .stat-card:hover,
+  .panel:hover,
+  .month-snapshot:hover,
+  .month-intelligence:hover,
+  .performance-pulse:hover {
+    transform: none !important;
+  }
+}
+
+
+/* =========================================================
+   MOMENTUM V3 — PREMIUM LIQUID GLASS / ART-DIRECTION LAYER
+   Visual refinement only. Existing JSX, data, charts and
+   interactions remain untouched.
+========================================================= */
+
+/* ---------------------------------------------------------
+   01 — DEEPER ATMOSPHERE
+--------------------------------------------------------- */
+
+.momentum-app {
+  isolation: isolate !important;
+  background:
+    linear-gradient(
+      135deg,
+      #f8f7f4 0%,
+      #ffffff 42%,
+      #f8f3ed 100%
+    ) !important;
+}
+
+.momentum-app::before {
+  inset: -18% !important;
+
+  background:
+    radial-gradient(
+      720px 650px at 1% 92%,
+      rgba(72, 96, 109, .66),
+      transparent 67%
+    ),
+    radial-gradient(
+      680px 660px at 101% 82%,
+      rgba(255, 166, 112, .60),
+      transparent 67%
+    ),
+    radial-gradient(
+      520px 480px at 84% 2%,
+      rgba(255, 212, 137, .38),
+      transparent 70%
+    ),
+    radial-gradient(
+      700px 650px at 47% 48%,
+      rgba(255,255,255,.98),
+      transparent 72%
+    ),
+    radial-gradient(
+      440px 420px at 18% 36%,
+      rgba(213, 231, 233, .28),
+      transparent 72%
+    ) !important;
+
+  filter: blur(34px) saturate(108%) !important;
+}
+
+.momentum-app::after {
+  background:
+    radial-gradient(
+      500px 500px at 11% 72%,
+      rgba(255,255,255,.22),
+      transparent 70%
+    ),
+    radial-gradient(
+      520px 520px at 91% 31%,
+      rgba(255,255,255,.18),
+      transparent 70%
+    ),
+    linear-gradient(
+      115deg,
+      rgba(255,255,255,.08),
+      transparent 42%,
+      rgba(255,255,255,.10)
+    ) !important;
+
+  mix-blend-mode: screen;
+}
+
+
+/* ---------------------------------------------------------
+   02 — FLOATING LIGHT RAYS
+--------------------------------------------------------- */
+
+.main-content::before {
+  content: "";
+  position: fixed;
+  width: 460px;
+  height: 460px;
+  top: 13%;
+  right: -210px;
+
+  border-radius: 50%;
+  pointer-events: none;
+  z-index: -2;
+
+  background:
+    radial-gradient(
+      circle,
+      rgba(255,184,138,.18) 0%,
+      rgba(255,184,138,.08) 34%,
+      transparent 70%
+    );
+
+  filter: blur(10px);
+  animation: floatingLightOne 14s ease-in-out infinite alternate;
+}
+
+.main-content::after {
+  content: "";
+  position: fixed;
+  width: 420px;
+  height: 420px;
+  left: 5%;
+  bottom: -230px;
+
+  border-radius: 50%;
+  pointer-events: none;
+  z-index: -2;
+
+  background:
+    radial-gradient(
+      circle,
+      rgba(103,130,141,.18),
+      rgba(103,130,141,.07) 36%,
+      transparent 72%
+    );
+
+  filter: blur(12px);
+  animation: floatingLightTwo 17s ease-in-out infinite alternate;
+}
+
+@keyframes floatingLightOne {
+  from {
+    transform: translate3d(0,0,0) scale(.96);
+  }
+  to {
+    transform: translate3d(-45px,35px,0) scale(1.08);
+  }
+}
+
+@keyframes floatingLightTwo {
+  from {
+    transform: translate3d(0,0,0) scale(1);
+  }
+  to {
+    transform: translate3d(55px,-30px,0) scale(1.12);
+  }
+}
+
+
+/* ---------------------------------------------------------
+   03 — PREMIUM CONTENT WIDTH / RHYTHM
+--------------------------------------------------------- */
+
+.main-content {
+  padding-top: 42px !important;
+  padding-bottom: 70px !important;
+}
+
+.main-content > * {
+  position: relative;
+}
+
+.topbar {
+  margin-bottom: 28px !important;
+}
+
+.week-selector {
+  margin-bottom: 18px !important;
+}
+
+
+/* ---------------------------------------------------------
+   04 — TOPBAR GLASS DETAILS
+--------------------------------------------------------- */
+
+.topbar-actions {
+  gap: 12px !important;
+}
+
+.topbar-actions > * {
+  box-shadow:
+    inset 0 1px 0 rgba(255,255,255,.75),
+    0 8px 24px rgba(36,29,23,.035);
+}
+
+.profile-avatar {
+  border:
+    1px solid rgba(255,255,255,.85) !important;
+
+  box-shadow:
+    0 8px 22px rgba(60,30,20,.08),
+    inset 0 1px 0 rgba(255,255,255,.42);
+}
+
+
+/* ---------------------------------------------------------
+   05 — REPORTING CONTROL / GLASS CAPSULE
+--------------------------------------------------------- */
+
+.week-selector {
+  padding: 11px 13px 11px 18px !important;
+
+  background:
+    linear-gradient(
+      120deg,
+      rgba(255,255,255,.72),
+      rgba(255,255,255,.30)
+    ) !important;
+
+  box-shadow:
+    0 20px 55px rgba(35,28,23,.055),
+    inset 0 1px 0 rgba(255,255,255,.98),
+    inset 0 -1px 0 rgba(255,255,255,.28) !important;
+}
+
+.week-selector:hover {
+  transform: translateY(-2px) !important;
+
+  box-shadow:
+    0 27px 68px rgba(35,28,23,.075),
+    inset 0 1px 0 rgba(255,255,255,1) !important;
+}
+
+.week-dropdown {
+  border-radius: 15px !important;
+
+  background:
+    rgba(255,255,255,.48) !important;
+
+  border-color:
+    rgba(255,255,255,.80) !important;
+
+  box-shadow:
+    inset 0 1px 0 rgba(255,255,255,.80),
+    0 8px 22px rgba(35,28,23,.035) !important;
+
+  backdrop-filter: blur(18px);
+  -webkit-backdrop-filter: blur(18px);
+}
+
+
+/* ---------------------------------------------------------
+   06 — KPI CARDS: MORE EDITORIAL / LESS GENERIC
+--------------------------------------------------------- */
+
+.stats-grid {
+  margin-bottom: 20px !important;
+}
+
+.stat-card {
+  min-height: 176px !important;
+  padding: 21px !important;
+
+  overflow: hidden !important;
+}
+
+.stat-card::after {
+  content: "";
+  position: absolute;
+  inset: 1px;
+  border-radius: 22px;
+
+  pointer-events: none;
+
+  background:
+    linear-gradient(
+      120deg,
+      rgba(255,255,255,.22),
+      transparent 34%,
+      transparent 66%,
+      rgba(255,255,255,.10)
+    );
+
+  opacity: .9;
+}
+
+.stat-card:nth-child(1) {
+  background:
+    radial-gradient(
+      190px 150px at 100% 0%,
+      rgba(122,153,166,.12),
+      transparent 72%
+    ),
+    linear-gradient(
+      145deg,
+      rgba(255,255,255,.76),
+      rgba(255,255,255,.31)
+    ) !important;
+}
+
+.stat-card:nth-child(2) {
+  background:
+    radial-gradient(
+      190px 150px at 100% 0%,
+      rgba(126,184,148,.12),
+      transparent 72%
+    ),
+    linear-gradient(
+      145deg,
+      rgba(255,255,255,.76),
+      rgba(255,255,255,.31)
+    ) !important;
+}
+
+.stat-card:nth-child(3) {
+  background:
+    radial-gradient(
+      190px 150px at 100% 0%,
+      rgba(255,196,120,.15),
+      transparent 72%
+    ),
+    linear-gradient(
+      145deg,
+      rgba(255,255,255,.76),
+      rgba(255,255,255,.31)
+    ) !important;
+}
+
+.stat-card:nth-child(4) {
+  background:
+    radial-gradient(
+      190px 150px at 100% 0%,
+      rgba(176,144,206,.13),
+      transparent 72%
+    ),
+    linear-gradient(
+      145deg,
+      rgba(255,255,255,.76),
+      rgba(255,255,255,.31)
+    ) !important;
+}
+
+.stat-icon {
+  border:
+    1px solid rgba(255,255,255,.82) !important;
+
+  box-shadow:
+    inset 0 1px 0 rgba(255,255,255,.88),
+    0 8px 20px rgba(30,25,20,.045) !important;
+}
+
+.stat-value {
+  letter-spacing: -.055em !important;
+}
+
+
+/* ---------------------------------------------------------
+   07 — CURRENT MONTH: HERO-LIKE GLASS PANEL
+--------------------------------------------------------- */
+
+.month-snapshot {
+  padding: 27px !important;
+  margin-bottom: 18px !important;
+
+  overflow: hidden !important;
+
+  box-shadow:
+    0 27px 80px rgba(37,29,23,.065),
+    inset 0 1px 0 rgba(255,255,255,.98) !important;
+}
+
+.month-snapshot::after {
+  content: "";
+  position: absolute;
+  width: 430px;
+  height: 430px;
+  right: -260px;
+  top: -250px;
+
+  border-radius: 50%;
+  pointer-events: none;
+
+  background:
+    radial-gradient(
+      circle,
+      rgba(255,176,122,.18),
+      transparent 68%
+    );
+
+  filter: blur(5px);
+}
+
+.month-snapshot-header {
+  position: relative;
+  z-index: 2;
+}
+
+.month-snapshot-period {
+  border:
+    1px solid rgba(255,255,255,.78) !important;
+
+  background:
+    rgba(255,255,255,.30) !important;
+
+  box-shadow:
+    inset 0 1px 0 rgba(255,255,255,.82),
+    0 8px 25px rgba(30,25,20,.035) !important;
+
+  backdrop-filter: blur(18px);
+  -webkit-backdrop-filter: blur(18px);
+}
+
+.month-snapshot-empty {
+  position: relative;
+  z-index: 2;
+
+  background:
+    linear-gradient(
+      135deg,
+      rgba(255,255,255,.40),
+      rgba(255,255,255,.18)
+    ) !important;
+
+  border:
+    1px dashed rgba(160,145,132,.26) !important;
+
+  box-shadow:
+    inset 0 1px 0 rgba(255,255,255,.60) !important;
+}
+
+
+/* ---------------------------------------------------------
+   08 — INNER MONTH CARDS
+--------------------------------------------------------- */
+
+.month-snapshot-grid {
+  position: relative;
+  z-index: 2;
+  gap: 12px !important;
+}
+
+.month-snapshot-card {
+  min-height: 122px !important;
+  padding: 18px !important;
+
+  border-radius: 18px !important;
+
+  transition:
+    transform .35s cubic-bezier(.22,1,.36,1),
+    box-shadow .35s ease,
+    background .35s ease !important;
+}
+
+.month-snapshot-card:hover {
+  transform: translateY(-4px);
+
+  background:
+    rgba(255,255,255,.47) !important;
+
+  box-shadow:
+    0 16px 38px rgba(35,29,24,.065),
+    inset 0 1px 0 rgba(255,255,255,.94) !important;
+}
+
+.month-snapshot-card strong {
+  letter-spacing: -.05em !important;
+}
+
+
+/* ---------------------------------------------------------
+   09 — INTELLIGENCE SECTION
+--------------------------------------------------------- */
+
+.month-intelligence {
+  margin-bottom: 18px !important;
+  padding: 25px !important;
+
+  overflow: hidden;
+}
+
+.month-intelligence::before {
+  content: "";
+  position: absolute;
+  width: 360px;
+  height: 360px;
+  left: -210px;
+  bottom: -230px;
+
+  border-radius: 50%;
+
+  background:
+    radial-gradient(
+      circle,
+      rgba(88,116,127,.14),
+      transparent 70%
+    );
+
+  pointer-events: none;
+}
+
+.month-intelligence-header,
+.month-intelligence-grid,
+.month-intelligence-bottom {
+  position: relative;
+  z-index: 2;
+}
+
+.month-intelligence-live {
+  background:
+    rgba(255,255,255,.42) !important;
+
+  border:
+    1px solid rgba(255,255,255,.72) !important;
+
+  box-shadow:
+    inset 0 1px 0 rgba(255,255,255,.80),
+    0 8px 20px rgba(30,25,20,.035);
+}
+
+
+/* ---------------------------------------------------------
+   10 — CHART / EFFICIENCY PANELS
+--------------------------------------------------------- */
+
+.dashboard-grid {
+  margin-bottom: 18px !important;
+}
+
+.revenue-panel,
+.efficiency-panel {
+  padding: 23px !important;
+
+  background:
+    linear-gradient(
+      145deg,
+      rgba(255,255,255,.70),
+      rgba(255,255,255,.30)
+    ) !important;
+}
+
+.revenue-panel::before,
+.efficiency-panel::before {
+  content: "";
+  position: absolute;
+  left: 22px;
+  right: 22px;
+  top: 0;
+  height: 1px;
+
+  background:
+    linear-gradient(
+      90deg,
+      transparent,
+      rgba(255,255,255,.95),
+      transparent
+    );
+
+  pointer-events: none;
+}
+
+.chart {
+  filter: drop-shadow(0 5px 10px rgba(120,35,25,.07));
+}
+
+.chart-point circle {
+  filter:
+    drop-shadow(
+      0 3px 7px rgba(155,44,44,.16)
+    );
+}
+
+.bar-fill {
+  box-shadow:
+    0 3px 10px rgba(155,44,44,.10);
+}
+
+
+/* ---------------------------------------------------------
+   11 — HISTORY / COMMENTARY
+--------------------------------------------------------- */
+
+.table-panel,
+.commentary-panel {
+  padding: 22px !important;
+  overflow: hidden;
+}
+
+.table-panel::after,
+.commentary-panel::after {
+  content: "";
+  position: absolute;
+  width: 250px;
+  height: 250px;
+  right: -170px;
+  bottom: -180px;
+
+  border-radius: 50%;
+
+  background:
+    radial-gradient(
+      circle,
+      rgba(255,187,143,.12),
+      transparent 70%
+    );
+
+  pointer-events: none;
+}
+
+
+/* ---------------------------------------------------------
+   12 — BUTTONS / CONTROLS
+--------------------------------------------------------- */
+
+button,
+.week-dropdown,
+.settings-save {
+  -webkit-tap-highlight-color: transparent;
+}
+
+.settings-save {
+  border:
+    1px solid rgba(255,255,255,.18) !important;
+
+  box-shadow:
+    0 12px 28px rgba(20,17,15,.10),
+    inset 0 1px 0 rgba(255,255,255,.10) !important;
+}
+
+.settings-save:hover {
+  box-shadow:
+    0 17px 36px rgba(20,17,15,.14),
+    inset 0 1px 0 rgba(255,255,255,.13) !important;
+}
+
+
+/* ---------------------------------------------------------
+   13 — SIDEBAR DETAILS
+--------------------------------------------------------- */
+
+.sidebar {
+  overflow: hidden !important;
+}
+
+.sidebar::before {
+  content: "";
+  position: absolute;
+  left: -80px;
+  top: 90px;
+
+  width: 230px;
+  height: 230px;
+
+  border-radius: 50%;
+
+  background:
+    radial-gradient(
+      circle,
+      rgba(255,190,145,.11),
+      transparent 70%
+    );
+
+  pointer-events: none;
+}
+
+.nav-item {
+  position: relative;
+  z-index: 2;
+
+  transition:
+    transform .3s cubic-bezier(.22,1,.36,1),
+    color .25s ease !important;
+}
+
+.nav-item:hover {
+  transform: translateX(4px) !important;
+}
+
+.nav-item.active {
+  box-shadow:
+    inset 0 1px 0 rgba(255,255,255,.45),
+    0 7px 22px rgba(155,44,44,.055);
+}
+
+
+/* ---------------------------------------------------------
+   14 — SUBTLE SCROLLBAR
+--------------------------------------------------------- */
+
+::-webkit-scrollbar {
+  width: 9px;
+  height: 9px;
+}
+
+::-webkit-scrollbar-track {
+  background: rgba(255,255,255,.22);
+}
+
+::-webkit-scrollbar-thumb {
+  background:
+    rgba(100,90,82,.20);
+
+  border:
+    2px solid transparent;
+
+  background-clip: padding-box;
+  border-radius: 999px;
+}
+
+::-webkit-scrollbar-thumb:hover {
+  background:
+    rgba(100,90,82,.32);
+
+  background-clip: padding-box;
+}
+
+
+/* ---------------------------------------------------------
+   15 — RESPONSIVE ART DIRECTION
+--------------------------------------------------------- */
+
+@media (max-width: 1050px) {
+  .main-content {
+    padding-top: 30px !important;
+    padding-bottom: 50px !important;
+  }
+
+  .month-snapshot,
+  .month-intelligence {
+    padding: 22px !important;
+  }
+}
+
+@media (max-width: 720px) {
+  .main-content {
+    padding-top: 22px !important;
+  }
+
+  .topbar {
+    margin-bottom: 20px !important;
+  }
+
+  .topbar h1 {
+    font-size: 30px !important;
+  }
+
+  .week-selector {
+    border-radius: 18px !important;
+  }
+
+  .stat-card {
+    border-radius: 19px !important;
+  }
+
+  .month-snapshot,
+  .month-intelligence,
+  .revenue-panel,
+  .efficiency-panel,
+  .table-panel,
+  .commentary-panel {
+    border-radius: 21px !important;
+  }
+
+  .month-snapshot {
+    padding: 19px !important;
+  }
+
+  .month-intelligence {
+    padding: 19px !important;
+  }
+
+  .main-content::before,
+  .main-content::after {
+    opacity: .55;
+  }
+}
+
+@media (max-width: 430px) {
+  .topbar h1 {
+    font-size: 27px !important;
+  }
+
+  .stat-card {
+    min-height: 140px !important;
+    padding: 17px !important;
+  }
+
+  .month-snapshot,
+  .month-intelligence,
+  .revenue-panel,
+  .efficiency-panel,
+  .table-panel,
+  .commentary-panel {
+    padding: 16px !important;
+  }
+}
+
+
+/* ---------------------------------------------------------
+   16 — REDUCED MOTION
+--------------------------------------------------------- */
+
+@media (prefers-reduced-motion: reduce) {
+  .main-content::before,
+  .main-content::after {
+    animation: none !important;
+  }
+
+  .week-selector:hover,
+  .stat-card:hover,
+  .month-snapshot-card:hover,
+  .panel:hover,
+  .month-intelligence:hover {
+    transform: none !important;
+  }
+}

@@ -27,7 +27,7 @@ import { AgencyManifesto } from "@/components/ui/agency-manifesto";
 import MomentumOrbital from "@/components/ui/momentum-orbital";
 
 import MomentumContactForm from "@/components/ui/momentum-contact-form";
-
+import Image from "next/image";
 const projects = [
 
   {
@@ -819,9 +819,24 @@ function PeakPerformance() {
 
   ];
 
-  const [active, setActive] = useState(0);
+const [active, setActive] = useState(0);
+const [showComingSoon, setShowComingSoon] = useState(false);
 
-  const brand = brands[active];
+const brand = brands[active];
+
+const handleBrandClick = (index: number) => {
+  if (window.innerWidth <= 768) {
+    setShowComingSoon(true);
+
+    window.setTimeout(() => {
+      setShowComingSoon(false);
+    }, 2200);
+
+    return;
+  }
+
+  setActive(index);
+};
 
   return (
 
@@ -887,7 +902,7 @@ function PeakPerformance() {
 
               }
 
-              onClick={() => setActive(index)}
+onClick={() => handleBrandClick(index)}
 
             >
 
@@ -1128,7 +1143,19 @@ function PeakPerformance() {
           </div>
 
         </motion.div>
-
+<AnimatePresence>
+  {showComingSoon && (
+    <motion.div
+      className="case-study-toast"
+      initial={{ opacity: 0, y: 20, scale: 0.96 }}
+      animate={{ opacity: 1, y: 0, scale: 1 }}
+      exit={{ opacity: 0, y: 10, scale: 0.96 }}
+      transition={{ duration: 0.22 }}
+    >
+      CASE STUDY COMING SOON
+    </motion.div>
+  )}
+</AnimatePresence>
       </div>
 
     </section>
@@ -1739,11 +1766,9 @@ function MomentumSystem() {
 
             </span>
 
-            <span className="navbar-brand-name">
-
-              MOMENTUM
-
-            </span>
+<span className="navbar-brand-name">
+  OMENTUM
+</span>
 
           </motion.button>
 
@@ -2004,7 +2029,24 @@ function MomentumSystem() {
               }}
 
             >
+<button
+  type="button"
+  className="navbar-mobile-back"
+  onClick={(e) => {
+    e.preventDefault();
+    e.stopPropagation();
+    setMenuOpen(false);
+  }}
+  aria-label="Close menu"
+>
+  <span></span>
+  <span></span>
+</button>
 
+<div className="navbar-mobile-heading">
+  <span>MENU</span>
+  <small>MOMENTUM</small>
+</div>
               <div className="navbar-mobile-links">
 
                 {links.map((link, index) => (
@@ -2061,13 +2103,10 @@ function MomentumSystem() {
 
                     </span>
 
-                    <strong>
+<strong>
+  {link.label}
+</strong>
 
-                      {link.label}
-
-                    </strong>
-
-                    <i>↗</i>
 
                   </motion.button>
 
@@ -2154,7 +2193,7 @@ function CountUp({ value, suffix = "", prefix = "", decimals = 0 }: {
   decimals?: number;
 }) {
   const ref = useRef<HTMLSpanElement>(null);
-  const [display, setDisplay] = useState(0);
+const [display, setDisplay] = useState(value);
   const [started, setStarted] = useState(false);
 
   useEffect(() => {
@@ -2170,7 +2209,8 @@ function CountUp({ value, suffix = "", prefix = "", decimals = 0 }: {
         return;
       }
 
-      const duration = 1500;
+const duration =
+  window.innerWidth < 768 ? 750 : 1500;
       const start = performance.now();
       const tick = (now: number) => {
         const progress = Math.min((now - start) / duration, 1);
@@ -2483,9 +2523,7 @@ export default function LandingPage() {
 
       <PeakPerformance />
 
-{/* MOMENTUM SYSTEM */}
 
-<MomentumSystem />
 
       {/* STATEMENT */}
 
@@ -2645,15 +2683,13 @@ export default function LandingPage() {
 
     <div className="momentum-founder-visual">
 
-      <img
-
-        src="/images/founder-side.jpeg"
-
-        alt="Momentum founder"
-
-        className="momentum-founder-image"
-
-      />
+<Image
+  src="/images/founder-side.jpeg"
+  alt="Momentum founder"
+  fill
+  sizes="(max-width: 768px) 100vw, 50vw"
+  className="momentum-founder-image"
+/>
 
 
 

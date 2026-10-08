@@ -662,3 +662,757 @@
     flex: 1;
   }
 }
+/* =========================================================
+   MONTHLY REPORTS
+========================================================= */
+
+.monthly-report-section {
+  margin-bottom: 22px;
+}
+
+/* ---------------------------------------------------------
+   MONTHLY EDITOR
+--------------------------------------------------------- */
+
+.monthly-form {
+  display: grid;
+  gap: 18px;
+}
+
+.monthly-form .form-group {
+  display: grid;
+  gap: 8px;
+}
+
+.monthly-form .form-label {
+  color: #858585;
+  font-size: 9px;
+  font-weight: 800;
+  letter-spacing: .12em;
+  text-transform: uppercase;
+}
+
+.monthly-form .form-input {
+  width: 100%;
+  min-height: 46px;
+  padding: 0 14px;
+  border: 1px solid #e6e4e1;
+  border-radius: 12px;
+  outline: none;
+  background: #fafaf9;
+  color: #171717;
+  font-family: inherit;
+  font-size: 13px;
+  transition:
+    border-color .2s ease,
+    background .2s ease,
+    box-shadow .2s ease,
+    transform .2s ease;
+  box-sizing: border-box;
+}
+
+.monthly-form textarea.form-input {
+  min-height: 125px;
+  padding: 13px 14px;
+  resize: vertical;
+  line-height: 1.55;
+}
+
+.monthly-form .form-input:hover {
+  background: #fff;
+  border-color: #dcd9d5;
+}
+
+.monthly-form .form-input:focus {
+  background: #fff;
+  border-color: #bdb8b2;
+  box-shadow: 0 0 0 4px rgba(0, 0, 0, .035);
+}
+
+.monthly-form .form-input::placeholder {
+  color: #b5b2ae;
+}
+
+.monthly-form .add-button {
+  width: 100%;
+  min-height: 48px;
+  margin-top: 3px;
+  border: 0;
+  border-radius: 12px;
+  background: #171717;
+  color: #fff;
+  font-family: inherit;
+  font-size: 11px;
+  font-weight: 750;
+  letter-spacing: .02em;
+  cursor: pointer;
+  transition:
+    transform .2s ease,
+    background .2s ease,
+    box-shadow .2s ease;
+}
+
+.monthly-form .add-button:hover {
+  background: #292929;
+  transform: translateY(-2px);
+  box-shadow: 0 12px 26px rgba(0, 0, 0, .1);
+}
+
+.monthly-form .add-button:active {
+  transform: translateY(0);
+  box-shadow: none;
+}
+
+
+/* ---------------------------------------------------------
+   MONTHLY FIELD GRID
+--------------------------------------------------------- */
+
+.monthly-fields-grid {
+  display: grid;
+  grid-template-columns: repeat(2, minmax(0, 1fr));
+  gap: 16px;
+}
+
+.monthly-fields-grid .form-group:first-child {
+  grid-column: 1 / -1;
+}
+
+
+/* ---------------------------------------------------------
+   MONTHLY ROAS INFO
+--------------------------------------------------------- */
+
+.monthly-roas-note {
+  display: flex;
+  align-items: center;
+  gap: 10px;
+  padding: 12px 14px;
+  border: 1px solid #ece9e5;
+  border-radius: 12px;
+  background: #faf9f7;
+  color: #96918b;
+  font-size: 10px;
+  line-height: 1.5;
+}
+
+.monthly-roas-note::before {
+  content: "↗";
+  display: inline-flex;
+  align-items: center;
+  justify-content: center;
+  width: 22px;
+  height: 22px;
+  flex-shrink: 0;
+  border-radius: 7px;
+  background: #f0eeeb;
+  color: #555;
+  font-size: 11px;
+  font-weight: 800;
+}
+
+
+/* ---------------------------------------------------------
+   MONTHLY HISTORY
+--------------------------------------------------------- */
+
+.monthly-history {
+  position: relative;
+}
+
+.monthly-history .previous-report {
+  padding: 25px 0;
+}
+
+.monthly-history .previous-report:first-child {
+  padding-top: 24px;
+}
+
+.monthly-history .report-date {
+  font-size: 13px;
+  letter-spacing: -.02em;
+}
+
+.monthly-history .report-period-label {
+  margin-top: 6px;
+}
+
+.monthly-history .report-roas {
+  padding: 8px 11px;
+  border: 1px solid #e9e6e2;
+  background: #f7f6f4;
+  font-size: 11px;
+}
+
+
+/* ---------------------------------------------------------
+   MONTHLY COMMENTARY
+--------------------------------------------------------- */
+
+.monthly-commentary {
+  margin-top: 14px;
+  padding: 13px 14px;
+  border-left: 2px solid #dedbd7;
+  border-radius: 0 10px 10px 0;
+  background: #fafaf9;
+  color: #77736e;
+  font-size: 11px;
+  line-height: 1.65;
+}
+
+.monthly-commentary-label {
+  display: block;
+  margin-bottom: 5px;
+  color: #aaa6a1;
+  font-size: 8px;
+  font-weight: 800;
+  letter-spacing: .12em;
+  text-transform: uppercase;
+}
+
+
+/* ---------------------------------------------------------
+   MONTHLY DELETE
+--------------------------------------------------------- */
+
+.monthly-delete-button {
+  border: 0;
+  padding: 0;
+  background: transparent;
+  color: #9b2c2c;
+  font: inherit;
+  font-size: 10px;
+  font-weight: 700;
+  cursor: pointer;
+  transition:
+    color .2s ease,
+    transform .2s ease;
+}
+
+.monthly-delete-button:hover {
+  color: #742020;
+  transform: translateY(-1px);
+}
+
+
+/* ---------------------------------------------------------
+   MONTHLY SECTION SPACING
+--------------------------------------------------------- */
+
+.reports-page > .reports-shell > .panel {
+  margin-bottom: 22px;
+}
+
+.reports-page > .reports-shell > .panel:last-of-type {
+  margin-bottom: 0;
+}
+
+
+/* ---------------------------------------------------------
+   MONTHLY PERFORMANCE OVERVIEW
+--------------------------------------------------------- */
+
+.reports-page .reports-overview + .panel {
+  animation-delay: .12s;
+}
+
+.monthly-overview {
+  margin-bottom: 22px;
+}
+
+.monthly-overview .reports-stat strong {
+  font-size: 22px;
+}
+
+
+/* ---------------------------------------------------------
+   MONTHLY FORM RESPONSIVE
+--------------------------------------------------------- */
+
+@media (max-width: 700px) {
+  .monthly-fields-grid {
+    grid-template-columns: 1fr;
+  }
+
+  .monthly-fields-grid .form-group:first-child {
+    grid-column: auto;
+  }
+
+  .monthly-history .previous-report-metrics {
+    grid-template-columns: repeat(2, minmax(0, 1fr));
+  }
+}
+
+
+/* ---------------------------------------------------------
+   MONTHLY MOBILE
+--------------------------------------------------------- */
+
+@media (max-width: 600px) {
+  .monthly-form {
+    gap: 15px;
+  }
+
+  .monthly-form .form-input {
+    min-height: 44px;
+    font-size: 12px;
+  }
+
+  .monthly-form textarea.form-input {
+    min-height: 110px;
+  }
+
+  .monthly-history .previous-report {
+    padding: 21px 0;
+  }
+
+  .monthly-history .previous-report-metrics {
+    grid-template-columns: 1fr;
+  }
+
+  .monthly-roas-note {
+    align-items: flex-start;
+  }
+}
+
+
+/* ---------------------------------------------------------
+   REDUCED MOTION
+--------------------------------------------------------- */
+
+@media (prefers-reduced-motion: reduce) {
+  .monthly-form .form-input,
+  .monthly-form .add-button,
+  .monthly-delete-button {
+    transition: none;
+  }
+}/* =========================================================
+   MOMENTUM — MONTHLY REPORTING
+========================================================= */
+
+.monthly-workspace {
+  display: grid;
+  grid-template-columns: minmax(0, 1.45fr) minmax(340px, .75fr);
+  gap: 22px;
+  margin-bottom: 22px;
+  align-items: start;
+}
+
+.monthly-workspace > .panel {
+  margin: 0;
+}
+
+
+/* ---------------------------------------------------------
+   MONTHLY EDITOR
+--------------------------------------------------------- */
+
+.monthly-editor {
+  min-width: 0;
+}
+
+.monthly-editor .panel-header {
+  padding: 25px 27px 22px;
+}
+
+.monthly-editor .panel-eyebrow {
+  display: block;
+  margin-bottom: 7px;
+  color: #a0a0a0;
+  font-size: 8px;
+  font-weight: 800;
+  letter-spacing: .16em;
+  text-transform: uppercase;
+}
+
+.monthly-editor .panel-description {
+  margin-top: 6px;
+  text-align: left;
+}
+
+
+/* ---------------------------------------------------------
+   MONTHLY FORM
+--------------------------------------------------------- */
+
+.monthly-form {
+  padding: 25px 27px 27px !important;
+}
+
+.monthly-form-grid {
+  display: grid;
+  grid-template-columns: repeat(2, minmax(0, 1fr));
+  gap: 17px 14px;
+}
+
+.monthly-full {
+  grid-column: 1 / -1;
+}
+
+.monthly-form .form-group {
+  min-width: 0;
+}
+
+.monthly-form .form-label {
+  display: block;
+  margin-bottom: 7px;
+  color: #858585;
+  font-size: 8px;
+  font-weight: 800;
+  letter-spacing: .13em;
+  text-transform: uppercase;
+}
+
+.monthly-form .form-input {
+  width: 100%;
+  min-height: 43px;
+  padding: 0 13px;
+  border: 1px solid #e7e5e2;
+  border-radius: 11px;
+  outline: none;
+  background: #fafaf9;
+  color: #171717;
+  font-family: inherit;
+  font-size: 12px;
+  box-sizing: border-box;
+  transition:
+    background .2s ease,
+    border-color .2s ease,
+    box-shadow .2s ease;
+}
+
+.monthly-form textarea.form-input {
+  min-height: 108px;
+  padding: 12px 13px;
+  resize: vertical;
+  line-height: 1.55;
+}
+
+.monthly-form .form-input:hover {
+  border-color: #d9d6d2;
+  background: #fff;
+}
+
+.monthly-form .form-input:focus {
+  border-color: #bdb8b2;
+  background: #fff;
+  box-shadow: 0 0 0 4px rgba(0,0,0,.025);
+}
+
+.monthly-form .form-input::placeholder {
+  color: #b9b6b2;
+}
+
+
+/* ---------------------------------------------------------
+   MONTHLY FORM FOOTER
+--------------------------------------------------------- */
+
+.monthly-form-footer {
+  display: grid;
+  grid-template-columns: minmax(0, 1fr) auto;
+  gap: 12px;
+  margin-top: 19px;
+}
+
+.monthly-roas-note {
+  display: flex;
+  align-items: center;
+  gap: 11px;
+  min-height: 46px;
+  padding: 8px 12px;
+  border: 1px solid #ebe9e6;
+  border-radius: 11px;
+  background: #faf9f7;
+  box-sizing: border-box;
+}
+
+.monthly-roas-icon {
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  width: 25px;
+  height: 25px;
+  flex-shrink: 0;
+  border-radius: 8px;
+  background: #eeeae6;
+  color: #555;
+  font-size: 11px;
+  font-weight: 800;
+}
+
+.monthly-roas-note div {
+  display: flex;
+  align-items: baseline;
+  gap: 7px;
+}
+
+.monthly-roas-note strong {
+  color: #555;
+  font-size: 9px;
+  font-weight: 800;
+  letter-spacing: .08em;
+  text-transform: uppercase;
+}
+
+.monthly-roas-note span:not(.monthly-roas-icon) {
+  color: #999;
+  font-size: 9px;
+}
+
+.monthly-save-button {
+  display: inline-flex;
+  align-items: center;
+  justify-content: space-between;
+  gap: 28px;
+  min-width: 185px;
+  min-height: 46px;
+  padding: 0 10px 0 15px;
+  border: 0;
+  border-radius: 11px;
+  background: #171717;
+  color: #fff;
+  font-family: inherit;
+  font-size: 10px;
+  font-weight: 750;
+  cursor: pointer;
+  transition:
+    transform .2s ease,
+    background .2s ease,
+    box-shadow .2s ease;
+}
+
+.monthly-save-button strong {
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  width: 27px;
+  height: 27px;
+  border-radius: 50%;
+  background: #fff;
+  color: #171717;
+  font-size: 11px;
+  transition: transform .2s ease;
+}
+
+.monthly-save-button:hover {
+  background: #272727;
+  transform: translateY(-2px);
+  box-shadow: 0 12px 25px rgba(0,0,0,.1);
+}
+
+.monthly-save-button:hover strong {
+  transform: translateX(2px);
+}
+
+.monthly-save-button:active {
+  transform: translateY(0);
+}
+
+
+/* ---------------------------------------------------------
+   MONTHLY HISTORY
+--------------------------------------------------------- */
+
+.monthly-history-panel .panel-header {
+  align-items: center;
+}
+
+.monthly-history-panel .panel-description {
+  text-align: left;
+}
+
+.monthly-history-count {
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  min-width: 27px;
+  height: 27px;
+  padding: 0 7px;
+  border-radius: 8px;
+  background: #f3f2f0;
+  color: #777;
+  font-size: 9px;
+  font-weight: 800;
+}
+
+.monthly-history {
+  padding: 0 24px;
+}
+
+.monthly-history .previous-report {
+  padding: 21px 0;
+}
+
+.monthly-history .previous-report-header {
+  align-items: center;
+}
+
+.monthly-history .report-date {
+  font-size: 12px;
+}
+
+.monthly-history .report-roas {
+  padding: 7px 9px;
+  border: 1px solid #e8e5e1;
+  background: #f6f5f3;
+  font-size: 9px;
+}
+
+.monthly-history .previous-report-metrics {
+  gap: 6px;
+  margin-top: 14px;
+}
+
+.monthly-history .previous-report-metrics > div {
+  padding: 10px;
+  border-radius: 10px;
+}
+
+.monthly-history .previous-report-metrics span {
+  font-size: 7px;
+}
+
+.monthly-history .previous-report-metrics strong {
+  font-size: 10px;
+}
+
+.monthly-history .previous-report-secondary {
+  margin-top: 9px;
+  font-size: 8px;
+}
+
+.monthly-history .report-actions {
+  margin-top: 13px;
+}
+
+
+/* ---------------------------------------------------------
+   COMMENTARY
+--------------------------------------------------------- */
+
+.monthly-commentary {
+  margin-top: 12px;
+  padding: 10px 12px;
+  border-left: 2px solid #dedbd7;
+  border-radius: 0 9px 9px 0;
+  background: #fafaf9;
+  color: #77736e;
+  font-size: 9px;
+  line-height: 1.55;
+}
+
+.monthly-commentary-label {
+  display: block;
+  margin-bottom: 4px;
+  color: #aaa6a1;
+  font-size: 7px;
+  font-weight: 800;
+  letter-spacing: .12em;
+  text-transform: uppercase;
+}
+
+
+/* ---------------------------------------------------------
+   EMPTY STATE
+--------------------------------------------------------- */
+
+.monthly-empty {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  justify-content: center;
+  min-height: 260px;
+  gap: 7px;
+  padding: 35px 20px;
+  box-sizing: border-box;
+}
+
+.monthly-empty-icon {
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  width: 35px;
+  height: 35px;
+  margin-bottom: 7px;
+  border: 1px solid #e7e4e0;
+  border-radius: 10px;
+  background: #faf9f7;
+  color: #999;
+  font-size: 17px;
+}
+
+.monthly-empty strong {
+  color: #555;
+  font-size: 11px;
+}
+
+.monthly-empty span {
+  color: #aaa;
+  font-size: 9px;
+}
+
+
+/* ---------------------------------------------------------
+   MOBILE
+--------------------------------------------------------- */
+
+@media (max-width: 950px) {
+
+  .monthly-workspace {
+    grid-template-columns: 1fr;
+  }
+
+  .monthly-history-panel {
+    order: 2;
+  }
+
+}
+
+@media (max-width: 650px) {
+
+  .monthly-form {
+    padding: 20px !important;
+  }
+
+  .monthly-form-grid {
+    grid-template-columns: 1fr;
+    gap: 15px;
+  }
+
+  .monthly-full {
+    grid-column: auto;
+  }
+
+  .monthly-form-footer {
+    grid-template-columns: 1fr;
+  }
+
+  .monthly-save-button {
+    width: 100%;
+  }
+
+  .monthly-roas-note div {
+    display: block;
+  }
+
+  .monthly-roas-note span:not(.monthly-roas-icon) {
+    display: block;
+    margin-top: 2px;
+  }
+
+  .monthly-history {
+    padding: 0 20px;
+  }
+
+}
+
+@media (prefers-reduced-motion: reduce) {
+
+  .monthly-save-button,
+  .monthly-save-button strong,
+  .monthly-form .form-input {
+    transition: none;
+  }
+
+}

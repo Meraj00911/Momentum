@@ -6,6 +6,7 @@ import { createClient } from "@/lib/supabase/client";
 import {
   ArrowDownRight,
   ArrowUpRight,
+  Activity,
   BarChart3,
   ChevronDown,
   CircleDollarSign,
@@ -16,8 +17,11 @@ import {
   MessageSquare,
   Settings,
   ShoppingBag,
+  Sparkles,
   Target,
+  TrendingUp,
   Users,
+  Zap,
   X,
 } from "lucide-react";
 import { useEffect, useState } from "react";
@@ -37,7 +41,17 @@ type Tab =
   ctr: number;
   commentary: string;
 };
-
+type DashboardMonth = {
+  id: string;
+  monthStart: string;
+  spend: number;
+  revenue: number;
+  roas: number;
+  conversions: number;
+  cpc: number;
+  ctr: number;
+  commentary: string;
+};
 const navItems = [
   { name: "Dashboard", icon: LayoutDashboard },
   { name: "Performance", icon: BarChart3 },
@@ -547,6 +561,218 @@ const data = weeks.map((item) => ({
   );
 }
 
+
+function MonthIntelligence({
+  weeks,
+  monthReport,
+  monthName,
+}: {
+  weeks: DashboardWeek[];
+  monthReport: DashboardMonth | null;
+  monthName: string;
+}) {
+  const monthKey = monthReport?.monthStart.slice(0, 7) || "";
+
+  const monthWeeks = weeks.filter(
+    (week) => week.week.split(" – ")[0].slice(0, 7) === monthKey
+  );
+
+  if (!monthReport || !monthWeeks.length) return null;
+
+  const bestRevenueWeek = monthWeeks.reduce((best, week) =>
+    week.revenue > best.revenue ? week : best
+  );
+
+  const bestRoasWeek = monthWeeks.reduce((best, week) =>
+    week.roas > best.roas ? week : best
+  );
+
+  const latestMonthWeek = monthWeeks[monthWeeks.length - 1];
+  const previousMonthWeek = monthWeeks[monthWeeks.length - 2];
+
+  const weeklyRevenueChange = previousMonthWeek
+    ? ((latestMonthWeek.revenue - previousMonthWeek.revenue) /
+        (previousMonthWeek.revenue || 1)) *
+      100
+    : 0;
+
+  const revenueShare = monthReport.revenue > 0
+    ? (bestRevenueWeek.revenue / monthReport.revenue) * 100
+    : 0;
+
+  const reportedAverage =
+    monthWeeks.length > 0
+      ? monthReport.revenue / monthWeeks.length
+      : monthReport.revenue;
+
+  const maxRevenue = Math.max(
+    ...monthWeeks.map((week) => week.revenue),
+    1
+  );
+
+  return (
+    <motion.section
+      className="month-intelligence"
+      initial={{ opacity: 0, y: 28 }}
+      whileInView={{ opacity: 1, y: 0 }}
+      viewport={{ once: true, amount: 0.18 }}
+      transition={{ duration: 0.7, ease: [0.22, 1, 0.36, 1] }}
+    >
+      <div className="month-intelligence-glow" />
+
+      <div className="month-intelligence-header">
+        <div>
+          <div className="month-intelligence-kicker">
+            <Sparkles size={12} />
+            MOMENTUM INTELLIGENCE
+          </div>
+          <h2>What the numbers are telling you</h2>
+          <p>
+            A quick read on {monthName} using the weekly and monthly reports already in your portal.
+          </p>
+        </div>
+
+        <div className="month-intelligence-live">
+          <span className="month-intelligence-live-dot" />
+          LIVE REPORTING VIEW
+        </div>
+      </div>
+
+      <div className="month-intelligence-grid">
+        <motion.div
+          className="intelligence-card intelligence-card-featured"
+          initial={{ opacity: 0, y: 18 }}
+          whileInView={{ opacity: 1, y: 0 }}
+          viewport={{ once: true, amount: 0.35 }}
+          transition={{ delay: 0.08, duration: 0.5 }}
+          whileHover={{ y: -5, scale: 1.012 }}
+        >
+          <div className="intelligence-card-icon">
+            <TrendingUp size={17} />
+          </div>
+          <span>STRONGEST REVENUE WEEK</span>
+          <strong>{formatMoney(bestRevenueWeek.revenue)}</strong>
+          <small>
+            {bestRevenueWeek.week} · {revenueShare.toFixed(0)}% of the reported monthly revenue
+          </small>
+        </motion.div>
+
+        <motion.div
+          className="intelligence-card"
+          initial={{ opacity: 0, y: 18 }}
+          whileInView={{ opacity: 1, y: 0 }}
+          viewport={{ once: true, amount: 0.35 }}
+          transition={{ delay: 0.15, duration: 0.5 }}
+          whileHover={{ y: -5, scale: 1.012 }}
+        >
+          <div className="intelligence-card-icon warm">
+            <Zap size={17} />
+          </div>
+          <span>EFFICIENCY LEADER</span>
+          <strong>{bestRoasWeek.roas.toFixed(2)}x</strong>
+          <small>
+            {bestRoasWeek.week} · highest reported weekly ROAS
+          </small>
+        </motion.div>
+
+        <motion.div
+          className="intelligence-card"
+          initial={{ opacity: 0, y: 18 }}
+          whileInView={{ opacity: 1, y: 0 }}
+          viewport={{ once: true, amount: 0.35 }}
+          transition={{ delay: 0.22, duration: 0.5 }}
+          whileHover={{ y: -5, scale: 1.012 }}
+        >
+          <div className="intelligence-card-icon cool">
+            <Activity size={17} />
+          </div>
+          <span>LATEST WEEK MOMENTUM</span>
+          <strong className={weeklyRevenueChange >= 0 ? "intelligence-positive" : "intelligence-negative"}>
+            {weeklyRevenueChange >= 0 ? "+" : ""}{weeklyRevenueChange.toFixed(1)}%
+          </strong>
+          <small>
+            Revenue movement vs the previous reported week
+          </small>
+        </motion.div>
+      </div>
+
+      <div className="month-intelligence-bottom">
+        <div className="intelligence-chart-panel">
+          <div className="intelligence-chart-heading">
+            <div>
+              <span>REPORTED WEEKS</span>
+              <strong>Revenue contribution</strong>
+            </div>
+            <small>{monthWeeks.length} {monthWeeks.length === 1 ? "week" : "weeks"}</small>
+          </div>
+
+          <div className="intelligence-bars">
+            {monthWeeks.map((week, index) => {
+              const width = (week.revenue / maxRevenue) * 100;
+              const share = monthReport.revenue > 0
+                ? (week.revenue / monthReport.revenue) * 100
+                : 0;
+
+              return (
+                <motion.div
+                  className="intelligence-bar-row"
+                  key={week.week}
+                  initial={{ opacity: 0, x: -12 }}
+                  whileInView={{ opacity: 1, x: 0 }}
+                  viewport={{ once: true, amount: 0.4 }}
+                  transition={{ delay: 0.12 + index * 0.06, duration: 0.42 }}
+                >
+                  <div className="intelligence-bar-meta">
+                    <span>{week.week}</span>
+                    <strong>{formatMoney(week.revenue)}</strong>
+                  </div>
+                  <div className="intelligence-bar-track">
+                    <motion.div
+                      className="intelligence-bar-fill"
+                      initial={{ width: 0 }}
+                      whileInView={{ width: `${width}%` }}
+                      viewport={{ once: true }}
+                      transition={{ delay: 0.18 + index * 0.06, duration: 0.85, ease: [0.22, 1, 0.36, 1] }}
+                    />
+                  </div>
+                  <span className="intelligence-share">{share.toFixed(0)}%</span>
+                </motion.div>
+              );
+            })}
+          </div>
+        </div>
+
+        <motion.div
+          className="intelligence-average-panel"
+          initial={{ opacity: 0, scale: 0.96 }}
+          whileInView={{ opacity: 1, scale: 1 }}
+          viewport={{ once: true, amount: 0.35 }}
+          transition={{ delay: 0.25, duration: 0.55 }}
+        >
+          <div className="intelligence-average-icon">
+            <CalendarDaysIcon />
+          </div>
+          <span>REPORTED-WEEK AVERAGE</span>
+          <strong>{formatMoney(reportedAverage)}</strong>
+          <small>
+            Monthly revenue divided by the number of weekly reports currently available.
+          </small>
+        </motion.div>
+      </div>
+    </motion.section>
+  );
+}
+
+function CalendarDaysIcon() {
+  return (
+    <svg width="17" height="17" viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="1.8" strokeLinecap="round" strokeLinejoin="round" aria-hidden="true">
+      <path d="M8 2v4M16 2v4M3 10h18" />
+      <rect x="3" y="4" width="18" height="17" rx="3" />
+      <path d="M8 14h.01M12 14h.01M16 14h.01M8 18h.01M12 18h.01" />
+    </svg>
+  );
+}
+
 export default function Home() {
 function PerformancePulse({
   weeks,
@@ -908,7 +1134,8 @@ const [loadingBrand, setLoadingBrand] = useState(true);
 
 const [weeks, setWeeks] =
   useState<DashboardWeek[]>([]);
-
+const [monthlyReports, setMonthlyReports] =
+  useState<DashboardMonth[]>([]);
 const [
   selectedWeekIndex,
   setSelectedWeekIndex,
@@ -1002,7 +1229,43 @@ const formattedWeeks = reports.map((report) => ({
 setWeeks(formattedWeeks);
 setSelectedWeekIndex(formattedWeeks.length - 1);
 }
+const {
+  data: monthlyReportsData,
+  error: monthlyError,
+} = await supabase
+  .from("monthly_metrics")
+  .select(
+    "id, month_start, spend, revenue, conversions, cpc, ctr, commentary"
+  )
+  .eq("brand_id", profile.brand_id)
+  .order("month_start", { ascending: true });
 
+if (monthlyError) {
+  console.error(
+    "Monthly metrics error:",
+    monthlyError
+  );
+} else if (monthlyReportsData) {
+  const formattedMonths =
+    monthlyReportsData.map((report) => {
+      const spend = Number(report.spend);
+      const revenue = Number(report.revenue);
+
+      return {
+        id: report.id,
+        monthStart: report.month_start,
+        spend,
+        revenue,
+        roas: spend > 0 ? revenue / spend : 0,
+        conversions: Number(report.conversions),
+        cpc: Number(report.cpc),
+        ctr: Number(report.ctr),
+        commentary: report.commentary || "",
+      };
+    });
+
+  setMonthlyReports(formattedMonths);
+}
     setLoadingBrand(false);
   }
 
@@ -1247,28 +1510,34 @@ const latestPrevious =
    MONTHLY METRICS
 ========================================================= */
 
-const monthlyMonthKeys = Array.from(
-  new Set(
-    weeks.map((week) =>
-      week.week
-        .split(" – ")[0]
-        .slice(0, 7)
-    )
-  )
-).sort();
+/* =========================================================
+   MONTHLY METRICS
+========================================================= */
+
+const monthlyMonthKeys = monthlyReports.map(
+  (report) => report.monthStart.slice(0, 7)
+);
 
 const selectedMonthlyMonth =
   selectedMonthlyMonthState ||
   monthlyMonthKeys[monthlyMonthKeys.length - 1] ||
   "";
 
-const selectedMonthlyDate = selectedMonthlyMonth
-  ? new Date(
-      Number(selectedMonthlyMonth.slice(0, 4)),
-      Number(selectedMonthlyMonth.slice(5, 7)) - 1,
-      1
-    )
-  : new Date();
+const selectedMonthlyReport =
+  monthlyReports.find(
+    (report) =>
+      report.monthStart.slice(0, 7) ===
+      selectedMonthlyMonth
+  ) ||
+  monthlyReports[monthlyReports.length - 1] ||
+  null;
+
+const selectedMonthlyDate =
+  selectedMonthlyReport
+    ? new Date(
+        `${selectedMonthlyReport.monthStart}T00:00:00`
+      )
+    : new Date();
 
 const monthName =
   selectedMonthlyDate.toLocaleString(
@@ -1279,37 +1548,144 @@ const monthName =
     }
   );
 
-const monthlyWeeks = weeks.filter((week) => {
-  const weekStart = week.week
-    .split(" – ")[0]
-    .slice(0, 7);
+const monthlyRevenue =
+  selectedMonthlyReport?.revenue || 0;
 
-  return weekStart === selectedMonthlyMonth;
-});
-
-const monthlyRevenue = monthlyWeeks.reduce(
-  (total, week) =>
-    total + week.revenue,
-  0
-);
-
-const monthlySpend = monthlyWeeks.reduce(
-  (total, week) =>
-    total + week.spend,
-  0
-);
+const monthlySpend =
+  selectedMonthlyReport?.spend || 0;
 
 const monthlyConversions =
-  monthlyWeeks.reduce(
-    (total, week) =>
-      total + week.conversions,
-    0
-  );
+  selectedMonthlyReport?.conversions || 0;
 
 const monthlyRoas =
-  monthlySpend > 0
-    ? monthlyRevenue / monthlySpend
-    : 0;
+  selectedMonthlyReport?.roas || 0;
+
+const monthlyCpc =
+  selectedMonthlyReport?.cpc || 0;
+
+const monthlyCtr =
+  selectedMonthlyReport?.ctr || 0;
+
+const monthlyCommentary =
+  selectedMonthlyReport?.commentary || "";
+  /* =========================================================
+   CURRENT WEEK MONTH SNAPSHOT
+========================================================= */
+
+const currentWeekMonthKey =
+  current.week.split(" – ")[0].slice(0, 7);
+
+const currentWeekMonthReport =
+  monthlyReports.find(
+    (report) =>
+      report.monthStart.slice(0, 7) ===
+      currentWeekMonthKey
+  ) || null;
+
+const currentWeekMonthDate =
+  currentWeekMonthReport
+    ? new Date(
+        `${currentWeekMonthReport.monthStart}T00:00:00`
+      )
+    : new Date(
+        `${currentWeekMonthKey}-01T00:00:00`
+      );
+
+const currentWeekMonthName =
+  currentWeekMonthDate.toLocaleString(
+    "en-IN",
+    {
+      month: "long",
+      year: "numeric",
+    }
+  );
+
+/* Previous month */
+
+const previousWeekMonthDate = new Date(
+  currentWeekMonthDate.getFullYear(),
+  currentWeekMonthDate.getMonth() - 1,
+  1
+);
+
+const previousWeekMonthKey =
+  `${previousWeekMonthDate.getFullYear()}-${String(
+    previousWeekMonthDate.getMonth() + 1
+  ).padStart(2, "0")}`;
+
+const previousWeekMonthReport =
+  monthlyReports.find(
+    (report) =>
+      report.monthStart.slice(0, 7) ===
+      previousWeekMonthKey
+  ) || null;
+
+/* Current month values */
+
+const currentWeekMonthRevenue =
+  currentWeekMonthReport?.revenue || 0;
+
+const currentWeekMonthSpend =
+  currentWeekMonthReport?.spend || 0;
+
+const currentWeekMonthRoas =
+  currentWeekMonthReport?.roas || 0;
+
+const currentWeekMonthConversions =
+  currentWeekMonthReport?.conversions || 0;
+
+/* Previous month values */
+
+const previousWeekMonthRevenue =
+  previousWeekMonthReport?.revenue || 0;
+
+const previousWeekMonthSpend =
+  previousWeekMonthReport?.spend || 0;
+
+const previousWeekMonthRoas =
+  previousWeekMonthReport?.roas || 0;
+
+const previousWeekMonthConversions =
+  previousWeekMonthReport?.conversions || 0;
+
+/* Comparison */
+
+const monthSnapshotChange = (
+  currentValue: number,
+  previousValue: number
+) => {
+  if (!previousValue) return null;
+
+  return (
+    ((currentValue - previousValue) /
+      previousValue) *
+    100
+  );
+};
+
+const currentMonthRevenueChange =
+  monthSnapshotChange(
+    currentWeekMonthRevenue,
+    previousWeekMonthRevenue
+  );
+
+const currentMonthSpendChange =
+  monthSnapshotChange(
+    currentWeekMonthSpend,
+    previousWeekMonthSpend
+  );
+
+const currentMonthRoasChange =
+  monthSnapshotChange(
+    currentWeekMonthRoas,
+    previousWeekMonthRoas
+  );
+
+const currentMonthConversionsChange =
+  monthSnapshotChange(
+    currentWeekMonthConversions,
+    previousWeekMonthConversions
+  );
 /* =========================================================
    PERFORMANCE TOTALS
 ========================================================= */
@@ -1669,7 +2045,7 @@ const getChange = (
           </div>
         </header>
 
-        <div className="week-selector">
+        <div className="week-selector week-selector-enhanced">
           <div>
             <span>REPORTING PERIOD</span>
 
@@ -2026,7 +2402,224 @@ const getChange = (
                   accent="#f7f0ff"
                   delay={0.22}
                 />
+                {/* =====================================================
+    CURRENT MONTH SNAPSHOT
+===================================================== */}
+
+
 </section>
+<motion.section
+  className="month-snapshot"
+  initial={{
+    opacity: 0,
+    y: 16,
+  }}
+  animate={{
+    opacity: 1,
+    y: 0,
+  }}
+  transition={{
+    delay: 0.24,
+    duration: 0.5,
+  }}
+>
+  <div className="month-snapshot-header">
+    <div>
+      <span className="panel-kicker">
+        CURRENT MONTH
+      </span>
+
+      <h2>
+        {currentWeekMonthName} performance
+      </h2>
+
+      <p>
+        Monthly performance for the month containing your selected week.
+      </p>
+    </div>
+
+    <div className="month-snapshot-period">
+      <span>SELECTED WEEK</span>
+      <strong>{current.week}</strong>
+    </div>
+  </div>
+
+  {!currentWeekMonthReport ? (
+    <div className="month-snapshot-empty">
+      <strong>
+        No monthly report for {currentWeekMonthName} yet.
+      </strong>
+
+      <span>
+        Your Momentum team has not added the monthly report for this month.
+      </span>
+    </div>
+  ) : (
+    <div className="month-snapshot-grid">
+
+      {/* REVENUE */}
+
+      <div className="month-snapshot-card">
+        <div className="month-snapshot-card-top">
+          <span>REVENUE</span>
+
+          {currentMonthRevenueChange !== null && (
+            <span
+              className={
+                currentMonthRevenueChange >= 0
+                  ? "month-snapshot-change good"
+                  : "month-snapshot-change bad"
+              }
+            >
+              {currentMonthRevenueChange >= 0
+                ? "↗"
+                : "↘"}{" "}
+              {Math.abs(
+                currentMonthRevenueChange
+              ).toFixed(1)}
+              %
+            </span>
+          )}
+        </div>
+
+        <strong>
+          {formatMoney(
+            currentWeekMonthRevenue
+          )}
+        </strong>
+
+        <small>
+          {previousWeekMonthReport
+            ? `vs ${formatMoney(
+                previousWeekMonthRevenue
+              )} last month`
+            : "Current month total"}
+        </small>
+      </div>
+
+      {/* AD SPEND */}
+
+      <div className="month-snapshot-card">
+        <div className="month-snapshot-card-top">
+          <span>AD SPEND</span>
+
+          {currentMonthSpendChange !== null && (
+            <span
+              className={
+                currentMonthSpendChange <= 0
+                  ? "month-snapshot-change good"
+                  : "month-snapshot-change bad"
+              }
+            >
+              {currentMonthSpendChange >= 0
+                ? "↗"
+                : "↘"}{" "}
+              {Math.abs(
+                currentMonthSpendChange
+              ).toFixed(1)}
+              %
+            </span>
+          )}
+        </div>
+
+        <strong>
+          {formatMoney(
+            currentWeekMonthSpend
+          )}
+        </strong>
+
+        <small>
+          {previousWeekMonthReport
+            ? `vs ${formatMoney(
+                previousWeekMonthSpend
+              )} last month`
+            : "Current month total"}
+        </small>
+      </div>
+
+      {/* ROAS */}
+
+      <div className="month-snapshot-card">
+        <div className="month-snapshot-card-top">
+          <span>ROAS</span>
+
+          {currentMonthRoasChange !== null && (
+            <span
+              className={
+                currentMonthRoasChange >= 0
+                  ? "month-snapshot-change good"
+                  : "month-snapshot-change bad"
+              }
+            >
+              {currentMonthRoasChange >= 0
+                ? "↗"
+                : "↘"}{" "}
+              {Math.abs(
+                currentMonthRoasChange
+              ).toFixed(1)}
+              %
+            </span>
+          )}
+        </div>
+
+        <strong>
+          {currentWeekMonthRoas.toFixed(2)}x
+        </strong>
+
+        <small>
+          {previousWeekMonthReport
+            ? `vs ${previousWeekMonthRoas.toFixed(
+                2
+              )}x last month`
+            : "Current month return"}
+        </small>
+      </div>
+
+      {/* CONVERSIONS */}
+
+      <div className="month-snapshot-card">
+        <div className="month-snapshot-card-top">
+          <span>CONVERSIONS</span>
+
+          {currentMonthConversionsChange !== null && (
+            <span
+              className={
+                currentMonthConversionsChange >= 0
+                  ? "month-snapshot-change good"
+                  : "month-snapshot-change bad"
+              }
+            >
+              {currentMonthConversionsChange >= 0
+                ? "↗"
+                : "↘"}{" "}
+              {Math.abs(
+                currentMonthConversionsChange
+              ).toFixed(1)}
+              %
+            </span>
+          )}
+        </div>
+
+        <strong>
+          {currentWeekMonthConversions.toLocaleString()}
+        </strong>
+
+        <small>
+          {previousWeekMonthReport
+            ? `vs ${previousWeekMonthConversions.toLocaleString()} last month`
+            : "Current month total"}
+        </small>
+      </div>
+
+    </div>
+  )}
+</motion.section>
+
+<MonthIntelligence
+  weeks={weeks}
+  monthReport={currentWeekMonthReport}
+  monthName={currentWeekMonthName}
+/>
 
 {/* =====================================================
     MONTHLY METRICS
