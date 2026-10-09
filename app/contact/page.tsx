@@ -1,6 +1,7 @@
 "use client";
 
 import { motion } from "motion/react";
+import Link from "next/link";
 import "./contact.css";
 
 export default function ContactPage() {
@@ -18,15 +19,15 @@ export default function ContactPage() {
           ease: [0.22, 1, 0.36, 1],
         }}
       >
-        <a href="/" className="contact-logo">
+        <Link href="/" className="contact-logo">
           <span>M</span>
           <strong>MOMENTUM</strong>
-        </a>
+        </Link>
 
-        <a href="/" className="contact-back">
+        <Link href="/" className="contact-back">
           BACK TO STUDIO
           <span>↗</span>
-        </a>
+        </Link>
       </motion.nav>
 
 

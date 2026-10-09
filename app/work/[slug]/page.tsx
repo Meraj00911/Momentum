@@ -305,7 +305,7 @@ return (
       </div>
 
       <p>
-        We're currently building the complete breakdown
+        We&apos;re currently building the complete breakdown
         behind this project — including strategy, creative,
         execution and the journey from idea to outcome.
       </p>

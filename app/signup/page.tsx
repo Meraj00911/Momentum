@@ -65,11 +65,11 @@ if (!user) {
       console.log("Agency:", agencyName);
 
       window.location.href = "/admin";
-    } catch (err: any) {
+    } catch (err: unknown) {
       console.error(err);
 
       setError(
-        err?.message ||
+        (err instanceof Error ? err.message : null) ||
           "Something went wrong while creating your account."
       );
     } finally {

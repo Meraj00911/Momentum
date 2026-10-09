@@ -202,7 +202,7 @@ export function AgencyManifesto() {
           }}
         >
           <span className="manifesto-kicker">
-            WE DON'T JUST MAKE
+            WE DON&apos;T JUST MAKE
           </span>
 
           <h2>

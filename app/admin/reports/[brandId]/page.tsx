@@ -7,7 +7,7 @@ import { createClient } from "@/lib/supabase/server";
 
 import ReportForm from "./ReportForm";
 import DeleteReportButton from "./DeleteReportButton";
-
+import { AnimatedTabs } from "@/components/ui/admin/animated-tabs";
 type Props = {
   params: Promise<{
     brandId: string;

@@ -23,6 +23,7 @@ import {
   Users,
   Zap,
   X,
+  type LucideIcon,
 } from "lucide-react";
 import { useEffect, useState } from "react";
 type Tab =
@@ -87,7 +88,7 @@ function StatCard({
   title: string;
   value: string;
   change: string;
-  icon: any;
+  icon: LucideIcon;
   accent: string;
   delay: number;
 }) {
@@ -773,7 +774,6 @@ function CalendarDaysIcon() {
   );
 }
 
-export default function Home() {
 function PerformancePulse({
   weeks,
   selectedWeekIndex,
@@ -1105,15 +1105,12 @@ weeks: DashboardWeek[];
 </motion.section>
   );
 }
+export default function Home() {
   const supabase = createClient();
 
   const [activeTab, setActiveTab] =
     useState<Tab>("Dashboard");
-const [mounted, setMounted] = useState(false);
 const [clientOpen, setClientOpen] = useState(false);
-useEffect(() => {
-  setMounted(true);
-}, []);
   const [mobileOpen, setMobileOpen] =
     useState(false);
 
@@ -1774,11 +1771,11 @@ const saveSettings = async () => {
     setSettingsMessage(
       "Settings saved successfully."
     );
-  } catch (error: any) {
+  } catch (error: unknown) {
     console.error(error);
 
     setSettingsMessage(
-      error?.message || "Could not save settings."
+      (error instanceof Error ? error.message : null) || "Could not save settings."
     );
   } finally {
     setSettingsSaving(false);
@@ -2232,7 +2229,7 @@ const getChange = (
         <h2>Weekly commentary</h2>
 
         <p>
-          Your Momentum team's notes on this week's performance.
+          Your Momentum team&apos;s notes on this week&apos;s performance.
         </p>
       </div>
     </div>

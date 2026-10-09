@@ -20,6 +20,12 @@ export default function LoginPage() {
   const [loading, setLoading] = useState(false);
   const [error, setError] = useState("");
 
+  /*
+   * Used only to restart the inner error animation.
+   * It NEVER touches the outer login card.
+   */
+  const [errorKey, setErrorKey] = useState(0);
+
   async function handleLogin(event: FormEvent) {
     event.preventDefault();
 
@@ -35,6 +41,12 @@ export default function LoginPage() {
     if (error) {
       setError(error.message);
       setLoading(false);
+
+      /*
+       * Restart the error animation.
+       */
+      setErrorKey((current) => current + 1);
+
       return;
     }
 
@@ -68,6 +80,7 @@ export default function LoginPage() {
       <div className="ambient-center" />
 
       <div className="login-noise" />
+
 
       {/* =====================================================
           TOP NAV
@@ -114,6 +127,7 @@ export default function LoginPage() {
       ===================================================== */}
 
       <div className="floating-orb floating-orb-one" />
+
       <div className="floating-orb floating-orb-two" />
 
       <div className="ambient-label ambient-label-left">
@@ -130,6 +144,7 @@ export default function LoginPage() {
       ===================================================== */}
 
       <div className="login-stage">
+
 
         {/* ===================================================
             LEFT MESSAGE
@@ -307,6 +322,9 @@ export default function LoginPage() {
 
         {/* ===================================================
             LOGIN CARD
+
+            IMPORTANT:
+            The outer card NEVER receives the error animation.
         =================================================== */}
 
         <section className="login-card">
@@ -314,189 +332,218 @@ export default function LoginPage() {
           {/* glass reflections */}
 
           <div className="login-card-glow" />
+
           <div className="login-card-shine" />
 
 
-          {/* BRAND */}
+          {/* =================================================
+              INNER CONTENT
 
-          <div className="login-brand login-reveal-item">
+              Only this element shakes on login failure.
+              This keeps the card's translateY(-50%) intact.
+          ================================================= */}
 
-            <div className="login-brand-mark">
-              M
-            </div>
-
-            <div>
-
-              <div className="login-brand-name">
-                Momentum
-              </div>
-
-              <div className="login-brand-subtitle">
-                Performance Portal
-              </div>
-
-            </div>
-
-          </div>
-
-
-          {/* HEADING */}
-
-          <div className="login-heading">
-
-            <span className="login-eyebrow login-reveal-item">
-              CLIENT PORTAL
-            </span>
-
-            <h1 className="login-reveal-item">
-              Welcome back
-            </h1>
-
-            <p className="login-reveal-item">
-              Sign in to access your performance dashboard.
-            </p>
-
-          </div>
-
-
-          {/* FORM */}
-
-          <form
-            onSubmit={handleLogin}
-            className="login-form"
+          <div
+            key={errorKey}
+            className={`login-card-content ${
+              error
+                ? "login-card-content-error"
+                : ""
+            }`}
           >
 
-            {/* EMAIL */}
 
-            <div className="login-field login-reveal-item">
+            {/* BRAND */}
 
-              <label htmlFor="email">
-                Email
-              </label>
+            <div className="login-brand login-reveal-item">
 
-              <div className="liquid-input">
+              <div className="login-brand-mark">
+                M
+              </div>
 
-                <div className="input-icon">
-                  @
+              <div>
+
+                <div className="login-brand-name">
+                  Momentum
                 </div>
 
-                <input
-                  id="email"
-                  type="email"
-                  value={email}
-                  onChange={(event) =>
-                    setEmail(event.target.value)
-                  }
-                  placeholder="you@example.com"
-                  required
-                  autoComplete="email"
-                />
+                <div className="login-brand-subtitle">
+                  Performance Portal
+                </div>
 
               </div>
 
             </div>
 
 
-            {/* PASSWORD */}
+            {/* HEADING */}
 
-            <div className="login-field login-reveal-item">
+            <div className="login-heading">
 
-              <label htmlFor="password">
-                Password
-              </label>
+              <span className="login-eyebrow login-reveal-item">
+                CLIENT PORTAL
+              </span>
 
-              <div className="liquid-input">
+              <h1 className="login-reveal-item">
+                Welcome back
+              </h1>
 
-                <div className="input-icon">
-                  •••
-                </div>
-
-                <input
-                  id="password"
-                  type="password"
-                  value={password}
-                  onChange={(event) =>
-                    setPassword(event.target.value)
-                  }
-                  placeholder="Enter your password"
-                  required
-                  autoComplete="current-password"
-                />
-
-              </div>
+              <p className="login-reveal-item">
+                Sign in to access your performance dashboard.
+              </p>
 
             </div>
 
 
-            {/* ERROR */}
+            {/* FORM */}
 
-            {error && (
-              <div className="login-error login-reveal-item">
-                {error}
-              </div>
-            )}
-
-
-            {/* BUTTON */}
-
-            <button
-              type="submit"
-              disabled={loading}
-              className="login-button login-reveal-item"
+            <form
+              onSubmit={handleLogin}
+              className="login-form"
             >
 
-              <span className="login-button-label">
 
-                {loading
-                  ? "Signing in..."
-                  : "Sign in"}
+              {/* EMAIL */}
 
+              <div className="login-field login-reveal-item">
+
+                <label htmlFor="email">
+                  Email
+                </label>
+
+                <div className="liquid-input">
+
+                  <div className="input-icon">
+                    @
+                  </div>
+
+                  <input
+                    id="email"
+                    type="email"
+                    value={email}
+                    onChange={(event) =>
+                      setEmail(event.target.value)
+                    }
+                    placeholder="you@example.com"
+                    required
+                    autoComplete="email"
+                  />
+
+                </div>
+
+              </div>
+
+
+              {/* PASSWORD */}
+
+              <div className="login-field login-reveal-item">
+
+                <label htmlFor="password">
+                  Password
+                </label>
+
+                <div className="liquid-input">
+
+                  <div className="input-icon">
+                    •••
+                  </div>
+
+                  <input
+                    id="password"
+                    type="password"
+                    value={password}
+                    onChange={(event) =>
+                      setPassword(event.target.value)
+                    }
+                    placeholder="Enter your password"
+                    required
+                    autoComplete="current-password"
+                  />
+
+                </div>
+
+              </div>
+
+
+              {/* ERROR */}
+
+              {error && (
+                <div
+                  key={`error-${errorKey}`}
+                  className="login-error login-reveal-item"
+                  role="alert"
+                >
+                  {error}
+                </div>
+              )}
+
+
+              {/* BUTTON */}
+
+              <button
+                type="submit"
+                disabled={loading}
+                className="login-button login-reveal-item"
+              >
+
+                <span className="login-button-label">
+
+                  {loading
+                    ? "Signing in..."
+                    : "Sign in"}
+
+                </span>
+
+
+                <span className="login-button-orb">
+
+                  {loading ? (
+
+                    <span className="login-spinner" />
+
+                  ) : (
+
+                    <span className="login-arrow">
+                      ↗
+                    </span>
+
+                  )}
+
+                </span>
+
+              </button>
+
+            </form>
+
+
+            {/* FOOTER */}
+
+            <div className="login-footer login-reveal-item">
+
+              <span>
+                Secure client access
               </span>
 
-
-              <span className="login-button-orb">
-
-                {loading ? (
-                  <span className="login-spinner" />
-                ) : (
-                  <span className="login-arrow">
-                    ↗
-                  </span>
-                )}
-
+              <span className="login-footer-dot">
+                •
               </span>
 
-            </button>
+              <span>
+                Momentum
+              </span>
 
-          </form>
-
-
-          {/* FOOTER */}
-
-          <div className="login-footer login-reveal-item">
-
-            <span>
-              Secure client access
-            </span>
-
-            <span className="login-footer-dot">
-              •
-            </span>
-
-            <span>
-              Momentum
-            </span>
-
-          </div>
+            </div>
 
 
-          {/* STATUS */}
+            {/* STATUS */}
 
-          <div className="login-status">
+            <div className="login-status">
 
-            <span className="login-status-dot" />
+              <span className="login-status-dot" />
 
-            Secure connection
+              Secure connection
+
+            </div>
 
           </div>
 

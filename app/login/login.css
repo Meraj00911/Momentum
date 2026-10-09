@@ -1573,21 +1573,176 @@
    ERROR
 ========================================================= */
 
+/* =========================================================
+   LOGIN ERROR — PREMIUM FAILURE STATE
+   ========================================================= */
+
 .login-error {
-  padding: 11px 14px;
+  position: relative;
 
-  border:
-    1px solid
-    rgba(220,90,90,.25);
+  display: flex;
+  align-items: center;
+  gap: 10px;
 
-  border-radius: 16px;
+  padding: 13px 15px;
+
+  border: 1px solid rgba(190, 54, 54, .22);
+  border-radius: 13px;
 
   background:
-    rgba(255,235,235,.55);
+    linear-gradient(
+      135deg,
+      rgba(255, 247, 247, .96),
+      rgba(255, 239, 239, .78)
+    );
 
-  color: #b53c3c;
+  color: #a62d2d;
 
-  font-size: 10px;
+  font-size: 12px;
+  line-height: 1.4;
+
+  box-shadow:
+    0 8px 25px rgba(166, 45, 45, .055),
+    inset 0 1px 0 rgba(255,255,255,.9);
+
+  overflow: hidden;
+
+  animation:
+    loginErrorIn .42s cubic-bezier(.22,1,.36,1) both,
+    loginErrorPulse 1.1s ease .18s both;
+}
+
+/* little status indicator */
+
+.login-error::before {
+  content: "!";
+
+  width: 21px;
+  height: 21px;
+
+  flex: 0 0 21px;
+
+  display: flex;
+  align-items: center;
+  justify-content: center;
+
+  border-radius: 50%;
+
+  background: #a62d2d;
+  color: white;
+
+  font-size: 11px;
+  font-weight: 800;
+
+  box-shadow:
+    0 4px 12px rgba(166,45,45,.18);
+
+  animation:
+    loginErrorIcon .4s cubic-bezier(.22,1,.36,1) .08s both;
+}
+
+/* subtle light sweep */
+
+.login-error::after {
+  content: "";
+
+  position: absolute;
+
+  top: 0;
+  left: -35%;
+
+  width: 25%;
+  height: 100%;
+
+  transform: skewX(-18deg);
+
+  background:
+    linear-gradient(
+      90deg,
+      transparent,
+      rgba(255,255,255,.7),
+      transparent
+    );
+
+  pointer-events: none;
+
+  animation:
+    loginErrorSweep .8s ease .15s both;
+}
+
+
+@keyframes loginErrorIn {
+  0% {
+    opacity: 0;
+    transform:
+      translateY(-8px)
+      scale(.97);
+  }
+
+  60% {
+    opacity: 1;
+    transform:
+      translateY(2px)
+      scale(1.01);
+  }
+
+  100% {
+    opacity: 1;
+    transform:
+      translateY(0)
+      scale(1);
+  }
+}
+
+
+@keyframes loginErrorIcon {
+  0% {
+    opacity: 0;
+    transform: scale(.4) rotate(-12deg);
+  }
+
+  70% {
+    opacity: 1;
+    transform: scale(1.12) rotate(3deg);
+  }
+
+  100% {
+    opacity: 1;
+    transform: scale(1) rotate(0);
+  }
+}
+
+
+@keyframes loginErrorPulse {
+  0% {
+    box-shadow:
+      0 8px 25px rgba(166,45,45,.055),
+      inset 0 1px 0 rgba(255,255,255,.9);
+  }
+
+  35% {
+    box-shadow:
+      0 8px 32px rgba(166,45,45,.15),
+      0 0 0 4px rgba(166,45,45,.045),
+      inset 0 1px 0 rgba(255,255,255,.9);
+  }
+
+  100% {
+    box-shadow:
+      0 8px 25px rgba(166,45,45,.055),
+      inset 0 1px 0 rgba(255,255,255,.9);
+  }
+}
+
+
+@keyframes loginErrorSweep {
+  0% {
+    left: -35%;
+  }
+
+  100% {
+    left: 125%;
+  }
 }
 
 
@@ -2200,4 +2355,75 @@
 
     transform: none;
   }
+}
+
+
+/* =========================================================
+   LOGIN FAILURE — SAFE PREMIUM SHAKE
+   Does NOT override the card's existing transform
+   ========================================================= */
+
+.login-card.login-failed {
+  animation: loginErrorShake .48s cubic-bezier(.36, .07, .19, .97) both;
+}
+
+@keyframes loginErrorShake {
+  0%,
+  100% {
+    translate: 0 0;
+  }
+
+  15% {
+    translate: -7px 0;
+  }
+
+  30% {
+    translate: 6px 0;
+  }
+
+  45% {
+    translate: -5px 0;
+  }
+
+  60% {
+    translate: 4px 0;
+  }
+
+  75% {
+    translate: -2px 0;
+  }
+}
+.login-card.login-failed {
+
+  animation: loginErrorShake .48s cubic-bezier(.36, .07, .19, .97) both;
+
+}
+
+@keyframes loginErrorShake {
+
+  0%,
+  100% {
+    translate: 0 0;
+  }
+
+  15% {
+    translate: -7px 0;
+  }
+
+  30% {
+    translate: 6px 0;
+  }
+
+  45% {
+    translate: -5px 0;
+  }
+
+  60% {
+    translate: 4px 0;
+  }
+
+  75% {
+    translate: -2px 0;
+  }
+
 }

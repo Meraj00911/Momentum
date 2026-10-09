@@ -4,6 +4,9 @@ import { revalidatePath } from "next/cache";
 import { createClient } from "@/lib/supabase/server";
 import { createAdminClient } from "@/lib/supabase/admin";
 
+
+
+
 async function addClient(formData: FormData) {
   "use server";
 
@@ -275,7 +278,13 @@ export default async function AdminPage() {
                   </div>
 
                 ))}
-
+<div className="admin-page-note">
+  <span className="admin-page-note-line" />
+  <span>
+    MOMENTUM / PERFORMANCE CONTROL CENTER
+  </span>
+  <span className="admin-page-note-line" />
+</div>
               </div>
 
             ) : (
@@ -410,7 +419,6 @@ export default async function AdminPage() {
         {/* FOOTER */}
 
         <footer className="admin-footer">
-
           <span>
             MOMENTUM
           </span>
@@ -424,10 +432,10 @@ export default async function AdminPage() {
           <span className="admin-footer-version">
             v1.0
           </span>
-
         </footer>
 
       </div>
+
     </main>
   );
 }

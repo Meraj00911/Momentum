@@ -28,6 +28,14 @@ import MomentumOrbital from "@/components/ui/momentum-orbital";
 
 import MomentumContactForm from "@/components/ui/momentum-contact-form";
 import Image from "next/image";
+import { AnimatedTabs } from "@/components/ui/admin/animated-tabs";
+import { WebsiteShowcase } from "@/components/ui/website-showcase";
+import { Dock, DockIcon, DockItem, DockLabel } from "@/components/motion-primitives/dock";
+
+
+
+
+
 const projects = [
 
   {
@@ -1070,7 +1078,7 @@ onClick={() => handleBrandClick(index)}
 
                   Performance, creative and digital
 
-                  systems built around the brand's
+                  systems built around the brand&apos;s
 
                   next stage of growth.
 
@@ -2256,6 +2264,9 @@ function ScrollProgress() {
 }
 
 export default function LandingPage() {
+const [experienceMode, setExperienceMode] = useState<
+  "marketing" | "website"
+>("marketing");
 
   const [emblaRef, emblaApi] = useEmblaCarousel({
 
@@ -2295,6 +2306,42 @@ export default function LandingPage() {
 
     <main className="landing">
       <ScrollProgress />
+      <div className="landing-dock">
+        <Dock panelHeight={80} magnification={92} distance={150}>
+          <DockItem onClick={() => window.scrollTo({ top: 0, behavior: "smooth" })}>
+            <DockIcon><span>⌂</span></DockIcon>
+            <DockLabel>Home</DockLabel>
+          </DockItem>
+          <DockItem onClick={() => document.getElementById("work")?.scrollIntoView({ behavior: "smooth" })}>
+            <DockIcon><span>▦</span></DockIcon>
+            <DockLabel>Work</DockLabel>
+          </DockItem>
+          <DockItem onClick={() => document.getElementById("results")?.scrollIntoView({ behavior: "smooth" })}>
+            <DockIcon><span>↗</span></DockIcon>
+            <DockLabel>Results</DockLabel>
+          </DockItem>
+          <DockItem onClick={() => document.getElementById("services")?.scrollIntoView({ behavior: "smooth" })}>
+            <DockIcon><span>✳</span></DockIcon>
+            <DockLabel>Services</DockLabel>
+          </DockItem>
+          <DockItem onClick={() => document.getElementById("contact")?.scrollIntoView({ behavior: "smooth" })}>
+            <DockIcon><span>✉</span></DockIcon>
+            <DockLabel>Contact</DockLabel>
+          </DockItem>
+          <DockItem onClick={() => setExperienceMode("website")}>
+            <DockIcon><span>◈</span></DockIcon>
+            <DockLabel>Showcase</DockLabel>
+          </DockItem>
+        </Dock>
+      </div>
+      <AnimatePresence>
+  {experienceMode === "website" && (
+    <WebsiteShowcase
+      key="website-showcase"
+      onClose={() => setExperienceMode("marketing")}
+    />
+  )}
+</AnimatePresence>
       <Cursor />
 
       {/* NAVBAR */}
@@ -2372,10 +2419,9 @@ export default function LandingPage() {
           </a>
 
         </div>
-
       </section>
 
-<div className="hero-credibility">
+      <div className="hero-credibility">
 
   We work with brands investing ₹50k+ per month in growth.
 
@@ -2497,7 +2543,7 @@ export default function LandingPage() {
 
               and performance into one system —
 
-              because great brands shouldn't have
+              because great brands shouldn&apos;t have
 
               to choose between looking good and
 
@@ -3039,7 +3085,7 @@ export default function LandingPage() {
 
               <span>ENTER YOUR CLIENT PORTAL</span>
 
-              <span>↗</span>
+              <span></span>
 
             </a>
 
@@ -3664,7 +3710,7 @@ export default function LandingPage() {
 
     <p>
 
-      Tell us what you're building,
+      Tell us what you&apos;re building,
 
       <br />
 
@@ -3725,7 +3771,6 @@ export default function LandingPage() {
         </div>
 
       </footer>
-
     </main>
 
   )

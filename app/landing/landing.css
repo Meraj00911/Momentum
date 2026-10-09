@@ -14359,3 +14359,202 @@ body {
     ) !important;
   }
 }
+
+
+.hero {
+  position: relative;
+  isolation: isolate;
+}
+
+.admin-floating-nav {
+  position: absolute !important;
+  top: auto !important;
+  bottom: 32px !important;
+  left: 50% !important;
+  right: auto !important;
+  z-index: 100 !important;
+
+  width: max-content;
+  max-width: calc(100% - 32px);
+
+  transform: translateX(-50%);
+  animation: heroDockEnter 900ms
+    cubic-bezier(0.22, 1, 0.36, 1) both;
+}
+
+.admin-floating-nav-inner {
+  padding: 6px;
+  border: 1px solid rgba(255, 255, 255, 0.85);
+  border-radius: 999px;
+  background: rgba(255, 255, 255, 0.76);
+
+  box-shadow:
+    0 18px 55px rgba(32, 27, 23, 0.13),
+    0 3px 12px rgba(32, 27, 23, 0.05),
+    inset 0 1px 0 rgba(255, 255, 255, 0.95);
+
+  backdrop-filter: blur(24px) saturate(150%);
+  -webkit-backdrop-filter: blur(24px) saturate(150%);
+}
+
+.animated-background-root {
+  position: relative;
+  display: flex;
+  align-items: center;
+  gap: 4px;
+}
+
+.animated-background-highlight {
+  position: absolute;
+  top: 0;
+  left: 0;
+  z-index: 0;
+  border-radius: 999px;
+  pointer-events: none;
+
+  background: linear-gradient(
+    135deg,
+    #ffffff,
+    #eeebe6
+  );
+
+  box-shadow:
+    0 4px 15px rgba(30, 25, 20, 0.08),
+    inset 0 1px 0 #ffffff;
+
+  transition:
+    transform 450ms cubic-bezier(0.16, 1, 0.3, 1),
+    width 450ms cubic-bezier(0.16, 1, 0.3, 1),
+    height 450ms cubic-bezier(0.16, 1, 0.3, 1);
+}
+
+.admin-nav-item {
+  position: relative;
+  z-index: 2;
+  display: inline-flex;
+  align-items: center;
+  justify-content: center;
+  gap: 8px;
+  min-width: 76px;
+  height: 42px;
+  padding: 0 14px;
+  border-radius: 999px;
+
+  color: #77716c;
+  text-decoration: none;
+  font-size: 11px;
+  font-weight: 600;
+  white-space: nowrap;
+
+  transition:
+    color 250ms ease,
+    transform 350ms cubic-bezier(0.16, 1, 0.3, 1);
+}
+
+.admin-nav-item:hover {
+  color: #151515;
+  transform: translateY(-2px);
+}
+
+.admin-nav-item[data-checked="true"] {
+  color: #151515;
+}
+
+.admin-nav-icon {
+  display: flex;
+  align-items: center;
+  justify-content: center;
+}
+
+.admin-nav-label {
+  white-space: nowrap;
+}
+
+@keyframes heroDockEnter {
+  from {
+    opacity: 0;
+    transform: translate(-50%, 20px) scale(0.94);
+    filter: blur(6px);
+  }
+
+  to {
+    opacity: 1;
+    transform: translate(-50%, 0) scale(1);
+    filter: blur(0);
+  }
+}
+
+@media (max-width: 600px) {
+  .admin-floating-nav {
+    bottom: 20px !important;
+    max-width: calc(100% - 24px);
+  }
+
+  .admin-floating-nav-inner {
+    padding: 4px;
+  }
+
+  .admin-nav-item {
+    min-width: 0;
+    height: 38px;
+    gap: 5px;
+    padding: 0 10px;
+    font-size: 10px;
+  }
+}
+
+@media (prefers-reduced-motion: reduce) {
+  .admin-floating-nav {
+    animation: none;
+  }
+
+  .animated-background-highlight,
+  .admin-nav-item {
+    transition: none;
+  }
+}
+.landing-dock {
+  position: fixed;
+  z-index: 2147483000 !important;
+  left: 50%;
+  bottom: calc(20px + env(safe-area-inset-bottom, 0px));
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  width: max-content;
+  max-width: calc(100vw - 24px);
+  margin: 0;
+  padding: 0;
+  overflow: visible;
+  transform: translateX(-50%);
+  isolation: isolate;
+}
+
+.landing-dock .dock-outer {
+  width: fit-content;
+  max-width: 100%;
+  margin: 0 auto;
+  overflow: visible;
+}
+
+.landing-dock .dock-panel {
+  background: linear-gradient(145deg, rgba(255, 255, 255, 0.76), rgba(238, 242, 250, 0.58));
+  border: 1px solid rgba(255, 255, 255, 0.82);
+  border-radius: 24px;
+  box-shadow: 0 18px 48px rgba(25, 32, 48, 0.2), inset 0 1px 0 rgba(255, 255, 255, 0.92);
+  backdrop-filter: blur(28px) saturate(175%);
+  -webkit-backdrop-filter: blur(28px) saturate(175%);
+  transition: transform 220ms cubic-bezier(0.2, 0.8, 0.2, 1), box-shadow 220ms ease;
+}
+
+.landing-dock:hover .dock-panel,
+.landing-dock:focus-within .dock-panel {
+  transform: translateY(-5px) scale(1.015);
+  box-shadow: 0 24px 58px rgba(25, 32, 48, 0.24), inset 0 1px 0 rgba(255, 255, 255, 0.96);
+}
+
+@media (max-width: 600px) {
+  .landing-dock {
+    bottom: calc(12px + env(safe-area-inset-bottom, 0px));
+  }
+}

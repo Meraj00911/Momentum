@@ -6,7 +6,6 @@ import Script from "next/script";
 
 
 
-
 const geistSans = Geist({
   variable: "--font-geist-sans",
   subsets: ["latin"],
@@ -48,7 +47,7 @@ openGraph: {
 },
   twitter: {
     card: "summary_large_image",
-    title: "Momentum — Digital Growth Studio | Mumbai",
+title: "Momentum — Digital Growth Studio | India",
     description:
       "Strategy, creative and performance systems for ambitious D2C brands.",
     images: ["/og-image.png"],
