@@ -1,6 +1,8 @@
 "use client";
 
 import { useEffect, useRef, useState } from "react";
+import Link from "next/link";
+import { ServiceRowPending } from "@/components/ui/service-row-pending";
 
 import type React from "react";
 
@@ -22,15 +24,25 @@ import "./landing.css";
 
 import { BrandsShowcase } from "@/components/ui/brands-showcase";
 
-import { AgencyManifesto } from "@/components/ui/agency-manifesto";
-
 import MomentumOrbital from "@/components/ui/momentum-orbital";
 
 import MomentumContactForm from "@/components/ui/momentum-contact-form";
 import Image from "next/image";
 import { AnimatedTabs } from "@/components/ui/admin/animated-tabs";
 import { WebsiteShowcase } from "@/components/ui/website-showcase";
+import { MomentumFooter } from "@/components/ui/momentum-footer";
 import { Dock, DockIcon, DockItem, DockLabel } from "@/components/motion-primitives/dock";
+import {
+  ArrowUpRight,
+  BriefcaseBusiness,
+  ChartNoAxesCombined,
+  FolderOpen,
+  House,
+  Info,
+  Mail,
+  PanelTop,
+  Sparkles,
+} from "lucide-react";
 
 
 
@@ -1542,6 +1554,8 @@ function MomentumSystem() {
 
       number: "01",
 
+      icon: BriefcaseBusiness,
+
     },
 
     {
@@ -1551,6 +1565,8 @@ function MomentumSystem() {
       label: "Results",
 
       number: "02",
+
+      icon: ChartNoAxesCombined,
 
     },
 
@@ -1562,6 +1578,8 @@ function MomentumSystem() {
 
       number: "03",
 
+      icon: PanelTop,
+
     },
 
     {
@@ -1572,6 +1590,20 @@ function MomentumSystem() {
 
       number: "04",
 
+      icon: Sparkles,
+
+    },
+
+    {
+
+      id: "about",
+
+      label: "About",
+
+      number: "06",
+
+      icon: Info,
+
     },
 
     {
@@ -1581,6 +1613,8 @@ function MomentumSystem() {
       label: "Contact",
 
       number: "05",
+
+      icon: Mail,
 
     },
 
@@ -1654,6 +1688,14 @@ function MomentumSystem() {
 
     setMenuOpen(false);
 
+    if (id === "about") {
+
+      window.location.assign("/about");
+
+      return;
+
+    }
+
     if (id === "home") {
 
       window.scrollTo({
@@ -1708,19 +1750,11 @@ function MomentumSystem() {
 
           opacity: 0,
 
-          y: -30,
-
-          scale: 0.97,
-
         }}
 
         animate={{
 
           opacity: 1,
-
-          y: 0,
-
-          scale: 1,
 
         }}
 
@@ -1790,6 +1824,8 @@ function MomentumSystem() {
 
                 active === link.id;
 
+              const LinkIcon = link.icon;
+
               return (
 
                 <motion.button
@@ -1809,6 +1845,10 @@ function MomentumSystem() {
                   }`}
 
                   onClick={() => goTo(link.id)}
+
+                  aria-label={link.label}
+
+                  title={link.label}
 
                   initial={{
 
@@ -1843,6 +1883,12 @@ function MomentumSystem() {
                   }}
 
                 >
+
+                  <span className="navbar-link-icon" aria-hidden="true">
+
+                    <LinkIcon size={19} strokeWidth={1.7} />
+
+                  </span>
 
                   <span className="navbar-link-number">
 
@@ -1893,6 +1939,10 @@ function MomentumSystem() {
             href="/login"
 
             className="navbar-portal"
+
+            aria-label="Open the client portal"
+
+            title="Client portal"
 
             initial={{
 
@@ -1972,6 +2022,12 @@ function MomentumSystem() {
 
             }
 
+            aria-expanded={menuOpen}
+
+            aria-controls="momentum-desktop-menu"
+
+            aria-label={menuOpen ? "Close navigation menu" : "Open navigation menu"}
+
             whileTap={{
 
               scale: 0.92,
@@ -1987,6 +2043,152 @@ function MomentumSystem() {
           </motion.button>
 
         </div>
+
+        {/* DESKTOP EXPANDABLE NAVIGATION */}
+
+        <AnimatePresence>
+
+          {menuOpen && (
+
+            <motion.div
+
+              className="navbar-desktop-panel"
+
+              id="momentum-desktop-menu"
+
+              initial={{ opacity: 0, x: -16, scale: 0.98 }}
+
+              animate={{ opacity: 1, x: 0, scale: 1 }}
+
+              exit={{ opacity: 0, x: -12, scale: 0.985 }}
+
+              transition={{ duration: 0.28, ease: [0.22, 1, 0.36, 1] }}
+
+            >
+
+              <div className="navbar-desktop-menu-main">
+
+                <div className="navbar-desktop-menu-heading">
+
+                  <span className="navbar-desktop-menu-sparkle" aria-hidden="true">✦</span>
+
+                  <div>
+
+                    <span>MENU</span>
+
+                    <strong>Move with Momentum</strong>
+
+                  </div>
+
+                  <button
+
+                    type="button"
+
+                    className="navbar-desktop-close"
+
+                    onClick={() => setMenuOpen(false)}
+
+                    aria-label="Close navigation menu"
+
+                  >
+
+                    ×
+
+                  </button>
+
+                </div>
+
+                <button
+
+                  type="button"
+
+                  className={`navbar-desktop-link ${active === "home" ? "active" : ""}`}
+
+                  onClick={() => goTo("home")}
+
+                >
+
+                  <House size={19} strokeWidth={1.7} aria-hidden="true" />
+
+                  <span>Home</span>
+
+                  <small>00</small>
+
+                </button>
+
+                {links.map((link) => {
+
+                  const LinkIcon = link.icon;
+
+                  return (
+
+                    <button
+
+                      type="button"
+
+                      key={`desktop-${link.id}`}
+
+                      className={`navbar-desktop-link ${active === link.id ? "active" : ""}`}
+
+                      onClick={() => goTo(link.id)}
+
+                    >
+
+                      <LinkIcon size={19} strokeWidth={1.7} aria-hidden="true" />
+
+                      <span>{link.label}</span>
+
+                      <small>{link.number}</small>
+
+                    </button>
+
+                  );
+
+                })}
+
+              </div>
+
+              <div className="navbar-desktop-menu-aside">
+
+                <section className="navbar-desktop-access-card">
+
+                  <span className="navbar-desktop-eyebrow">PRIVATE CLIENT ACCESS</span>
+
+                  <h3>Your growth, in full view.</h3>
+
+                  <p>Weekly performance reports, live results, and commentary from your Momentum team.</p>
+
+                  <a href="/login" className="navbar-desktop-access-link">
+
+                    <span>Open client portal</span>
+
+                    <ArrowUpRight size={17} aria-hidden="true" />
+
+                  </a>
+
+                </section>
+
+                <div className="navbar-desktop-menu-note">
+
+                  <FolderOpen size={18} strokeWidth={1.7} aria-hidden="true" />
+
+                  <div>
+
+                    <strong>One connected studio</strong>
+
+                    <span>Brand · Digital · Performance</span>
+
+                  </div>
+
+                </div>
+
+              </div>
+
+            </motion.div>
+
+          )}
+
+        </AnimatePresence>
 
         {/* MOBILE MENU */}
 
@@ -2439,10 +2641,6 @@ const [experienceMode, setExperienceMode] = useState<
 
 {/* MANIFESTO */}
 
-{/* MANIFESTO */}
-
-<AgencyManifesto />
-
 {/* MARQUEE */}
 
 {/* SOCIAL PROOF */}
@@ -2570,52 +2768,6 @@ const [experienceMode, setExperienceMode] = useState<
       <PeakPerformance />
 
 
-
-      {/* STATEMENT */}
-
-      <section className="statement section-space">
-
-        <div className="statement-small">
-
-          THE DIFFERENCE
-
-        </div>
-
-        <h2>
-
-          Not another
-
-          <br />
-
-          <span>agency.</span>
-
-        </h2>
-
-        <div className="statement-bottom">
-
-          <div className="statement-mark">
-
-            M
-
-          </div>
-
-          <p>
-
-            Small enough to care.
-
-            <br />
-
-            Sharp enough to matter.
-
-            <br />
-
-            Fast enough to move.
-
-          </p>
-
-        </div>
-
-      </section>
 
 <section className="momentum-founder">
 
@@ -2835,94 +2987,63 @@ const [experienceMode, setExperienceMode] = useState<
 
         </div>
 
+        <div className="services-heading">
+          <h2>Built to make<br /><em>brands move.</em></h2>
+          <div className="services-heading-aside">
+            <p>One connected studio for the strategy, experience and creative that move your business forward.</p>
+            <span>FOUR DISCIPLINES · ONE DIRECTION <i>↓</i></span>
+          </div>
+        </div>
+
         <div className="services-list">
 
           {[
-
-            [
-
-              "01",
-
-              "Brand Strategy",
-
-              "Positioning, identity, creative direction and systems that give brands a reason to be remembered.",
-
-            ],
-
-            [
-
-              "02",
-
-              "Digital Experiences",
-
-              "Websites, ecommerce and interfaces designed to make the journey feel as good as the destination.",
-
-            ],
-
-            [
-
-              "03",
-
-              "Performance",
-
-              "Paid social, acquisition systems, analytics and optimisation built around measurable growth.",
-
-            ],
-
-            [
-
-              "04",
-
-              "Creative",
-
-              "Campaigns, content and visual systems made to stop the scroll and start conversations.",
-
-            ],
-
-          ].map(([number, title, text]) => (
-
+            {
+              number: "01",
+              slug: "brand-strategy",
+              title: "Brand Strategy",
+              focus: "POSITIONING · IDENTITY · DIRECTION",
+              text: "Positioning, identity, creative direction and systems that give brands a reason to be remembered.",
+            },
+            {
+              number: "02",
+              slug: "digital-experiences",
+              title: "Digital Experiences",
+              focus: "WEBSITES · ECOMMERCE · UX",
+              text: "Websites, ecommerce and interfaces designed to make the journey feel as good as the destination.",
+            },
+            {
+              number: "03",
+              slug: "performance",
+              title: "Performance",
+              focus: "ACQUISITION · TESTING · GROWTH",
+              text: "Paid social, acquisition systems, analytics and optimisation built around measurable growth.",
+            },
+            {
+              number: "04",
+              slug: "creative",
+              title: "Creative",
+              focus: "CAMPAIGNS · CONTENT · DESIGN",
+              text: "Campaigns, content and visual systems made to stop the scroll and start conversations.",
+            },
+          ].map(({ number, slug, title, text, focus }) => (
             <motion.div
-
-              className="service-row"
-
-              key={number}
-
-              whileHover={{
-
-                x: 12,
-
-              }}
-
-              transition={{
-
-                type: "spring",
-
-                stiffness: 260,
-
-                damping: 24,
-
-              }}
-
+              className="service-row-motion"
+              key={slug}
+              whileHover={{ x: 12 }}
+              transition={{ type: "spring", stiffness: 260, damping: 24 }}
             >
-
-              <span className="service-number">
-
-                {number}
-
-              </span>
-
-              <h3>{title}</h3>
-
-              <p>{text}</p>
-
-              <span className="service-arrow">
-
-                ↗
-
-              </span>
-
+              <Link href={`/services/${slug}`} prefetch={false} className="service-row">
+                <ServiceRowPending />
+                <span className="service-number">{number}</span>
+                <div className="service-row-title">
+                  <h3>{title}</h3>
+                  <span>{focus}</span>
+                </div>
+                <p>{text}</p>
+                <span className="service-arrow"><span>EXPLORE</span><i>↗</i></span>
+              </Link>
             </motion.div>
-
           ))}
 
         </div>
@@ -3728,49 +3849,7 @@ const [experienceMode, setExperienceMode] = useState<
 
       {/* FOOTER */}
 
-      <footer className="landing-footer">
-
-        <div className="footer-brand">
-
-          Momentum
-
-        </div>
-
-        <div className="footer-links">
-
-          <a href="#work">Work</a>
-
-          <a href="#studio">Studio</a>
-
-          <a href="#services">Services</a>
-
-          <a href="#contact">Contact</a>
-
-        </div>
-
-        <div className="footer-bottom">
-
-          <span>
-
-            © 2026 Momentum Studio
-
-          </span>
-
-          <span>
-
-            Mumbai, India
-
-          </span>
-
-          <a href="#">
-
-            Back to top ↑
-
-          </a>
-
-        </div>
-
-      </footer>
+      <MomentumFooter />
     </main>
 
   )

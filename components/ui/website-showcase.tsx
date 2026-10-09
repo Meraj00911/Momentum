@@ -25,7 +25,6 @@ import {
   Boxes,
   Braces,
   Check,
-  Command,
   Cpu,
   Globe2,
   Layers3,
@@ -95,18 +94,11 @@ const principles = [
   },
 ];
 
-const orbParticles = Array.from({ length: 18 }, (_, index) => ({
-  id: index,
-  angle: index * 20,
-  distance: 105 + ((index * 19) % 90),
-  delay: (index % 7) * -0.7,
-  size: index % 4 === 0 ? 5 : 3,
-}));
-
 export function WebsiteShowcase({ onClose }: WebsiteShowcaseProps) {
   const [activeCapability, setActiveCapability] = useState(0);
   const [soundOn, setSoundOn] = useState(false);
   const [copied, setCopied] = useState(false);
+  const [dashboardRange, setDashboardRange] = useState<"7 days" | "30 days">("7 days");
   const [emblaRef, emblaApi] = useEmblaCarousel({
     align: "start",
     loop: true,
@@ -121,10 +113,10 @@ export function WebsiteShowcase({ onClose }: WebsiteShowcaseProps) {
   const smoothX = useSpring(pointerX, { stiffness: 90, damping: 18 });
   const smoothY = useSpring(pointerY, { stiffness: 90, damping: 18 });
 
-  const orbRotateX = useTransform(smoothY, [-1, 1], [13, -13]);
-  const orbRotateY = useTransform(smoothX, [-1, 1], [-18, 18]);
-  const orbShiftX = useTransform(smoothX, [-1, 1], [-12, 12]);
-  const orbShiftY = useTransform(smoothY, [-1, 1], [-10, 10]);
+  const dashboardRotateX = useTransform(smoothY, [-1, 1], [2.5, -2.5]);
+  const dashboardRotateY = useTransform(smoothX, [-1, 1], [-3, 3]);
+  const dashboardShiftX = useTransform(smoothX, [-1, 1], [-4, 4]);
+  const dashboardShiftY = useTransform(smoothY, [-1, 1], [-3, 3]);
   const { scrollYProgress: journeyProgress } = useScroll({
     container: rootRef,
     target: journeyRef,
@@ -238,162 +230,187 @@ export function WebsiteShowcase({ onClose }: WebsiteShowcaseProps) {
         </button>
       </header>
 
-      {/* HERO */}
-      <section className="ws-hero" id="ws-home">
-        <div className="ws-hero-copy">
+      {/* DASHBOARD-LED HERO */}
+      <section className="ws-hero ws-dashboard-hero" id="ws-home">
+        <div className="ws-dashboard-hero-heading">
           <motion.div
-            className="ws-status"
-            initial={{ opacity: 0, y: 10 }}
+            className="ws-dashboard-intro"
+            initial={{ opacity: 0, y: 20 }}
             animate={{ opacity: 1, y: 0 }}
-            transition={{ delay: 0.15 }}
+            transition={{ duration: 0.65, delay: 0.12, ease: [0.22, 1, 0.36, 1] }}
           >
-            <span className="ws-status-light" />
-            A DIFFERENT KIND OF DIGITAL STUDIO
+            <div className="ws-status">
+              <span className="ws-status-light" />
+              MOMENTUM / PERFORMANCE STUDIO
+            </div>
+            <h1 className="ws-dashboard-title">
+              Make growth
+              <br />
+              <em>feel in motion.</em>
+            </h1>
           </motion.div>
 
-          <motion.h1
-            className="ws-hero-title"
-            initial={{ opacity: 0, y: 24 }}
-            animate={{ opacity: 1, y: 0 }}
-            transition={{ delay: 0.2, duration: 0.7 }}
-          >
-            We make
-            <br />
-            digital feel
-            <br />
-            <span className="ws-title-accent">
-              <span className="ws-title-italic">alive.</span>
-              <span className="ws-title-star">✳</span>
-            </span>
-          </motion.h1>
-
-          <motion.p
-            className="ws-hero-description"
+          <motion.div
+            className="ws-dashboard-pitch"
             initial={{ opacity: 0, y: 16 }}
             animate={{ opacity: 1, y: 0 }}
-            transition={{ delay: 0.35, duration: 0.6 }}
+            transition={{ duration: 0.6, delay: 0.25, ease: [0.22, 1, 0.36, 1] }}
           >
-            We bring strategy, standout creative, and performance-minded digital
-            experiences together—helping ambitious brands earn attention and
-            turn it into momentum.
-          </motion.p>
-
-          <motion.div
-            className="ws-hero-actions"
-            initial={{ opacity: 0, y: 12 }}
-            animate={{ opacity: 1, y: 0 }}
-            transition={{ delay: 0.48 }}
-          >
-            <a className="ws-button-primary" href="#ws-contact">
-              Build your next move
-              <MoveUpRight size={16} />
-            </a>
-
-            <a className="ws-button-text" href="#ws-capabilities">
-              Explore our capabilities
-              <ArrowDownRight size={17} />
-            </a>
-          </motion.div>
-
-          <motion.div
-            className="ws-hero-footnote"
-            initial={{ opacity: 0 }}
-            animate={{ opacity: 1 }}
-            transition={{ delay: 0.7 }}
-          >
-            <span className="ws-footnote-line" />
-            <span>BRAND / COMMERCE / DIGITAL GROWTH</span>
+            <p>
+              A closer look at the signals behind every move: spend, revenue,
+              ROAS, and the creative turning attention into action.
+            </p>
+            <div className="ws-hero-actions">
+              <a className="ws-button-primary" href="#ws-contact">
+                Build your next move
+                <MoveUpRight size={16} />
+              </a>
+              <a className="ws-button-text" href="#ws-capabilities">
+                Explore the studio
+                <ArrowDownRight size={17} />
+              </a>
+            </div>
           </motion.div>
         </div>
 
-        {/* INTERACTIVE 3D-STYLE BOT / ORB */}
-        <div className="ws-orb-stage">
-          <div className="ws-orb-label ws-orb-label-top">
-            <span className="ws-label-index">01</span>
-            <span>INTERACTIVE INTELLIGENCE</span>
-          </div>
-
+        <motion.div
+          className="ws-dashboard-stage"
+          initial={{ opacity: 0, y: 38, scale: 0.985 }}
+          animate={{ opacity: 1, y: 0, scale: 1 }}
+          transition={{ duration: 0.9, delay: 0.28, ease: [0.22, 1, 0.36, 1] }}
+        >
           <motion.div
-            className="ws-orb-scene"
+            className="ws-dashboard-frame"
             style={{
-              x: orbShiftX,
-              y: orbShiftY,
-              rotateX: orbRotateX,
-              rotateY: orbRotateY,
+              x: dashboardShiftX,
+              y: dashboardShiftY,
+              rotateX: dashboardRotateX,
+              rotateY: dashboardRotateY,
             }}
           >
-            <div className="ws-orb-halo ws-halo-outer" />
-            <div className="ws-orb-halo ws-halo-inner" />
+            <div className="ws-dashboard-browserbar">
+              <div className="ws-browser-controls"><i /><i /><i /></div>
+              <div className="ws-browser-address"><span /> momentum.studio / growth-room</div>
+              <span className="ws-browser-live"><i /> LIVE PREVIEW</span>
+            </div>
 
-            <div className="ws-orb-ring ws-ring-a" />
-            <div className="ws-orb-ring ws-ring-b" />
-            <div className="ws-orb-ring ws-ring-c" />
+            <div className="ws-dashboard-layout">
+              <aside className="ws-dashboard-rail" aria-label="Dashboard sections">
+                <span className="ws-dash-brand">M</span>
+                <span className="ws-dash-rail-item is-active"><span>⌂</span></span>
+                <span className="ws-dash-rail-item"><span>◫</span></span>
+                <span className="ws-dash-rail-item"><span>↗</span></span>
+                <span className="ws-dash-rail-item"><span>◉</span></span>
+                <span className="ws-dash-rail-spacer" />
+                <span className="ws-dash-avatar">M</span>
+              </aside>
 
-            <div className="ws-orb">
-              <div className="ws-orb-shine" />
-              <div className="ws-orb-core" />
-              <div className="ws-orb-glass" />
-              <div className="ws-orb-glint" />
-              <div className="ws-orb-symbol">
-                <Command size={46} strokeWidth={1.2} />
+              <div className="ws-dashboard-main">
+                <div className="ws-dashboard-topline">
+                  <div>
+                    <span className="ws-dashboard-kicker">MOMENTUM / CLIENT PERFORMANCE</span>
+                    <h2>Growth overview</h2>
+                    <p>Your momentum, measured week by week.</p>
+                  </div>
+                  <div className="ws-dashboard-controls">
+                    <div className="ws-dashboard-range" role="group" aria-label="Report date range">
+                      {(["7 days", "30 days"] as const).map((range) => (
+                        <button
+                          className={dashboardRange === range ? "is-selected" : ""}
+                          key={range}
+                          type="button"
+                          onClick={() => setDashboardRange(range)}
+                          aria-pressed={dashboardRange === range}
+                        >
+                          {range}
+                        </button>
+                      ))}
+                    </div>
+                    <span className="ws-dashboard-avatar" aria-label="Momentum team">MK</span>
+                  </div>
+                </div>
+
+                <div className="ws-dashboard-metrics">
+                  {[
+                    { label: "REVENUE", value: dashboardRange === "7 days" ? "₹9.42L" : "₹34.8L", delta: dashboardRange === "7 days" ? "+18.4%" : "+24.8%", tone: "revenue" },
+                    { label: "ROAS", value: dashboardRange === "7 days" ? "4.40×" : "4.12×", delta: dashboardRange === "7 days" ? "+11.7%" : "+9.3%", tone: "roas" },
+                    { label: "CONVERSIONS", value: dashboardRange === "7 days" ? "1,284" : "4,612", delta: dashboardRange === "7 days" ? "+22.1%" : "+19.4%", tone: "orders" },
+                    { label: "AD SPEND", value: dashboardRange === "7 days" ? "₹2.14L" : "₹8.45L", delta: dashboardRange === "7 days" ? "+6.2%" : "+5.8%", tone: "spend" },
+                  ].map((metric, index) => (
+                    <motion.div
+                      className={`ws-dashboard-metric ws-metric-${metric.tone}`}
+                      key={metric.label}
+                      initial={{ opacity: 0, y: 9 }}
+                      animate={{ opacity: 1, y: 0 }}
+                      transition={{ duration: 0.4, delay: 0.38 + index * 0.07 }}
+                    >
+                      <span>{metric.label}</span>
+                      <strong>{metric.value}</strong>
+                      <small><i>↗</i> {metric.delta} <b>vs previous</b></small>
+                    </motion.div>
+                  ))}
+                </div>
+
+                <div className="ws-dashboard-insights">
+                  <section className="ws-dashboard-chart-card">
+                    <div className="ws-chart-heading">
+                      <div><span>PERFORMANCE TREND</span><strong>Revenue is moving ahead of spend.</strong></div>
+                      <span className="ws-chart-period">LAST {dashboardRange.toUpperCase()}</span>
+                    </div>
+                    <div className="ws-chart-plot">
+                      <div className="ws-chart-ylabels"><span>₹10L</span><span>₹7.5L</span><span>₹5L</span><span>₹2.5L</span></div>
+                      <svg viewBox="0 0 1000 280" preserveAspectRatio="none" role="img" aria-label={`${dashboardRange} revenue trend chart`}>
+                        <defs>
+                          <linearGradient id="ws-revenue-fill" x1="0" x2="0" y1="0" y2="1">
+                            <stop offset="0%" stopColor="#8ee1bf" stopOpacity=".24" />
+                            <stop offset="100%" stopColor="#8ee1bf" stopOpacity="0" />
+                          </linearGradient>
+                          <linearGradient id="ws-revenue-line" x1="0" x2="1">
+                            <stop offset="0%" stopColor="#a896f5" />
+                            <stop offset="100%" stopColor="#8ee1bf" />
+                          </linearGradient>
+                        </defs>
+                        <path className="ws-chart-area" d="M0 220 C50 209 62 183 110 190 S173 213 222 177 S289 176 330 157 S391 169 446 129 S511 149 555 117 S615 120 667 90 S725 121 777 70 S842 82 891 48 S955 74 1000 25 L1000 280 L0 280 Z" fill="url(#ws-revenue-fill)" />
+                        <path className="ws-chart-gridline" d="M0 30 H1000 M0 95 H1000 M0 160 H1000 M0 225 H1000 M0 278 H1000" />
+                        <motion.path
+                          className="ws-chart-line"
+                          d="M0 220 C50 209 62 183 110 190 S173 213 222 177 S289 176 330 157 S391 169 446 129 S511 149 555 117 S615 120 667 90 S725 121 777 70 S842 82 891 48 S955 74 1000 25"
+                          pathLength={1}
+                          initial={prefersReducedMotion ? { pathLength: 1 } : { pathLength: 0 }}
+                          animate={{ pathLength: 1 }}
+                          transition={{ duration: 1.7, delay: 0.65, ease: "easeOut" }}
+                        />
+                        <circle className="ws-chart-endpoint" cx="1000" cy="25" r="7" />
+                      </svg>
+                      <div className="ws-chart-xlabels"><span>MON</span><span>TUE</span><span>WED</span><span>THU</span><span>FRI</span><span>SAT</span><span>SUN</span></div>
+                    </div>
+                  </section>
+
+                  <section className="ws-dashboard-channel-card">
+                    <div className="ws-channel-heading"><span>CHANNEL MIX</span><span>↗</span></div>
+                    <div className="ws-channel-total"><strong>₹9.42L</strong><span>total revenue</span></div>
+                    {[
+                      { name: "Meta ads", value: "58%", amount: "₹5.46L", bar: "58%", tone: "meta" },
+                      { name: "Google", value: "27%", amount: "₹2.54L", bar: "27%", tone: "google" },
+                      { name: "Organic", value: "15%", amount: "₹1.42L", bar: "15%", tone: "organic" },
+                    ].map((channel, index) => (
+                      <motion.div className="ws-channel-row" key={channel.name} initial={{ opacity: 0, x: 10 }} animate={{ opacity: 1, x: 0 }} transition={{ delay: 0.55 + index * 0.1 }}>
+                        <div className="ws-channel-row-top"><span><i className={`ws-channel-dot ${channel.tone}`} />{channel.name}</span><strong>{channel.amount}</strong></div>
+                        <div className="ws-channel-bar"><i style={{ width: channel.bar }} /></div>
+                      </motion.div>
+                    ))}
+                    <div className="ws-dashboard-note"><span>✳</span><p>Revenue is up <strong>18.4%</strong> while spend grew just 6.2%.</p></div>
+                  </section>
+                </div>
               </div>
             </div>
-
-            <div className="ws-orb-satellite ws-satellite-a">
-              <Bot size={18} />
-            </div>
-            <div className="ws-orb-satellite ws-satellite-b">
-              <Cpu size={18} />
-            </div>
-            <div className="ws-orb-satellite ws-satellite-c">
-              <Braces size={17} />
-            </div>
-
-            {orbParticles.map((particle) => (
-              <span
-                key={particle.id}
-                className="ws-particle"
-                style={
-                  {
-                    "--particle-angle": `${particle.angle}deg`,
-                    "--particle-distance": `${particle.distance}px`,
-                    "--particle-delay": `${particle.delay}s`,
-                    "--particle-size": `${particle.size}px`,
-                  } as React.CSSProperties
-                }
-              />
-            ))}
           </motion.div>
-
-          <div className="ws-orb-callout ws-orb-callout-left">
-            <span className="ws-callout-pulse" />
-            <span>
-              <strong>Curiosity, engineered.</strong>
-              <small>Ideas into experiences</small>
-            </span>
-          </div>
-
-          <div className="ws-orb-callout ws-orb-callout-right">
-            <Sparkles size={16} />
-            <span>
-              <strong>Beyond the ordinary</strong>
-              <small>Move your cursor around</small>
-            </span>
-          </div>
-
-          <div className="ws-orb-label ws-orb-label-bottom">
-            <span>DESIGN</span>
-            <span className="ws-label-dot" />
-            <span>TECHNOLOGY</span>
-            <span className="ws-label-dot" />
-            <span>IMAGINATION</span>
-          </div>
-        </div>
+        </motion.div>
 
         <div className="ws-hero-index">
-          <span>01</span>
+          <span>LIVE / SAMPLE REPORT</span>
           <span className="ws-index-rule" />
-          <span>04</span>
+          <span>SCROLL TO EXPLORE</span>
         </div>
       </section>
 

@@ -1,0 +1,193 @@
+.momentum-footer {
+  position: relative;
+  width: 100%;
+  padding: 0;
+  overflow: hidden;
+  background: #f4f2ef;
+  color: #29282a;
+}
+
+.momentum-footer-panel {
+  position: relative;
+  width: 100%;
+  min-height: 390px;
+  padding: clamp(48px, 5.5vw, 78px) clamp(22px, 5vw, 76px) max(22px, env(safe-area-inset-bottom));
+  overflow: hidden;
+  background: linear-gradient(180deg, #f8f6f3 0%, #e5e3e2 100%);
+  isolation: isolate;
+}
+
+.momentum-footer-wave-field {
+  position: absolute;
+  z-index: -1;
+  inset: 0;
+  overflow: hidden;
+  pointer-events: none;
+}
+
+.momentum-footer-wave {
+  position: absolute;
+  top: 0;
+  left: 0;
+  width: 200%;
+  height: 100%;
+  max-width: none;
+  will-change: transform;
+}
+
+.momentum-footer-wave-back {
+  animation: momentum-footer-flow 16s linear infinite;
+}
+
+.momentum-footer-wave-front {
+  animation: momentum-footer-flow 11s linear infinite reverse;
+}
+
+.momentum-footer-grid {
+  width: min(1500px, 100%);
+  margin: 0 auto;
+  display: grid;
+  grid-template-columns: minmax(220px, 1.2fr) repeat(3, minmax(130px, .8fr));
+  gap: clamp(25px, 4vw, 64px);
+  padding-bottom: 42px;
+}
+
+.momentum-footer-kicker {
+  color: #8f7771;
+  font-size: 8px;
+  font-weight: 800;
+  letter-spacing: .17em;
+}
+
+.momentum-footer-connect h2 {
+  margin: 13px 0 10px;
+  font-size: clamp(28px, 3.1vw, 43px);
+  line-height: .98;
+  letter-spacing: -.065em;
+}
+
+.momentum-footer-connect h2 em {
+  color: #a44343;
+  font-family: Georgia, "Times New Roman", serif;
+  font-weight: 400;
+}
+
+.momentum-footer-connect > p,
+.momentum-footer-column > p {
+  max-width: 260px;
+  margin: 0 0 18px;
+  color: #777173;
+  font-size: 11px;
+  line-height: 1.7;
+}
+
+.momentum-footer-form { max-width: 310px; }
+.momentum-footer-form label {
+  display: block;
+  margin-bottom: 7px;
+  color: #4c4748;
+  font-size: 10px;
+  font-weight: 650;
+}
+
+.momentum-footer-input-wrap {
+  display: flex;
+  align-items: center;
+  gap: 9px;
+  min-height: 43px;
+  padding: 4px 5px 4px 12px;
+  border: 1px solid rgba(255,255,255,.95);
+  border-radius: 11px;
+  background: rgba(255,255,255,.58);
+  box-shadow: inset 0 1px 3px rgba(48,39,39,.07), 0 5px 16px rgba(50,43,43,.04);
+  backdrop-filter: blur(14px);
+}
+
+.momentum-footer-input-wrap > svg { flex: 0 0 auto; color: #9b8783; }
+.momentum-footer-input-wrap input {
+  width: 100%;
+  min-width: 0;
+  border: 0;
+  outline: 0;
+  background: transparent;
+  color: #302e30;
+  font: inherit;
+  font-size: 11px;
+}
+.momentum-footer-input-wrap input::placeholder { color: #9a9290; }
+.momentum-footer-input-wrap button {
+  display: grid;
+  width: 33px;
+  height: 33px;
+  flex: 0 0 auto;
+  place-items: center;
+  border: 1px solid rgba(255,255,255,.3);
+  border-radius: 8px;
+  background: linear-gradient(145deg, #a94445, #762d30);
+  color: #fff;
+  cursor: pointer;
+  box-shadow: 0 5px 12px rgba(111,43,45,.2), inset 0 1px rgba(255,255,255,.28);
+  transition: transform .2s ease, box-shadow .2s ease;
+}
+.momentum-footer-input-wrap button:hover { transform: translateY(-1px); box-shadow: 0 8px 17px rgba(111,43,45,.25); }
+.momentum-footer-form small { display: block; margin-top: 7px; color: #8d8583; font-size: 8px; line-height: 1.45; }
+
+.momentum-footer-column { display: flex; align-items: flex-start; flex-direction: column; gap: 11px; padding-top: 9px; }
+.momentum-footer-column h3 { margin: 0 0 9px; color: #333033; font-size: 14px; font-weight: 700; letter-spacing: -.02em; }
+.momentum-footer-column a,
+.momentum-footer-column > p { margin: 0; color: #777173; font-size: 10px; line-height: 1.6; text-decoration: none; transition: color .2s ease, transform .2s ease; }
+.momentum-footer-column a:hover { color: #9e3f40; transform: translateX(2px); }
+.momentum-footer-column .momentum-footer-inline-link,
+.momentum-footer-column .momentum-footer-portal { display: inline-flex; align-items: center; gap: 5px; margin-top: 5px; color: #943a3c; font-weight: 700; }
+.momentum-footer-icon-links { display: flex; gap: 9px; margin-top: 3px; }
+.momentum-footer-column .momentum-footer-icon-links a {
+  display: grid;
+  width: 34px;
+  height: 34px;
+  place-items: center;
+  border: 1px solid rgba(255,255,255,.88);
+  border-radius: 50%;
+  background: rgba(255,255,255,.4);
+  color: #4b4547;
+  box-shadow: 0 5px 14px rgba(45,38,38,.05), inset 0 1px 0 white;
+}
+.momentum-footer-column .momentum-footer-icon-links a:hover { color: #9e3f40; transform: translateY(-2px); }
+
+.momentum-footer-bottom {
+  width: min(1500px, 100%);
+  margin: 0 auto;
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  gap: 18px;
+  padding-top: 17px;
+  border-top: 1px solid rgba(64,57,57,.14);
+  color: #898183;
+  font-size: 9px;
+}
+.momentum-footer-bottom a { color: inherit; text-decoration: none; transition: color .2s ease; }
+.momentum-footer-bottom a:hover { color: #913b3c; }
+.momentum-footer-wordmark { display: inline-flex; align-items: center; gap: 8px; color: #373234 !important; font-size: 9px; font-weight: 850; letter-spacing: .12em; }
+.momentum-footer-wordmark span { display: grid; width: 25px; height: 25px; place-items: center; border-radius: 8px; background: linear-gradient(145deg,#bd5654,#713639); color: white; font-size: 13px; letter-spacing: -.1em; }
+
+@keyframes momentum-footer-flow {
+  from { transform: translate3d(0, 0, 0); }
+  to { transform: translate3d(-50%, 0, 0); }
+}
+
+@media (max-width: 900px) {
+  .momentum-footer-grid { grid-template-columns: repeat(2, minmax(0, 1fr)); }
+}
+@media (max-width: 560px) {
+  .momentum-footer-panel { min-height: 0; padding: 36px 20px max(20px, env(safe-area-inset-bottom)); }
+  .momentum-footer-grid { grid-template-columns: 1fr 1fr; gap: 26px 20px; padding-bottom: 29px; }
+  .momentum-footer-connect { grid-column: 1 / -1; }
+  .momentum-footer-connect h2 br { display: none; }
+  .momentum-footer-connect h2 { font-size: 35px; }
+  .momentum-footer-bottom { align-items: flex-start; flex-wrap: wrap; gap: 11px 15px; font-size: 8px; }
+  .momentum-footer-bottom > span { order: 1; width: 100%; }
+}
+@media (prefers-reduced-motion: reduce) {
+  .momentum-footer-wave { animation: none; }
+  .momentum-footer * { transition-duration: .01ms !important; }
+}
