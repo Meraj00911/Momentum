@@ -1545,6 +1545,44 @@ function MomentumSystem() {
 
   const [menuOpen, setMenuOpen] = useState(false);
 
+  const [dragPosition, setDragPosition] = useState<{ left: number; top: number } | null>(null);
+
+  const navRef = useRef<HTMLElement | null>(null);
+
+  const dragOrigin = useRef<{ pointerId: number; pointerX: number; pointerY: number; left: number; top: number; moved: boolean } | null>(null);
+
+  const suppressBrandClick = useRef(false);
+
+  const handleBrandPointerDown = (event: React.PointerEvent<HTMLButtonElement>) => {
+    if (event.button !== 0 || !navRef.current) return;
+    const rect = navRef.current.getBoundingClientRect();
+    dragOrigin.current = { pointerId: event.pointerId, pointerX: event.clientX, pointerY: event.clientY, left: rect.left, top: rect.top, moved: false };
+    event.currentTarget.setPointerCapture(event.pointerId);
+  };
+
+  const handleBrandPointerMove = (event: React.PointerEvent<HTMLButtonElement>) => {
+    const origin = dragOrigin.current;
+    const nav = navRef.current;
+    if (!origin || origin.pointerId !== event.pointerId || !nav) return;
+    const deltaX = event.clientX - origin.pointerX;
+    const deltaY = event.clientY - origin.pointerY;
+    if (!origin.moved && Math.hypot(deltaX, deltaY) < 5) return;
+    origin.moved = true;
+    const rect = nav.getBoundingClientRect();
+    setDragPosition({
+      left: Math.max(8, Math.min(window.innerWidth - rect.width - 8, origin.left + deltaX)),
+      top: Math.max(8, Math.min(window.innerHeight - rect.height - 8, origin.top + deltaY)),
+    });
+  };
+
+  const handleBrandPointerUp = (event: React.PointerEvent<HTMLButtonElement>) => {
+    const origin = dragOrigin.current;
+    if (!origin || origin.pointerId !== event.pointerId) return;
+    suppressBrandClick.current = origin.moved;
+    dragOrigin.current = null;
+    if (suppressBrandClick.current) window.setTimeout(() => { suppressBrandClick.current = false; }, 0);
+  };
+
   const links = [
 
     {
@@ -1740,12 +1778,15 @@ function MomentumSystem() {
     <>
 
       <motion.nav
+        ref={navRef}
 
         className={`liquid-navbar ${
 
           scrolled ? "liquid-navbar-scrolled" : ""
 
-        }`}
+        } ${dragPosition ? "is-draggable-positioned" : ""}`}
+
+        style={dragPosition ? ({ "--navbar-drag-left": `${dragPosition.left}px`, "--navbar-drag-top": `${dragPosition.top}px` } as React.CSSProperties) : undefined}
 
         initial={{
 
@@ -1785,7 +1826,17 @@ function MomentumSystem() {
 
             className="navbar-brand"
 
-            onClick={() => goTo("home")}
+            aria-label="Momentum. Hold and drag to move the navigation; click to go home."
+
+            onPointerDown={handleBrandPointerDown}
+
+            onPointerMove={handleBrandPointerMove}
+
+            onPointerUp={handleBrandPointerUp}
+
+            onPointerCancel={handleBrandPointerUp}
+
+            onClick={() => { if (suppressBrandClick.current) return; goTo("home"); }}
 
             whileHover={{
 
@@ -1996,6 +2047,8 @@ function MomentumSystem() {
               ↗
 
             </span>
+
+            <span className="navbar-portal-tooltip" aria-hidden="true">Client portal</span>
 
             <span className="navbar-portal-shine" />
 
@@ -3444,210 +3497,6 @@ const [experienceMode, setExperienceMode] = useState<
       </section>
 
       
-{/* NUMBERS */}
-
-      <section className="numbers section-space">
-
-        <div className="number-item">
-
-          <strong>01</strong>
-
-          <span>Small team</span>
-
-        </div>
-
-        <div className="number-item">
-
-          <strong>04</strong>
-
-          <span>Core disciplines</span>
-
-        </div>
-
-        <div className="number-item">
-
-          <strong>∞</strong>
-
-          <span>Ideas in progress</span>
-
-        </div>
-
-        <div className="number-item">
-
-          <strong>24/7</strong>
-
-          <span>Curiosity</span>
-
-        </div>
-
-      </section>
-
-      {/* PROCESS */}
-
-      <section className="process section-space">
-
-        <div className="section-number">
-
-          07 / HOW WE MOVE
-
-        </div>
-
-        <div className="process-grid">
-
-          <div className="process-intro">
-
-            <h2>
-
-              Less
-
-              <br />
-
-              <em>process.</em>
-
-              <br />
-
-              More
-
-              <br />
-
-              progress.
-
-            </h2>
-
-          </div>
-
-          <div className="process-list">
-
-            {[
-
-              [
-
-                "01",
-
-                "Understand",
-
-                "We learn the brand, the audience and the problem before touching the pixels.",
-
-              ],
-
-              [
-
-                "02",
-
-                "Build",
-
-                "Strategy becomes identity, experience, creative and campaigns.",
-
-              ],
-
-              [
-
-                "03",
-
-                "Launch",
-
-                "Everything goes live with a clear purpose and a sharper point of view.",
-
-              ],
-
-              [
-
-                "04",
-
-                "Move",
-
-                "We measure, learn and continuously push the work forward.",
-
-              ],
-
-            ].map(([number, title, text]) => (
-
-              <div
-
-                className="process-item"
-
-                key={number}
-
-              >
-
-                <span>{number}</span>
-
-                <div>
-
-                  <h3>{title}</h3>
-
-                  <p>{text}</p>
-
-                </div>
-
-              </div>
-
-            ))}
-
-          </div>
-
-        </div>
-
-      </section>
-
-      {/* CONTACT */}
-
-      <section
-
-        className="contact section-space"
-
-        id="contact"
-
-      >
-
-        <div className="contact-top">
-
-          <span>08 / START SOMETHING</span>
-
-          <span>
-
-            AVAILABLE FOR SELECT PROJECTS
-
-          </span>
-
-        </div>
-
-        <div className="contact-title">
-
-          <span>HAVE A</span>
-
-          <span className="contact-outline">
-
-            GOOD
-
-          </span>
-
-          <span>PROBLEM?</span>
-
-        </div>
-
-<div className="contact-bottom">
-
-  <div>
-
-    <p>
-
-      Tell us what you&apos;re building,
-
-      <br />
-
-      fixing or dreaming about.
-
-    </p>
-
-  </div>
-
-  <MomentumContactForm />
-
-</div>
-
-      </section>
-
       {/* FOOTER */}
 
       <MomentumFooter />

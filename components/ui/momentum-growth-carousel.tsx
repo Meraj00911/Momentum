@@ -1,8 +1,7 @@
 "use client";
 
-import { useCallback, useEffect, useState } from "react";
+import { useState, type CSSProperties } from "react";
 import Link from "next/link";
-import useEmblaCarousel from "embla-carousel-react";
 import { ArrowLeft, ArrowRight, ArrowUpRight, Check, CircleDot, Search, ShoppingBag, Sparkles, Target, TrendingUp } from "lucide-react";
 import "./momentum-growth-carousel.css";
 
@@ -100,22 +99,10 @@ function GrowthArtwork({ kind }: { kind: string }) {
 }
 
 export function MomentumGrowthCarousel() {
-  const [viewportRef, emblaApi] = useEmblaCarousel({ align: "start", loop: true, duration: 34 });
   const [activeSlide, setActiveSlide] = useState(0);
-
-  const syncActiveSlide = useCallback(() => {
-    if (emblaApi) setActiveSlide(emblaApi.selectedScrollSnap());
-  }, [emblaApi]);
-
-  useEffect(() => {
-    if (!emblaApi) return;
-    emblaApi.on("select", syncActiveSlide);
-    emblaApi.on("reInit", syncActiveSlide);
-    return () => {
-      emblaApi.off("select", syncActiveSlide);
-      emblaApi.off("reInit", syncActiveSlide);
-    };
-  }, [emblaApi, syncActiveSlide]);
+  const moveSlide = (direction: number) => {
+    setActiveSlide((current) => (current + direction + growthSlides.length) % growthSlides.length);
+  };
 
   return (
     <section className="momentum-growth" aria-label="Momentum growth services">
@@ -128,10 +115,23 @@ export function MomentumGrowthCarousel() {
       </div>
 
       <div className="momentum-growth-carousel" role="region" aria-roledescription="carousel" aria-label="Website, advertising and marketing services">
-        <div className="momentum-growth-viewport" ref={viewportRef}>
+        <div className="momentum-growth-viewport">
           <div className="momentum-growth-track">
-            {growthSlides.map((slide, index) => (
-              <article className="momentum-growth-slide" key={slide.number} aria-roledescription="slide" aria-label={`${index + 1} of ${growthSlides.length}`}>
+            {growthSlides.map((slide, index) => {
+              const relative = (index - activeSlide + growthSlides.length) % growthSlides.length;
+              const offset = relative > growthSlides.length / 2 ? relative - growthSlides.length : relative;
+              const distance = Math.abs(offset);
+              return (
+              <article
+                className="momentum-growth-slide"
+                key={slide.number}
+                data-active={index === activeSlide}
+                data-distance={distance}
+                aria-roledescription="slide"
+                aria-label={`${index + 1} of ${growthSlides.length}: ${slide.eyebrow}`}
+                aria-hidden={index !== activeSlide}
+                style={{ "--slide-shift": `${offset * 29}vw`, "--slide-shift-mobile": `${offset * 40}vw`, "--slide-rotation": `${offset * -20}deg`, "--slide-scale": index === activeSlide ? 1 : distance === 1 ? 0.84 : 0.68 } as CSSProperties}
+              >
                 <div className="momentum-growth-card">
                   <div className="momentum-growth-copy">
                     <div className="momentum-growth-slide-meta"><span>{slide.number} / 04</span><span>{slide.eyebrow}</span></div>
@@ -154,7 +154,12 @@ export function MomentumGrowthCarousel() {
                   <GrowthArtwork kind={slide.art} />
                 </div>
               </article>
-            ))}
+              );
+            })}
+          </div>
+          <div className="momentum-growth-arrows">
+            <button type="button" onClick={() => moveSlide(-1)} aria-label="Previous service"><ArrowLeft size={17} /></button>
+            <button type="button" onClick={() => moveSlide(1)} aria-label="Next service"><ArrowRight size={17} /></button>
           </div>
         </div>
 
@@ -162,12 +167,8 @@ export function MomentumGrowthCarousel() {
           <span className="momentum-growth-count"><strong>{String(activeSlide + 1).padStart(2, "0")}</strong><i />{String(growthSlides.length).padStart(2, "0")}</span>
           <div className="momentum-growth-dots" aria-label="Choose a service slide">
             {growthSlides.map((slide, index) => (
-              <button key={slide.number} type="button" className={activeSlide === index ? "is-active" : ""} onClick={() => emblaApi?.scrollTo(index)} aria-label={`Show ${slide.eyebrow}`} aria-current={activeSlide === index ? "true" : undefined} />
+              <button key={slide.number} type="button" className={activeSlide === index ? "is-active" : ""} onClick={() => setActiveSlide(index)} aria-label={`Show ${slide.eyebrow}`} aria-current={activeSlide === index ? "true" : undefined} />
             ))}
-          </div>
-          <div className="momentum-growth-arrows">
-            <button type="button" onClick={() => emblaApi?.scrollPrev()} aria-label="Previous service"><ArrowLeft size={17} /></button>
-            <button type="button" onClick={() => emblaApi?.scrollNext()} aria-label="Next service"><ArrowRight size={17} /></button>
           </div>
         </div>
       </div>

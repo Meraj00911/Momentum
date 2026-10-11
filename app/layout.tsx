@@ -3,6 +3,7 @@ import { Geist, Geist_Mono } from "next/font/google";
 import "./globals.css";
 import "./landing/landing.css";
 import Script from "next/script";
+import { MesurerOverlay } from "@/components/ui/mesurer-overlay";
 
 
 
@@ -75,7 +76,7 @@ export default function RootLayout({
     gtag('js', new Date());
     gtag('config', 'G-9WP8MDLWR8');
   `}
-</Script>{children}</body>
+</Script>{children}{process.env.NODE_ENV === "development" && <MesurerOverlay />}</body>
     </html>
   );
 }
